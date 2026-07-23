@@ -1,0 +1,1530 @@
+[
+  {
+    "chunk_id": "01 Data Structures::0",
+    "doc_title": "01 Data Structures"
+  },
+  {
+    "chunk_id": "01 Data Structures::1",
+    "doc_title": "01 Data Structures"
+  },
+  {
+    "chunk_id": "01 Data Structures::2",
+    "doc_title": "01 Data Structures"
+  },
+  {
+    "chunk_id": "01 Data Structures::3",
+    "doc_title": "01 Data Structures"
+  },
+  {
+    "chunk_id": "01 Data Structures::4",
+    "doc_title": "01 Data Structures"
+  },
+  {
+    "chunk_id": "01 Data Structures::5",
+    "doc_title": "01 Data Structures"
+  },
+  {
+    "chunk_id": "01 Data Structures::6",
+    "doc_title": "01 Data Structures"
+  },
+  {
+    "chunk_id": "01 Data Structures::7",
+    "doc_title": "01 Data Structures"
+  },
+  {
+    "chunk_id": "01 Data Structures::8",
+    "doc_title": "01 Data Structures"
+  },
+  {
+    "chunk_id": "01 Data Structures::9",
+    "doc_title": "01 Data Structures"
+  },
+  {
+    "chunk_id": "020 Data Structures Arrays And Lists::0",
+    "doc_title": "020 Data Structures Arrays And Lists"
+  },
+  {
+    "chunk_id": "020 Data Structures Arrays And Lists::1",
+    "doc_title": "020 Data Structures Arrays And Lists"
+  },
+  {
+    "chunk_id": "020 Data Structures Arrays And Lists::2",
+    "doc_title": "020 Data Structures Arrays And Lists"
+  },
+  {
+    "chunk_id": "020 Data Structures Arrays And Lists::3",
+    "doc_title": "020 Data Structures Arrays And Lists"
+  },
+  {
+    "chunk_id": "021 Data Structures Trees And Graphs::0",
+    "doc_title": "021 Data Structures Trees And Graphs"
+  },
+  {
+    "chunk_id": "021 Data Structures Trees And Graphs::1",
+    "doc_title": "021 Data Structures Trees And Graphs"
+  },
+  {
+    "chunk_id": "021 Data Structures Trees And Graphs::2",
+    "doc_title": "021 Data Structures Trees And Graphs"
+  },
+  {
+    "chunk_id": "021 Data Structures Trees And Graphs::3",
+    "doc_title": "021 Data Structures Trees And Graphs"
+  },
+  {
+    "chunk_id": "022 Data Structures Hash Tables::0",
+    "doc_title": "022 Data Structures Hash Tables"
+  },
+  {
+    "chunk_id": "022 Data Structures Hash Tables::1",
+    "doc_title": "022 Data Structures Hash Tables"
+  },
+  {
+    "chunk_id": "022 Data Structures Hash Tables::2",
+    "doc_title": "022 Data Structures Hash Tables"
+  },
+  {
+    "chunk_id": "022 Data Structures Hash Tables::3",
+    "doc_title": "022 Data Structures Hash Tables"
+  },
+  {
+    "chunk_id": "023 Data Structures Heaps And Priority Queues::0",
+    "doc_title": "023 Data Structures Heaps And Priority Queues"
+  },
+  {
+    "chunk_id": "023 Data Structures Heaps And Priority Queues::1",
+    "doc_title": "023 Data Structures Heaps And Priority Queues"
+  },
+  {
+    "chunk_id": "023 Data Structures Heaps And Priority Queues::2",
+    "doc_title": "023 Data Structures Heaps And Priority Queues"
+  },
+  {
+    "chunk_id": "023 Data Structures Heaps And Priority Queues::3",
+    "doc_title": "023 Data Structures Heaps And Priority Queues"
+  },
+  {
+    "chunk_id": "024 Algorithms Sorting Algorithms::0",
+    "doc_title": "024 Algorithms Sorting Algorithms"
+  },
+  {
+    "chunk_id": "024 Algorithms Sorting Algorithms::1",
+    "doc_title": "024 Algorithms Sorting Algorithms"
+  },
+  {
+    "chunk_id": "024 Algorithms Sorting Algorithms::2",
+    "doc_title": "024 Algorithms Sorting Algorithms"
+  },
+  {
+    "chunk_id": "024 Algorithms Sorting Algorithms::3",
+    "doc_title": "024 Algorithms Sorting Algorithms"
+  },
+  {
+    "chunk_id": "025 Algorithms Searching Techniques::0",
+    "doc_title": "025 Algorithms Searching Techniques"
+  },
+  {
+    "chunk_id": "025 Algorithms Searching Techniques::1",
+    "doc_title": "025 Algorithms Searching Techniques"
+  },
+  {
+    "chunk_id": "025 Algorithms Searching Techniques::2",
+    "doc_title": "025 Algorithms Searching Techniques"
+  },
+  {
+    "chunk_id": "025 Algorithms Searching Techniques::3",
+    "doc_title": "025 Algorithms Searching Techniques"
+  },
+  {
+    "chunk_id": "026 Algorithms Dynamic Programming::0",
+    "doc_title": "026 Algorithms Dynamic Programming"
+  },
+  {
+    "chunk_id": "026 Algorithms Dynamic Programming::1",
+    "doc_title": "026 Algorithms Dynamic Programming"
+  },
+  {
+    "chunk_id": "026 Algorithms Dynamic Programming::2",
+    "doc_title": "026 Algorithms Dynamic Programming"
+  },
+  {
+    "chunk_id": "026 Algorithms Dynamic Programming::3",
+    "doc_title": "026 Algorithms Dynamic Programming"
+  },
+  {
+    "chunk_id": "027 Algorithms Graph Algorithms::0",
+    "doc_title": "027 Algorithms Graph Algorithms"
+  },
+  {
+    "chunk_id": "027 Algorithms Graph Algorithms::1",
+    "doc_title": "027 Algorithms Graph Algorithms"
+  },
+  {
+    "chunk_id": "027 Algorithms Graph Algorithms::2",
+    "doc_title": "027 Algorithms Graph Algorithms"
+  },
+  {
+    "chunk_id": "027 Algorithms Graph Algorithms::3",
+    "doc_title": "027 Algorithms Graph Algorithms"
+  },
+  {
+    "chunk_id": "028 Database Systems Sql Basics::0",
+    "doc_title": "028 Database Systems Sql Basics"
+  },
+  {
+    "chunk_id": "028 Database Systems Sql Basics::1",
+    "doc_title": "028 Database Systems Sql Basics"
+  },
+  {
+    "chunk_id": "028 Database Systems Sql Basics::2",
+    "doc_title": "028 Database Systems Sql Basics"
+  },
+  {
+    "chunk_id": "028 Database Systems Sql Basics::3",
+    "doc_title": "028 Database Systems Sql Basics"
+  },
+  {
+    "chunk_id": "029 Database Systems Normalization::0",
+    "doc_title": "029 Database Systems Normalization"
+  },
+  {
+    "chunk_id": "029 Database Systems Normalization::1",
+    "doc_title": "029 Database Systems Normalization"
+  },
+  {
+    "chunk_id": "029 Database Systems Normalization::2",
+    "doc_title": "029 Database Systems Normalization"
+  },
+  {
+    "chunk_id": "029 Database Systems Normalization::3",
+    "doc_title": "029 Database Systems Normalization"
+  },
+  {
+    "chunk_id": "02 Algorithms::0",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "02 Algorithms::1",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "02 Algorithms::2",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "02 Algorithms::3",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "02 Algorithms::4",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "02 Algorithms::5",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "02 Algorithms::6",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "02 Algorithms::7",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "02 Algorithms::8",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "02 Algorithms::9",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "02 Algorithms::10",
+    "doc_title": "02 Algorithms"
+  },
+  {
+    "chunk_id": "030 Database Systems Indexing::0",
+    "doc_title": "030 Database Systems Indexing"
+  },
+  {
+    "chunk_id": "030 Database Systems Indexing::1",
+    "doc_title": "030 Database Systems Indexing"
+  },
+  {
+    "chunk_id": "030 Database Systems Indexing::2",
+    "doc_title": "030 Database Systems Indexing"
+  },
+  {
+    "chunk_id": "030 Database Systems Indexing::3",
+    "doc_title": "030 Database Systems Indexing"
+  },
+  {
+    "chunk_id": "031 Database Systems Query Optimization::0",
+    "doc_title": "031 Database Systems Query Optimization"
+  },
+  {
+    "chunk_id": "031 Database Systems Query Optimization::1",
+    "doc_title": "031 Database Systems Query Optimization"
+  },
+  {
+    "chunk_id": "031 Database Systems Query Optimization::2",
+    "doc_title": "031 Database Systems Query Optimization"
+  },
+  {
+    "chunk_id": "031 Database Systems Query Optimization::3",
+    "doc_title": "031 Database Systems Query Optimization"
+  },
+  {
+    "chunk_id": "032 Oop Classes And Objects::0",
+    "doc_title": "032 Oop Classes And Objects"
+  },
+  {
+    "chunk_id": "032 Oop Classes And Objects::1",
+    "doc_title": "032 Oop Classes And Objects"
+  },
+  {
+    "chunk_id": "032 Oop Classes And Objects::2",
+    "doc_title": "032 Oop Classes And Objects"
+  },
+  {
+    "chunk_id": "032 Oop Classes And Objects::3",
+    "doc_title": "032 Oop Classes And Objects"
+  },
+  {
+    "chunk_id": "033 Oop Inheritance::0",
+    "doc_title": "033 Oop Inheritance"
+  },
+  {
+    "chunk_id": "033 Oop Inheritance::1",
+    "doc_title": "033 Oop Inheritance"
+  },
+  {
+    "chunk_id": "033 Oop Inheritance::2",
+    "doc_title": "033 Oop Inheritance"
+  },
+  {
+    "chunk_id": "033 Oop Inheritance::3",
+    "doc_title": "033 Oop Inheritance"
+  },
+  {
+    "chunk_id": "034 Oop Polymorphism::0",
+    "doc_title": "034 Oop Polymorphism"
+  },
+  {
+    "chunk_id": "034 Oop Polymorphism::1",
+    "doc_title": "034 Oop Polymorphism"
+  },
+  {
+    "chunk_id": "034 Oop Polymorphism::2",
+    "doc_title": "034 Oop Polymorphism"
+  },
+  {
+    "chunk_id": "034 Oop Polymorphism::3",
+    "doc_title": "034 Oop Polymorphism"
+  },
+  {
+    "chunk_id": "035 Oop Design Patterns::0",
+    "doc_title": "035 Oop Design Patterns"
+  },
+  {
+    "chunk_id": "035 Oop Design Patterns::1",
+    "doc_title": "035 Oop Design Patterns"
+  },
+  {
+    "chunk_id": "035 Oop Design Patterns::2",
+    "doc_title": "035 Oop Design Patterns"
+  },
+  {
+    "chunk_id": "035 Oop Design Patterns::3",
+    "doc_title": "035 Oop Design Patterns"
+  },
+  {
+    "chunk_id": "036 Operating Systems Process Management::0",
+    "doc_title": "036 Operating Systems Process Management"
+  },
+  {
+    "chunk_id": "036 Operating Systems Process Management::1",
+    "doc_title": "036 Operating Systems Process Management"
+  },
+  {
+    "chunk_id": "036 Operating Systems Process Management::2",
+    "doc_title": "036 Operating Systems Process Management"
+  },
+  {
+    "chunk_id": "036 Operating Systems Process Management::3",
+    "doc_title": "036 Operating Systems Process Management"
+  },
+  {
+    "chunk_id": "037 Operating Systems Memory Management::0",
+    "doc_title": "037 Operating Systems Memory Management"
+  },
+  {
+    "chunk_id": "037 Operating Systems Memory Management::1",
+    "doc_title": "037 Operating Systems Memory Management"
+  },
+  {
+    "chunk_id": "037 Operating Systems Memory Management::2",
+    "doc_title": "037 Operating Systems Memory Management"
+  },
+  {
+    "chunk_id": "037 Operating Systems Memory Management::3",
+    "doc_title": "037 Operating Systems Memory Management"
+  },
+  {
+    "chunk_id": "038 Operating Systems File Systems::0",
+    "doc_title": "038 Operating Systems File Systems"
+  },
+  {
+    "chunk_id": "038 Operating Systems File Systems::1",
+    "doc_title": "038 Operating Systems File Systems"
+  },
+  {
+    "chunk_id": "038 Operating Systems File Systems::2",
+    "doc_title": "038 Operating Systems File Systems"
+  },
+  {
+    "chunk_id": "038 Operating Systems File Systems::3",
+    "doc_title": "038 Operating Systems File Systems"
+  },
+  {
+    "chunk_id": "039 Operating Systems Scheduling::0",
+    "doc_title": "039 Operating Systems Scheduling"
+  },
+  {
+    "chunk_id": "039 Operating Systems Scheduling::1",
+    "doc_title": "039 Operating Systems Scheduling"
+  },
+  {
+    "chunk_id": "039 Operating Systems Scheduling::2",
+    "doc_title": "039 Operating Systems Scheduling"
+  },
+  {
+    "chunk_id": "039 Operating Systems Scheduling::3",
+    "doc_title": "039 Operating Systems Scheduling"
+  },
+  {
+    "chunk_id": "03 Database Systems::0",
+    "doc_title": "03 Database Systems"
+  },
+  {
+    "chunk_id": "03 Database Systems::1",
+    "doc_title": "03 Database Systems"
+  },
+  {
+    "chunk_id": "03 Database Systems::2",
+    "doc_title": "03 Database Systems"
+  },
+  {
+    "chunk_id": "03 Database Systems::3",
+    "doc_title": "03 Database Systems"
+  },
+  {
+    "chunk_id": "03 Database Systems::4",
+    "doc_title": "03 Database Systems"
+  },
+  {
+    "chunk_id": "03 Database Systems::5",
+    "doc_title": "03 Database Systems"
+  },
+  {
+    "chunk_id": "03 Database Systems::6",
+    "doc_title": "03 Database Systems"
+  },
+  {
+    "chunk_id": "03 Database Systems::7",
+    "doc_title": "03 Database Systems"
+  },
+  {
+    "chunk_id": "03 Database Systems::8",
+    "doc_title": "03 Database Systems"
+  },
+  {
+    "chunk_id": "040 Networks Osi Model::0",
+    "doc_title": "040 Networks Osi Model"
+  },
+  {
+    "chunk_id": "040 Networks Osi Model::1",
+    "doc_title": "040 Networks Osi Model"
+  },
+  {
+    "chunk_id": "040 Networks Osi Model::2",
+    "doc_title": "040 Networks Osi Model"
+  },
+  {
+    "chunk_id": "040 Networks Osi Model::3",
+    "doc_title": "040 Networks Osi Model"
+  },
+  {
+    "chunk_id": "041 Networks Tcpip Protocol::0",
+    "doc_title": "041 Networks Tcpip Protocol"
+  },
+  {
+    "chunk_id": "041 Networks Tcpip Protocol::1",
+    "doc_title": "041 Networks Tcpip Protocol"
+  },
+  {
+    "chunk_id": "041 Networks Tcpip Protocol::2",
+    "doc_title": "041 Networks Tcpip Protocol"
+  },
+  {
+    "chunk_id": "041 Networks Tcpip Protocol::3",
+    "doc_title": "041 Networks Tcpip Protocol"
+  },
+  {
+    "chunk_id": "042 Networks Dns And Http::0",
+    "doc_title": "042 Networks Dns And Http"
+  },
+  {
+    "chunk_id": "042 Networks Dns And Http::1",
+    "doc_title": "042 Networks Dns And Http"
+  },
+  {
+    "chunk_id": "042 Networks Dns And Http::2",
+    "doc_title": "042 Networks Dns And Http"
+  },
+  {
+    "chunk_id": "042 Networks Dns And Http::3",
+    "doc_title": "042 Networks Dns And Http"
+  },
+  {
+    "chunk_id": "043 Networks Network Security::0",
+    "doc_title": "043 Networks Network Security"
+  },
+  {
+    "chunk_id": "043 Networks Network Security::1",
+    "doc_title": "043 Networks Network Security"
+  },
+  {
+    "chunk_id": "043 Networks Network Security::2",
+    "doc_title": "043 Networks Network Security"
+  },
+  {
+    "chunk_id": "043 Networks Network Security::3",
+    "doc_title": "043 Networks Network Security"
+  },
+  {
+    "chunk_id": "044 Web Development Html Css::0",
+    "doc_title": "044 Web Development Html Css"
+  },
+  {
+    "chunk_id": "044 Web Development Html Css::1",
+    "doc_title": "044 Web Development Html Css"
+  },
+  {
+    "chunk_id": "044 Web Development Html Css::2",
+    "doc_title": "044 Web Development Html Css"
+  },
+  {
+    "chunk_id": "044 Web Development Html Css::3",
+    "doc_title": "044 Web Development Html Css"
+  },
+  {
+    "chunk_id": "045 Web Development Javascript::0",
+    "doc_title": "045 Web Development Javascript"
+  },
+  {
+    "chunk_id": "045 Web Development Javascript::1",
+    "doc_title": "045 Web Development Javascript"
+  },
+  {
+    "chunk_id": "045 Web Development Javascript::2",
+    "doc_title": "045 Web Development Javascript"
+  },
+  {
+    "chunk_id": "045 Web Development Javascript::3",
+    "doc_title": "045 Web Development Javascript"
+  },
+  {
+    "chunk_id": "046 Web Development Frontend Frameworks::0",
+    "doc_title": "046 Web Development Frontend Frameworks"
+  },
+  {
+    "chunk_id": "046 Web Development Frontend Frameworks::1",
+    "doc_title": "046 Web Development Frontend Frameworks"
+  },
+  {
+    "chunk_id": "046 Web Development Frontend Frameworks::2",
+    "doc_title": "046 Web Development Frontend Frameworks"
+  },
+  {
+    "chunk_id": "046 Web Development Frontend Frameworks::3",
+    "doc_title": "046 Web Development Frontend Frameworks"
+  },
+  {
+    "chunk_id": "047 Web Development Backend Development::0",
+    "doc_title": "047 Web Development Backend Development"
+  },
+  {
+    "chunk_id": "047 Web Development Backend Development::1",
+    "doc_title": "047 Web Development Backend Development"
+  },
+  {
+    "chunk_id": "047 Web Development Backend Development::2",
+    "doc_title": "047 Web Development Backend Development"
+  },
+  {
+    "chunk_id": "047 Web Development Backend Development::3",
+    "doc_title": "047 Web Development Backend Development"
+  },
+  {
+    "chunk_id": "048 Software Engineering Sdlc::0",
+    "doc_title": "048 Software Engineering Sdlc"
+  },
+  {
+    "chunk_id": "048 Software Engineering Sdlc::1",
+    "doc_title": "048 Software Engineering Sdlc"
+  },
+  {
+    "chunk_id": "048 Software Engineering Sdlc::2",
+    "doc_title": "048 Software Engineering Sdlc"
+  },
+  {
+    "chunk_id": "048 Software Engineering Sdlc::3",
+    "doc_title": "048 Software Engineering Sdlc"
+  },
+  {
+    "chunk_id": "049 Software Engineering Testing::0",
+    "doc_title": "049 Software Engineering Testing"
+  },
+  {
+    "chunk_id": "049 Software Engineering Testing::1",
+    "doc_title": "049 Software Engineering Testing"
+  },
+  {
+    "chunk_id": "049 Software Engineering Testing::2",
+    "doc_title": "049 Software Engineering Testing"
+  },
+  {
+    "chunk_id": "049 Software Engineering Testing::3",
+    "doc_title": "049 Software Engineering Testing"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::0",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::1",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::2",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::3",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::4",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::5",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::6",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::7",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::8",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::9",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "04 Object Oriented Programming::10",
+    "doc_title": "04 Object Oriented Programming"
+  },
+  {
+    "chunk_id": "050 Software Engineering Agile Methods::0",
+    "doc_title": "050 Software Engineering Agile Methods"
+  },
+  {
+    "chunk_id": "050 Software Engineering Agile Methods::1",
+    "doc_title": "050 Software Engineering Agile Methods"
+  },
+  {
+    "chunk_id": "050 Software Engineering Agile Methods::2",
+    "doc_title": "050 Software Engineering Agile Methods"
+  },
+  {
+    "chunk_id": "050 Software Engineering Agile Methods::3",
+    "doc_title": "050 Software Engineering Agile Methods"
+  },
+  {
+    "chunk_id": "051 Software Engineering Code Quality::0",
+    "doc_title": "051 Software Engineering Code Quality"
+  },
+  {
+    "chunk_id": "051 Software Engineering Code Quality::1",
+    "doc_title": "051 Software Engineering Code Quality"
+  },
+  {
+    "chunk_id": "051 Software Engineering Code Quality::2",
+    "doc_title": "051 Software Engineering Code Quality"
+  },
+  {
+    "chunk_id": "051 Software Engineering Code Quality::3",
+    "doc_title": "051 Software Engineering Code Quality"
+  },
+  {
+    "chunk_id": "052 Security Cryptography::0",
+    "doc_title": "052 Security Cryptography"
+  },
+  {
+    "chunk_id": "052 Security Cryptography::1",
+    "doc_title": "052 Security Cryptography"
+  },
+  {
+    "chunk_id": "052 Security Cryptography::2",
+    "doc_title": "052 Security Cryptography"
+  },
+  {
+    "chunk_id": "052 Security Cryptography::3",
+    "doc_title": "052 Security Cryptography"
+  },
+  {
+    "chunk_id": "053 Security Authentication::0",
+    "doc_title": "053 Security Authentication"
+  },
+  {
+    "chunk_id": "053 Security Authentication::1",
+    "doc_title": "053 Security Authentication"
+  },
+  {
+    "chunk_id": "053 Security Authentication::2",
+    "doc_title": "053 Security Authentication"
+  },
+  {
+    "chunk_id": "053 Security Authentication::3",
+    "doc_title": "053 Security Authentication"
+  },
+  {
+    "chunk_id": "054 Security Authorization::0",
+    "doc_title": "054 Security Authorization"
+  },
+  {
+    "chunk_id": "054 Security Authorization::1",
+    "doc_title": "054 Security Authorization"
+  },
+  {
+    "chunk_id": "054 Security Authorization::2",
+    "doc_title": "054 Security Authorization"
+  },
+  {
+    "chunk_id": "054 Security Authorization::3",
+    "doc_title": "054 Security Authorization"
+  },
+  {
+    "chunk_id": "055 Security Penetration Testing::0",
+    "doc_title": "055 Security Penetration Testing"
+  },
+  {
+    "chunk_id": "055 Security Penetration Testing::1",
+    "doc_title": "055 Security Penetration Testing"
+  },
+  {
+    "chunk_id": "055 Security Penetration Testing::2",
+    "doc_title": "055 Security Penetration Testing"
+  },
+  {
+    "chunk_id": "055 Security Penetration Testing::3",
+    "doc_title": "055 Security Penetration Testing"
+  },
+  {
+    "chunk_id": "056 Machine Learning Supervised Learning::0",
+    "doc_title": "056 Machine Learning Supervised Learning"
+  },
+  {
+    "chunk_id": "056 Machine Learning Supervised Learning::1",
+    "doc_title": "056 Machine Learning Supervised Learning"
+  },
+  {
+    "chunk_id": "056 Machine Learning Supervised Learning::2",
+    "doc_title": "056 Machine Learning Supervised Learning"
+  },
+  {
+    "chunk_id": "056 Machine Learning Supervised Learning::3",
+    "doc_title": "056 Machine Learning Supervised Learning"
+  },
+  {
+    "chunk_id": "057 Machine Learning Unsupervised Learning::0",
+    "doc_title": "057 Machine Learning Unsupervised Learning"
+  },
+  {
+    "chunk_id": "057 Machine Learning Unsupervised Learning::1",
+    "doc_title": "057 Machine Learning Unsupervised Learning"
+  },
+  {
+    "chunk_id": "057 Machine Learning Unsupervised Learning::2",
+    "doc_title": "057 Machine Learning Unsupervised Learning"
+  },
+  {
+    "chunk_id": "057 Machine Learning Unsupervised Learning::3",
+    "doc_title": "057 Machine Learning Unsupervised Learning"
+  },
+  {
+    "chunk_id": "058 Machine Learning Neural Networks::0",
+    "doc_title": "058 Machine Learning Neural Networks"
+  },
+  {
+    "chunk_id": "058 Machine Learning Neural Networks::1",
+    "doc_title": "058 Machine Learning Neural Networks"
+  },
+  {
+    "chunk_id": "058 Machine Learning Neural Networks::2",
+    "doc_title": "058 Machine Learning Neural Networks"
+  },
+  {
+    "chunk_id": "058 Machine Learning Neural Networks::3",
+    "doc_title": "058 Machine Learning Neural Networks"
+  },
+  {
+    "chunk_id": "059 Machine Learning Nlp::0",
+    "doc_title": "059 Machine Learning Nlp"
+  },
+  {
+    "chunk_id": "059 Machine Learning Nlp::1",
+    "doc_title": "059 Machine Learning Nlp"
+  },
+  {
+    "chunk_id": "059 Machine Learning Nlp::2",
+    "doc_title": "059 Machine Learning Nlp"
+  },
+  {
+    "chunk_id": "059 Machine Learning Nlp::3",
+    "doc_title": "059 Machine Learning Nlp"
+  },
+  {
+    "chunk_id": "05 Operating Systems::0",
+    "doc_title": "05 Operating Systems"
+  },
+  {
+    "chunk_id": "05 Operating Systems::1",
+    "doc_title": "05 Operating Systems"
+  },
+  {
+    "chunk_id": "060 System Admin Linux::0",
+    "doc_title": "060 System Admin Linux"
+  },
+  {
+    "chunk_id": "060 System Admin Linux::1",
+    "doc_title": "060 System Admin Linux"
+  },
+  {
+    "chunk_id": "060 System Admin Linux::2",
+    "doc_title": "060 System Admin Linux"
+  },
+  {
+    "chunk_id": "060 System Admin Linux::3",
+    "doc_title": "060 System Admin Linux"
+  },
+  {
+    "chunk_id": "061 System Admin Shell Scripting::0",
+    "doc_title": "061 System Admin Shell Scripting"
+  },
+  {
+    "chunk_id": "061 System Admin Shell Scripting::1",
+    "doc_title": "061 System Admin Shell Scripting"
+  },
+  {
+    "chunk_id": "061 System Admin Shell Scripting::2",
+    "doc_title": "061 System Admin Shell Scripting"
+  },
+  {
+    "chunk_id": "061 System Admin Shell Scripting::3",
+    "doc_title": "061 System Admin Shell Scripting"
+  },
+  {
+    "chunk_id": "062 System Admin User Management::0",
+    "doc_title": "062 System Admin User Management"
+  },
+  {
+    "chunk_id": "062 System Admin User Management::1",
+    "doc_title": "062 System Admin User Management"
+  },
+  {
+    "chunk_id": "062 System Admin User Management::2",
+    "doc_title": "062 System Admin User Management"
+  },
+  {
+    "chunk_id": "062 System Admin User Management::3",
+    "doc_title": "062 System Admin User Management"
+  },
+  {
+    "chunk_id": "063 System Admin Monitoring::0",
+    "doc_title": "063 System Admin Monitoring"
+  },
+  {
+    "chunk_id": "063 System Admin Monitoring::1",
+    "doc_title": "063 System Admin Monitoring"
+  },
+  {
+    "chunk_id": "063 System Admin Monitoring::2",
+    "doc_title": "063 System Admin Monitoring"
+  },
+  {
+    "chunk_id": "063 System Admin Monitoring::3",
+    "doc_title": "063 System Admin Monitoring"
+  },
+  {
+    "chunk_id": "064 Distributed Systems Scalability::0",
+    "doc_title": "064 Distributed Systems Scalability"
+  },
+  {
+    "chunk_id": "064 Distributed Systems Scalability::1",
+    "doc_title": "064 Distributed Systems Scalability"
+  },
+  {
+    "chunk_id": "064 Distributed Systems Scalability::2",
+    "doc_title": "064 Distributed Systems Scalability"
+  },
+  {
+    "chunk_id": "064 Distributed Systems Scalability::3",
+    "doc_title": "064 Distributed Systems Scalability"
+  },
+  {
+    "chunk_id": "065 Distributed Systems Consistency::0",
+    "doc_title": "065 Distributed Systems Consistency"
+  },
+  {
+    "chunk_id": "065 Distributed Systems Consistency::1",
+    "doc_title": "065 Distributed Systems Consistency"
+  },
+  {
+    "chunk_id": "065 Distributed Systems Consistency::2",
+    "doc_title": "065 Distributed Systems Consistency"
+  },
+  {
+    "chunk_id": "065 Distributed Systems Consistency::3",
+    "doc_title": "065 Distributed Systems Consistency"
+  },
+  {
+    "chunk_id": "066 Distributed Systems Fault Tolerance::0",
+    "doc_title": "066 Distributed Systems Fault Tolerance"
+  },
+  {
+    "chunk_id": "066 Distributed Systems Fault Tolerance::1",
+    "doc_title": "066 Distributed Systems Fault Tolerance"
+  },
+  {
+    "chunk_id": "066 Distributed Systems Fault Tolerance::2",
+    "doc_title": "066 Distributed Systems Fault Tolerance"
+  },
+  {
+    "chunk_id": "066 Distributed Systems Fault Tolerance::3",
+    "doc_title": "066 Distributed Systems Fault Tolerance"
+  },
+  {
+    "chunk_id": "067 Distributed Systems Consensus Algorithms::0",
+    "doc_title": "067 Distributed Systems Consensus Algorithms"
+  },
+  {
+    "chunk_id": "067 Distributed Systems Consensus Algorithms::1",
+    "doc_title": "067 Distributed Systems Consensus Algorithms"
+  },
+  {
+    "chunk_id": "067 Distributed Systems Consensus Algorithms::2",
+    "doc_title": "067 Distributed Systems Consensus Algorithms"
+  },
+  {
+    "chunk_id": "067 Distributed Systems Consensus Algorithms::3",
+    "doc_title": "067 Distributed Systems Consensus Algorithms"
+  },
+  {
+    "chunk_id": "068 Advanced Topics Concurrency And Parallelism::0",
+    "doc_title": "068 Advanced Topics Concurrency And Parallelism"
+  },
+  {
+    "chunk_id": "068 Advanced Topics Concurrency And Parallelism::1",
+    "doc_title": "068 Advanced Topics Concurrency And Parallelism"
+  },
+  {
+    "chunk_id": "068 Advanced Topics Concurrency And Parallelism::2",
+    "doc_title": "068 Advanced Topics Concurrency And Parallelism"
+  },
+  {
+    "chunk_id": "068 Advanced Topics Concurrency And Parallelism::3",
+    "doc_title": "068 Advanced Topics Concurrency And Parallelism"
+  },
+  {
+    "chunk_id": "069 Advanced Topics Memory Optimization::0",
+    "doc_title": "069 Advanced Topics Memory Optimization"
+  },
+  {
+    "chunk_id": "069 Advanced Topics Memory Optimization::1",
+    "doc_title": "069 Advanced Topics Memory Optimization"
+  },
+  {
+    "chunk_id": "069 Advanced Topics Memory Optimization::2",
+    "doc_title": "069 Advanced Topics Memory Optimization"
+  },
+  {
+    "chunk_id": "06 Computer Networks::0",
+    "doc_title": "06 Computer Networks"
+  },
+  {
+    "chunk_id": "06 Computer Networks::1",
+    "doc_title": "06 Computer Networks"
+  },
+  {
+    "chunk_id": "070 Advanced Topics System Performance Tuning::0",
+    "doc_title": "070 Advanced Topics System Performance Tuning"
+  },
+  {
+    "chunk_id": "070 Advanced Topics System Performance Tuning::1",
+    "doc_title": "070 Advanced Topics System Performance Tuning"
+  },
+  {
+    "chunk_id": "070 Advanced Topics System Performance Tuning::2",
+    "doc_title": "070 Advanced Topics System Performance Tuning"
+  },
+  {
+    "chunk_id": "070 Advanced Topics System Performance Tuning::3",
+    "doc_title": "070 Advanced Topics System Performance Tuning"
+  },
+  {
+    "chunk_id": "071 Advanced Topics Microservices Architecture::0",
+    "doc_title": "071 Advanced Topics Microservices Architecture"
+  },
+  {
+    "chunk_id": "071 Advanced Topics Microservices Architecture::1",
+    "doc_title": "071 Advanced Topics Microservices Architecture"
+  },
+  {
+    "chunk_id": "071 Advanced Topics Microservices Architecture::2",
+    "doc_title": "071 Advanced Topics Microservices Architecture"
+  },
+  {
+    "chunk_id": "072 Practical Skills Version Control Systems::0",
+    "doc_title": "072 Practical Skills Version Control Systems"
+  },
+  {
+    "chunk_id": "072 Practical Skills Version Control Systems::1",
+    "doc_title": "072 Practical Skills Version Control Systems"
+  },
+  {
+    "chunk_id": "072 Practical Skills Version Control Systems::2",
+    "doc_title": "072 Practical Skills Version Control Systems"
+  },
+  {
+    "chunk_id": "072 Practical Skills Version Control Systems::3",
+    "doc_title": "072 Practical Skills Version Control Systems"
+  },
+  {
+    "chunk_id": "073 Practical Skills Docker Containerization::0",
+    "doc_title": "073 Practical Skills Docker Containerization"
+  },
+  {
+    "chunk_id": "073 Practical Skills Docker Containerization::1",
+    "doc_title": "073 Practical Skills Docker Containerization"
+  },
+  {
+    "chunk_id": "073 Practical Skills Docker Containerization::2",
+    "doc_title": "073 Practical Skills Docker Containerization"
+  },
+  {
+    "chunk_id": "074 Practical Skills Kubernetes Orchestration::0",
+    "doc_title": "074 Practical Skills Kubernetes Orchestration"
+  },
+  {
+    "chunk_id": "074 Practical Skills Kubernetes Orchestration::1",
+    "doc_title": "074 Practical Skills Kubernetes Orchestration"
+  },
+  {
+    "chunk_id": "074 Practical Skills Kubernetes Orchestration::2",
+    "doc_title": "074 Practical Skills Kubernetes Orchestration"
+  },
+  {
+    "chunk_id": "075 Practical Skills Infrastructure As Code::0",
+    "doc_title": "075 Practical Skills Infrastructure As Code"
+  },
+  {
+    "chunk_id": "075 Practical Skills Infrastructure As Code::1",
+    "doc_title": "075 Practical Skills Infrastructure As Code"
+  },
+  {
+    "chunk_id": "075 Practical Skills Infrastructure As Code::2",
+    "doc_title": "075 Practical Skills Infrastructure As Code"
+  },
+  {
+    "chunk_id": "075 Practical Skills Infrastructure As Code::3",
+    "doc_title": "075 Practical Skills Infrastructure As Code"
+  },
+  {
+    "chunk_id": "076 Practical Skills Monitoring And Logging::0",
+    "doc_title": "076 Practical Skills Monitoring And Logging"
+  },
+  {
+    "chunk_id": "076 Practical Skills Monitoring And Logging::1",
+    "doc_title": "076 Practical Skills Monitoring And Logging"
+  },
+  {
+    "chunk_id": "076 Practical Skills Monitoring And Logging::2",
+    "doc_title": "076 Practical Skills Monitoring And Logging"
+  },
+  {
+    "chunk_id": "076 Practical Skills Monitoring And Logging::3",
+    "doc_title": "076 Practical Skills Monitoring And Logging"
+  },
+  {
+    "chunk_id": "077 Frontend Development React Framework::0",
+    "doc_title": "077 Frontend Development React Framework"
+  },
+  {
+    "chunk_id": "077 Frontend Development React Framework::1",
+    "doc_title": "077 Frontend Development React Framework"
+  },
+  {
+    "chunk_id": "077 Frontend Development React Framework::2",
+    "doc_title": "077 Frontend Development React Framework"
+  },
+  {
+    "chunk_id": "078 Frontend Development Vue Framework::0",
+    "doc_title": "078 Frontend Development Vue Framework"
+  },
+  {
+    "chunk_id": "078 Frontend Development Vue Framework::1",
+    "doc_title": "078 Frontend Development Vue Framework"
+  },
+  {
+    "chunk_id": "078 Frontend Development Vue Framework::2",
+    "doc_title": "078 Frontend Development Vue Framework"
+  },
+  {
+    "chunk_id": "079 Frontend Development Angular Framework::0",
+    "doc_title": "079 Frontend Development Angular Framework"
+  },
+  {
+    "chunk_id": "079 Frontend Development Angular Framework::1",
+    "doc_title": "079 Frontend Development Angular Framework"
+  },
+  {
+    "chunk_id": "079 Frontend Development Angular Framework::2",
+    "doc_title": "079 Frontend Development Angular Framework"
+  },
+  {
+    "chunk_id": "07 Web Development Basics::0",
+    "doc_title": "07 Web Development Basics"
+  },
+  {
+    "chunk_id": "07 Web Development Basics::1",
+    "doc_title": "07 Web Development Basics"
+  },
+  {
+    "chunk_id": "080 Frontend Development Css Advanced Techniques::0",
+    "doc_title": "080 Frontend Development Css Advanced Techniques"
+  },
+  {
+    "chunk_id": "080 Frontend Development Css Advanced Techniques::1",
+    "doc_title": "080 Frontend Development Css Advanced Techniques"
+  },
+  {
+    "chunk_id": "080 Frontend Development Css Advanced Techniques::2",
+    "doc_title": "080 Frontend Development Css Advanced Techniques"
+  },
+  {
+    "chunk_id": "080 Frontend Development Css Advanced Techniques::3",
+    "doc_title": "080 Frontend Development Css Advanced Techniques"
+  },
+  {
+    "chunk_id": "081 Backend Development Node.Js And Express::0",
+    "doc_title": "081 Backend Development Node.Js And Express"
+  },
+  {
+    "chunk_id": "081 Backend Development Node.Js And Express::1",
+    "doc_title": "081 Backend Development Node.Js And Express"
+  },
+  {
+    "chunk_id": "081 Backend Development Node.Js And Express::2",
+    "doc_title": "081 Backend Development Node.Js And Express"
+  },
+  {
+    "chunk_id": "081 Backend Development Node.Js And Express::3",
+    "doc_title": "081 Backend Development Node.Js And Express"
+  },
+  {
+    "chunk_id": "082 Backend Development Python Django Framework::0",
+    "doc_title": "082 Backend Development Python Django Framework"
+  },
+  {
+    "chunk_id": "082 Backend Development Python Django Framework::1",
+    "doc_title": "082 Backend Development Python Django Framework"
+  },
+  {
+    "chunk_id": "082 Backend Development Python Django Framework::2",
+    "doc_title": "082 Backend Development Python Django Framework"
+  },
+  {
+    "chunk_id": "082 Backend Development Python Django Framework::3",
+    "doc_title": "082 Backend Development Python Django Framework"
+  },
+  {
+    "chunk_id": "083 Backend Development Java Spring Framework::0",
+    "doc_title": "083 Backend Development Java Spring Framework"
+  },
+  {
+    "chunk_id": "083 Backend Development Java Spring Framework::1",
+    "doc_title": "083 Backend Development Java Spring Framework"
+  },
+  {
+    "chunk_id": "083 Backend Development Java Spring Framework::2",
+    "doc_title": "083 Backend Development Java Spring Framework"
+  },
+  {
+    "chunk_id": "083 Backend Development Java Spring Framework::3",
+    "doc_title": "083 Backend Development Java Spring Framework"
+  },
+  {
+    "chunk_id": "084 Backend Development Go Programming::0",
+    "doc_title": "084 Backend Development Go Programming"
+  },
+  {
+    "chunk_id": "084 Backend Development Go Programming::1",
+    "doc_title": "084 Backend Development Go Programming"
+  },
+  {
+    "chunk_id": "084 Backend Development Go Programming::2",
+    "doc_title": "084 Backend Development Go Programming"
+  },
+  {
+    "chunk_id": "085 Mobile Development Ios App Development::0",
+    "doc_title": "085 Mobile Development Ios App Development"
+  },
+  {
+    "chunk_id": "085 Mobile Development Ios App Development::1",
+    "doc_title": "085 Mobile Development Ios App Development"
+  },
+  {
+    "chunk_id": "085 Mobile Development Ios App Development::2",
+    "doc_title": "085 Mobile Development Ios App Development"
+  },
+  {
+    "chunk_id": "085 Mobile Development Ios App Development::3",
+    "doc_title": "085 Mobile Development Ios App Development"
+  },
+  {
+    "chunk_id": "086 Mobile Development Android App Development::0",
+    "doc_title": "086 Mobile Development Android App Development"
+  },
+  {
+    "chunk_id": "086 Mobile Development Android App Development::1",
+    "doc_title": "086 Mobile Development Android App Development"
+  },
+  {
+    "chunk_id": "086 Mobile Development Android App Development::2",
+    "doc_title": "086 Mobile Development Android App Development"
+  },
+  {
+    "chunk_id": "086 Mobile Development Android App Development::3",
+    "doc_title": "086 Mobile Development Android App Development"
+  },
+  {
+    "chunk_id": "087 Mobile Development Cross Platform Development::0",
+    "doc_title": "087 Mobile Development Cross Platform Development"
+  },
+  {
+    "chunk_id": "087 Mobile Development Cross Platform Development::1",
+    "doc_title": "087 Mobile Development Cross Platform Development"
+  },
+  {
+    "chunk_id": "087 Mobile Development Cross Platform Development::2",
+    "doc_title": "087 Mobile Development Cross Platform Development"
+  },
+  {
+    "chunk_id": "087 Mobile Development Cross Platform Development::3",
+    "doc_title": "087 Mobile Development Cross Platform Development"
+  },
+  {
+    "chunk_id": "088 Data Science Data Analysis And Visualization::0",
+    "doc_title": "088 Data Science Data Analysis And Visualization"
+  },
+  {
+    "chunk_id": "088 Data Science Data Analysis And Visualization::1",
+    "doc_title": "088 Data Science Data Analysis And Visualization"
+  },
+  {
+    "chunk_id": "088 Data Science Data Analysis And Visualization::2",
+    "doc_title": "088 Data Science Data Analysis And Visualization"
+  },
+  {
+    "chunk_id": "088 Data Science Data Analysis And Visualization::3",
+    "doc_title": "088 Data Science Data Analysis And Visualization"
+  },
+  {
+    "chunk_id": "089 Data Science Big Data Processing::0",
+    "doc_title": "089 Data Science Big Data Processing"
+  },
+  {
+    "chunk_id": "089 Data Science Big Data Processing::1",
+    "doc_title": "089 Data Science Big Data Processing"
+  },
+  {
+    "chunk_id": "089 Data Science Big Data Processing::2",
+    "doc_title": "089 Data Science Big Data Processing"
+  },
+  {
+    "chunk_id": "089 Data Science Big Data Processing::3",
+    "doc_title": "089 Data Science Big Data Processing"
+  },
+  {
+    "chunk_id": "08 Software Engineering::0",
+    "doc_title": "08 Software Engineering"
+  },
+  {
+    "chunk_id": "08 Software Engineering::1",
+    "doc_title": "08 Software Engineering"
+  },
+  {
+    "chunk_id": "090 Data Science Time Series Analysis::0",
+    "doc_title": "090 Data Science Time Series Analysis"
+  },
+  {
+    "chunk_id": "090 Data Science Time Series Analysis::1",
+    "doc_title": "090 Data Science Time Series Analysis"
+  },
+  {
+    "chunk_id": "090 Data Science Time Series Analysis::2",
+    "doc_title": "090 Data Science Time Series Analysis"
+  },
+  {
+    "chunk_id": "090 Data Science Time Series Analysis::3",
+    "doc_title": "090 Data Science Time Series Analysis"
+  },
+  {
+    "chunk_id": "091 Advanced Sql Window Functions::0",
+    "doc_title": "091 Advanced Sql Window Functions"
+  },
+  {
+    "chunk_id": "091 Advanced Sql Window Functions::1",
+    "doc_title": "091 Advanced Sql Window Functions"
+  },
+  {
+    "chunk_id": "091 Advanced Sql Window Functions::2",
+    "doc_title": "091 Advanced Sql Window Functions"
+  },
+  {
+    "chunk_id": "092 Advanced Sql Cte And Recursive Queries::0",
+    "doc_title": "092 Advanced Sql Cte And Recursive Queries"
+  },
+  {
+    "chunk_id": "092 Advanced Sql Cte And Recursive Queries::1",
+    "doc_title": "092 Advanced Sql Cte And Recursive Queries"
+  },
+  {
+    "chunk_id": "092 Advanced Sql Cte And Recursive Queries::2",
+    "doc_title": "092 Advanced Sql Cte And Recursive Queries"
+  },
+  {
+    "chunk_id": "092 Advanced Sql Cte And Recursive Queries::3",
+    "doc_title": "092 Advanced Sql Cte And Recursive Queries"
+  },
+  {
+    "chunk_id": "093 Advanced Sql Query Performance Analysis::0",
+    "doc_title": "093 Advanced Sql Query Performance Analysis"
+  },
+  {
+    "chunk_id": "093 Advanced Sql Query Performance Analysis::1",
+    "doc_title": "093 Advanced Sql Query Performance Analysis"
+  },
+  {
+    "chunk_id": "093 Advanced Sql Query Performance Analysis::2",
+    "doc_title": "093 Advanced Sql Query Performance Analysis"
+  },
+  {
+    "chunk_id": "093 Advanced Sql Query Performance Analysis::3",
+    "doc_title": "093 Advanced Sql Query Performance Analysis"
+  },
+  {
+    "chunk_id": "094 Advanced Sql Database Administration::0",
+    "doc_title": "094 Advanced Sql Database Administration"
+  },
+  {
+    "chunk_id": "094 Advanced Sql Database Administration::1",
+    "doc_title": "094 Advanced Sql Database Administration"
+  },
+  {
+    "chunk_id": "094 Advanced Sql Database Administration::2",
+    "doc_title": "094 Advanced Sql Database Administration"
+  },
+  {
+    "chunk_id": "095 Testing Strategy Unit Testing::0",
+    "doc_title": "095 Testing Strategy Unit Testing"
+  },
+  {
+    "chunk_id": "095 Testing Strategy Unit Testing::1",
+    "doc_title": "095 Testing Strategy Unit Testing"
+  },
+  {
+    "chunk_id": "095 Testing Strategy Unit Testing::2",
+    "doc_title": "095 Testing Strategy Unit Testing"
+  },
+  {
+    "chunk_id": "096 Testing Strategy Integration Testing::0",
+    "doc_title": "096 Testing Strategy Integration Testing"
+  },
+  {
+    "chunk_id": "096 Testing Strategy Integration Testing::1",
+    "doc_title": "096 Testing Strategy Integration Testing"
+  },
+  {
+    "chunk_id": "096 Testing Strategy Integration Testing::2",
+    "doc_title": "096 Testing Strategy Integration Testing"
+  },
+  {
+    "chunk_id": "097 Testing Strategy End To End Testing::0",
+    "doc_title": "097 Testing Strategy End To End Testing"
+  },
+  {
+    "chunk_id": "097 Testing Strategy End To End Testing::1",
+    "doc_title": "097 Testing Strategy End To End Testing"
+  },
+  {
+    "chunk_id": "097 Testing Strategy End To End Testing::2",
+    "doc_title": "097 Testing Strategy End To End Testing"
+  },
+  {
+    "chunk_id": "097 Testing Strategy End To End Testing::3",
+    "doc_title": "097 Testing Strategy End To End Testing"
+  },
+  {
+    "chunk_id": "098 Testing Strategy Performance Testing::0",
+    "doc_title": "098 Testing Strategy Performance Testing"
+  },
+  {
+    "chunk_id": "098 Testing Strategy Performance Testing::1",
+    "doc_title": "098 Testing Strategy Performance Testing"
+  },
+  {
+    "chunk_id": "098 Testing Strategy Performance Testing::2",
+    "doc_title": "098 Testing Strategy Performance Testing"
+  },
+  {
+    "chunk_id": "099 Capstone Building Full Stack Applications::0",
+    "doc_title": "099 Capstone Building Full Stack Applications"
+  },
+  {
+    "chunk_id": "099 Capstone Building Full Stack Applications::1",
+    "doc_title": "099 Capstone Building Full Stack Applications"
+  },
+  {
+    "chunk_id": "099 Capstone Building Full Stack Applications::2",
+    "doc_title": "099 Capstone Building Full Stack Applications"
+  },
+  {
+    "chunk_id": "099 Capstone Building Full Stack Applications::3",
+    "doc_title": "099 Capstone Building Full Stack Applications"
+  },
+  {
+    "chunk_id": "09 Cybersecurity Fundamentals::0",
+    "doc_title": "09 Cybersecurity Fundamentals"
+  },
+  {
+    "chunk_id": "09 Cybersecurity Fundamentals::1",
+    "doc_title": "09 Cybersecurity Fundamentals"
+  },
+  {
+    "chunk_id": "100 Capstone Real World Project Case Studies::0",
+    "doc_title": "100 Capstone Real World Project Case Studies"
+  },
+  {
+    "chunk_id": "100 Capstone Real World Project Case Studies::1",
+    "doc_title": "100 Capstone Real World Project Case Studies"
+  },
+  {
+    "chunk_id": "100 Capstone Real World Project Case Studies::2",
+    "doc_title": "100 Capstone Real World Project Case Studies"
+  },
+  {
+    "chunk_id": "100 Capstone Real World Project Case Studies::3",
+    "doc_title": "100 Capstone Real World Project Case Studies"
+  },
+  {
+    "chunk_id": "10 Machine Learning Basics::0",
+    "doc_title": "10 Machine Learning Basics"
+  },
+  {
+    "chunk_id": "10 Machine Learning Basics::1",
+    "doc_title": "10 Machine Learning Basics"
+  },
+  {
+    "chunk_id": "11 System Administration::0",
+    "doc_title": "11 System Administration"
+  },
+  {
+    "chunk_id": "11 System Administration::1",
+    "doc_title": "11 System Administration"
+  },
+  {
+    "chunk_id": "12 Database Advanced Topics::0",
+    "doc_title": "12 Database Advanced Topics"
+  },
+  {
+    "chunk_id": "12 Database Advanced Topics::1",
+    "doc_title": "12 Database Advanced Topics"
+  },
+  {
+    "chunk_id": "13 Distributed Systems::0",
+    "doc_title": "13 Distributed Systems"
+  },
+  {
+    "chunk_id": "13 Distributed Systems::1",
+    "doc_title": "13 Distributed Systems"
+  },
+  {
+    "chunk_id": "14 Design Patterns::0",
+    "doc_title": "14 Design Patterns"
+  },
+  {
+    "chunk_id": "14 Design Patterns::1",
+    "doc_title": "14 Design Patterns"
+  },
+  {
+    "chunk_id": "15 Api Design And Development::0",
+    "doc_title": "15 Api Design And Development"
+  },
+  {
+    "chunk_id": "15 Api Design And Development::1",
+    "doc_title": "15 Api Design And Development"
+  },
+  {
+    "chunk_id": "16 Cloud Computing::0",
+    "doc_title": "16 Cloud Computing"
+  },
+  {
+    "chunk_id": "16 Cloud Computing::1",
+    "doc_title": "16 Cloud Computing"
+  },
+  {
+    "chunk_id": "17 Devops And Ci Cd::0",
+    "doc_title": "17 Devops And Ci Cd"
+  },
+  {
+    "chunk_id": "17 Devops And Ci Cd::1",
+    "doc_title": "17 Devops And Ci Cd"
+  },
+  {
+    "chunk_id": "18 Compiler Design::0",
+    "doc_title": "18 Compiler Design"
+  },
+  {
+    "chunk_id": "18 Compiler Design::1",
+    "doc_title": "18 Compiler Design"
+  },
+  {
+    "chunk_id": "19 Computer Architecture::0",
+    "doc_title": "19 Computer Architecture"
+  },
+  {
+    "chunk_id": "19 Computer Architecture::1",
+    "doc_title": "19 Computer Architecture"
+  }
+]
