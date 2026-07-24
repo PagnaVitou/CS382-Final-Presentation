@@ -1,0 +1,6 @@
+LECTURE NOTES: GREEDY ALGORITHMS
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers greedy algorithms, a fundamental concept in computer science.

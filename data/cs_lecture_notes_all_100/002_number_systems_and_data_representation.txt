@@ -1,0 +1,140 @@
+LECTURE NOTES: NUMBER SYSTEMS AND DATA REPRESENTATION
+=======================================================
+
+1. WHY NUMBER SYSTEMS MATTER
+------------------------------
+Computers store all data as binary (base-2), but humans think in decimal
+(base-10), and programmers frequently work with hexadecimal (base-16) and
+octal (base-8) as compact representations of binary. Understanding how to
+convert between these systems, and how numeric and non-numeric data is
+represented in binary, is foundational to understanding memory, overflow
+bugs, bitwise operations, and low-level programming.
+
+2. POSITIONAL NUMBER SYSTEMS
+-------------------------------
+In any positional number system with base b, a number is written as a
+sequence of digits d_n...d_1 d_0, and its value is:
+    value = d_n * b^n + ... + d_1 * b^1 + d_0 * b^0
+
+- Decimal (base 10): digits 0-9. Example: present in everyday counting.
+- Binary (base 2): digits 0-1. Example: 1011(2) = 1*8 + 0*4 + 1*2 + 1*1 = 11.
+- Octal (base 8): digits 0-7. Example: 17(8) = 1*8 + 7 = 15.
+- Hexadecimal (base 16): digits 0-9 and A-F (A=10 ... F=15).
+  Example: 2F(16) = 2*16 + 15 = 47.
+
+3. CONVERTING BETWEEN BASES
+-------------------------------
+Decimal to binary (repeated division by 2, reading remainders bottom-up):
+  13 / 2 = 6 remainder 1
+   6 / 2 = 3 remainder 0
+   3 / 2 = 1 remainder 1
+   1 / 2 = 0 remainder 1
+  Reading remainders bottom to top: 1101(2) = 13(10)
+
+Binary to decimal: sum powers of two where bit = 1.
+  1101(2) = 1*8 + 1*4 + 0*2 + 1*1 = 13
+
+Binary to hexadecimal: group bits into nibbles (groups of 4) from the right,
+then convert each nibble independently.
+  1010 1111 (2) -> A F (16) -> 0xAF
+
+Hexadecimal is popular because each hex digit maps exactly to 4 bits, making
+it a compact, human-readable stand-in for binary (useful for memory addresses,
+color codes, and low-level debugging).
+
+4. REPRESENTING NEGATIVE INTEGERS: TWO'S COMPLEMENT
+-------------------------------------------------------
+Modern computers represent signed integers using two's complement, because it
+allows addition/subtraction hardware to work the same way regardless of sign,
+and it has a single representation of zero.
+
+To find the two's complement of a number (its negative):
+1. Write the binary representation of the positive number.
+2. Invert all bits (one's complement).
+3. Add 1.
+
+Example (8-bit): represent -5.
+  5 in binary:      00000101
+  Invert bits:      11111010
+  Add 1:            11111011  -> this represents -5
+
+The leftmost bit acts as a sign bit: 0 for non-negative, 1 for negative,
+though its "weight" in two's complement is -2^(n-1) rather than simply a
+sign flag, which is what makes arithmetic work correctly.
+
+For an n-bit two's complement system, representable values range from
+-2^(n-1) to 2^(n-1) - 1. For 8 bits, this is -128 to 127.
+
+5. INTEGER OVERFLOW
+----------------------
+Because a fixed number of bits can only represent a finite range of values,
+arithmetic that produces a result outside that range "overflows" and wraps
+around silently in many languages (C, older Java), or throws an error in
+others (Python integers are arbitrary precision and don't overflow the same
+way). This is a common source of subtle bugs and security vulnerabilities
+(e.g., integer overflow leading to buffer overruns).
+
+6. FLOATING-POINT REPRESENTATION (IEEE 754)
+-----------------------------------------------
+Real numbers with fractional parts are typically represented using the IEEE
+754 standard, which splits a fixed number of bits into three fields:
+- Sign bit (1 bit): 0 for positive, 1 for negative.
+- Exponent (8 bits for single precision / 32-bit floats): stores a biased
+  exponent.
+- Mantissa/Fraction (23 bits for single precision): stores the significant
+  digits.
+
+The value is approximately: (-1)^sign * 1.mantissa * 2^(exponent - bias)
+
+Because only a finite number of bits are available, most decimal fractions
+(like 0.1) cannot be represented exactly in binary floating point, leading to
+small rounding errors. This is why comparing floats for exact equality
+(x == 0.3) is unreliable in most languages, and why financial applications
+often use fixed-point or decimal types instead.
+
+7. CHARACTER ENCODING
+------------------------
+Text is represented by mapping characters to numeric codes:
+- ASCII: 7-bit encoding covering English letters, digits, and punctuation
+  (128 total code points).
+- Unicode: a much larger standard covering virtually all writing systems,
+  emoji, and symbols, with code points that can require multiple bytes.
+- UTF-8: a variable-length encoding of Unicode that is backward-compatible
+  with ASCII (ASCII characters take 1 byte; others take 2-4 bytes). UTF-8 is
+  the dominant encoding on the modern web.
+
+8. BITWISE OPERATIONS
+-------------------------
+Programming languages provide operators that manipulate individual bits:
+- AND (&): 1 only if both bits are 1.
+- OR (|): 1 if at least one bit is 1.
+- XOR (^): 1 if exactly one bit is 1.
+- NOT (~): flips all bits.
+- Left shift (<<): shifts bits left, filling with 0s (equivalent to
+  multiplying by a power of 2).
+- Right shift (>>): shifts bits right (equivalent to dividing by a power of
+  2, with subtleties for signed numbers).
+
+Bitwise operations are used for performance-critical code, flags/masks
+(combining multiple boolean settings into one integer), and low-level
+systems programming.
+
+9. KEY TAKEAWAYS
+-------------------
+- Binary, octal, and hexadecimal are all positional systems; hex is a
+  convenient shorthand for binary.
+- Two's complement lets computers represent negative numbers and perform
+  arithmetic uniformly.
+- Floating point is an approximation, not an exact representation, of real
+  numbers — rounding error is expected and must be accounted for.
+- Character encodings (ASCII, UTF-8) map text to numbers so it can be
+  represented digitally.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Convert 45(10) to binary and hexadecimal.
+2. What is two's complement, and why is it used instead of a simple sign
+   bit?
+3. Why can't 0.1 be represented exactly in IEEE 754 floating point?
+4. What is the difference between ASCII and UTF-8?
+5. Explain what left-shifting a binary number by 2 does to its value.

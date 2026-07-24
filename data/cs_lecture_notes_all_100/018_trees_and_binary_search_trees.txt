@@ -1,0 +1,168 @@
+LECTURE NOTES: TREES AND BINARY SEARCH TREES
+===============================================
+
+1. WHAT IS A TREE?
+----------------------
+A tree is a hierarchical, non-linear data structure consisting of nodes
+connected by edges, with the following defining properties:
+- There is one special node called the ROOT, which has no parent.
+- Every other node has exactly one PARENT, and any number of CHILDREN
+  (including zero).
+- There are no cycles — you cannot follow edges and return to a node
+  you've already visited.
+- Nodes with no children are called LEAVES.
+
+Trees model naturally hierarchical relationships: file systems (folders
+containing files and subfolders), organizational charts, HTML/XML document
+structure (the DOM), and decision processes.
+
+2. KEY TREE TERMINOLOGY
+----------------------------
+- Depth of a node: the number of edges from the root to that node.
+- Height of a tree: the number of edges on the longest path from the root
+  to a leaf (equivalently, the maximum depth of any node).
+- Subtree: any node together with all of its descendants forms a subtree.
+- Binary tree: a tree where every node has AT MOST two children, commonly
+  distinguished as "left child" and "right child."
+- Balanced tree: a tree where the height is kept close to O(log n) relative
+  to the number of nodes n, typically by ensuring the depths of any two
+  leaves don't differ by more than some small constant.
+
+3. BINARY SEARCH TREES (BSTs)
+------------------------------------
+A Binary Search Tree is a binary tree with an additional ordering
+property: for every node, all values in its LEFT subtree are less than the
+node's value, and all values in its RIGHT subtree are greater than the
+node's value (assuming no duplicate values, or a consistent rule for
+handling them). This ordering property is what makes searching efficient.
+
+BST search: starting at the root, compare the target value to the current
+node. If equal, found. If smaller, recurse/iterate into the left subtree.
+If larger, recurse/iterate into the right subtree. If a null child is
+reached, the value is not present.
+- Time complexity: O(h), where h is the tree's height — O(log n) for a
+  balanced tree, but degrades to O(n) for a completely unbalanced tree
+  (e.g., if values are inserted in already-sorted order, the BST
+  degenerates into what is effectively a linked list).
+
+BST insertion: follow the same left/right comparison logic as search until
+reaching a null position, then insert the new node there. Time complexity
+O(h), same reasoning as search.
+
+BST deletion: more complex, with three cases:
+- Deleting a leaf node: simply remove it.
+- Deleting a node with one child: replace the node with its single child.
+- Deleting a node with two children: find the node's "in-order successor"
+  (the smallest value in its right subtree, found by going right once then
+  left as far as possible) or "in-order predecessor" (the largest value in
+  its left subtree), copy that value into the node being deleted, and then
+  delete the successor/predecessor node instead (which is guaranteed to
+  have at most one child).
+
+4. TREE TRAVERSALS
+-----------------------
+Traversal means visiting every node in a tree in some defined order. For
+binary trees, the classic depth-first traversals are:
+- In-order (left, node, right): for a BST, this visits nodes in ASCENDING
+  sorted order — a very useful property.
+- Pre-order (node, left, right): visits the root before its subtrees,
+  useful for copying/serializing a tree's structure.
+- Post-order (left, right, node): visits the root after its subtrees,
+  useful for safely deleting a tree (children must be deleted before their
+  parent).
+
+Additionally, level-order (breadth-first) traversal visits nodes level by
+level, typically implemented using a queue (rather than the recursive
+approach natural to the depth-first traversals above).
+
+5. SELF-BALANCING TREES
+----------------------------
+Because a plain BST can degenerate to O(n) height with unlucky/adversarial
+insertion order, self-balancing binary search trees automatically restructure
+themselves during insertion/deletion to maintain a guaranteed O(log n)
+height:
+- AVL trees: maintain the invariant that for every node, the heights of its
+  left and right subtrees differ by at most 1, using "rotations" to
+  rebalance after insertions/deletions that would violate this.
+- Red-Black trees: use a coloring scheme (each node is colored red or
+  black) with specific rules that guarantee the tree's height is at most
+  roughly 2*log(n), slightly less strictly balanced than AVL trees but
+  generally requiring fewer rotations, making them a common choice for
+  library implementations (e.g., many language standard library map/set
+  types are backed by red-black trees).
+
+6. HEAPS: A SPECIALIZED TREE STRUCTURE
+--------------------------------------------
+A binary heap is a complete binary tree (all levels fully filled except
+possibly the last, which is filled left to right) satisfying the HEAP
+PROPERTY:
+- Max-heap: every parent node's value is greater than or equal to its
+  children's values (so the maximum value is always at the root).
+- Min-heap: every parent node's value is less than or equal to its
+  children's values (so the minimum value is always at the root).
+
+Because heaps are "complete," they can be efficiently implemented using a
+plain array (no explicit pointers needed): for a node at index i, its
+children are at indices 2i+1 and 2i+2, and its parent is at index
+(i-1)/2 (integer division). Heaps support O(log n) insertion and O(log n)
+removal of the min/max element, with O(1) peek at the min/max — this is
+exactly why heaps are the standard implementation for priority queues
+(covered in the Queues lecture).
+
+7. B-TREES (BRIEF MENTION)
+-------------------------------
+B-trees generalize binary search trees to allow MORE than two children per
+node (often many more — dozens or hundreds), keeping the tree very
+"shallow" (small height) even for huge datasets. This shallow structure
+minimizes the number of disk reads needed to find data, which is why
+B-trees (and the closely related B+ trees) are the standard structure used
+for database indexes and file system structures, where each node typically
+corresponds to one disk block.
+
+8. TREES IN PRACTICE: APPLICATIONS
+-----------------------------------------
+- File systems: directories and subdirectories form a natural tree
+  structure.
+- The DOM (Document Object Model): HTML documents are parsed into a tree of
+  nested elements.
+- Parsing/compilers: expressions and program syntax are represented as
+  "abstract syntax trees" (ASTs) during compilation.
+- Databases: B-trees/B+ trees for indexes.
+- Decision trees: used in both algorithm design (e.g., decision-tree-based
+  machine learning models) and general problem modeling.
+- Huffman coding trees: used in data compression to assign shorter codes
+  to more frequent symbols.
+
+9. TIME COMPLEXITY SUMMARY
+--------------------------------
+  Operation          | Balanced BST | Unbalanced BST (worst) | Heap
+  Search              | O(log n)     | O(n)                    | O(n)
+  Insert              | O(log n)     | O(n)                    | O(log n)
+  Delete              | O(log n)     | O(n)                    | O(log n)
+  Find min/max        | O(log n)*    | O(n)                    | O(1)
+
+  *For a BST, finding min/max requires traversing all the way left/right,
+  which is O(h); for a balanced tree this is O(log n).
+
+10. KEY TAKEAWAYS
+---------------------
+- A BST maintains the invariant that left < node < right, enabling
+  O(log n) search/insert/delete — but only if the tree remains balanced.
+- In-order traversal of a BST yields values in sorted order.
+- Self-balancing trees (AVL, Red-Black) guarantee O(log n) height
+  regardless of insertion order.
+- Heaps are specialized complete binary trees optimized for O(log n)
+  insertion and O(1) access to the min/max element, underlying priority
+  queues.
+- B-trees generalize BSTs for disk-based storage systems like databases.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Why does an in-order traversal of a BST produce values in sorted order?
+2. What can cause a BST to degenerate into effectively a linked list, and
+   what's the consequence for time complexity?
+3. Explain the three cases involved in deleting a node from a BST.
+4. Why can heaps be efficiently implemented using a plain array instead of
+   explicit node pointers?
+5. Why are B-trees preferred over binary search trees for database
+   indexes?

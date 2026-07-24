@@ -1,0 +1,145 @@
+LECTURE NOTES: SEARCHING ALGORITHMS
+======================================
+
+1. THE SEARCHING PROBLEM
+----------------------------
+Searching means determining whether a target value exists within a
+collection, and if so, typically finding its location (index). Which
+searching algorithm is appropriate depends heavily on whether the data is
+sorted, whether it's stored in an array, linked list, tree, or hash table,
+and how frequently searches will be performed relative to how the data
+changes.
+
+2. LINEAR (SEQUENTIAL) SEARCH
+------------------------------------
+Linear search checks each element of the collection one by one, in order,
+until the target is found or the entire collection has been examined.
+- Time complexity: O(n) worst and average case; O(1) best case (target is
+  the first element).
+- Works on both sorted and unsorted data — makes no assumptions about
+  order.
+- Space complexity: O(1).
+- Despite its poor asymptotic performance compared to binary search, linear
+  search is often used in practice for small collections, unsorted data,
+  or data structures (like linked lists) that don't support fast random
+  access.
+
+3. BINARY SEARCH
+---------------------
+Binary search works ONLY on sorted data. It repeatedly compares the target
+to the middle element of the current search range: if the target equals
+the middle element, the search succeeds; if the target is smaller, the
+search continues in the left half; if larger, the search continues in the
+right half. Each comparison eliminates half of the remaining search space.
+- Time complexity: O(log n) — because the search space halves each step,
+  the number of steps needed to reduce n elements down to 1 is log2(n).
+- Space complexity: O(1) for an iterative implementation; O(log n) for a
+  recursive implementation (due to call-stack depth).
+- Requires random access (efficient with arrays; NOT efficient with linked
+  lists, since finding the "middle" element of a linked list itself
+  requires O(n) traversal, negating binary search's advantage).
+- Precondition: the data MUST already be sorted; if it isn't, either sort
+  it first (cost: O(n log n)) or use a different search strategy.
+
+Example trace searching for 23 in [4, 8, 15, 16, 23, 42]:
+  low=0, high=5, mid=2 -> value 15, 23>15, search right half
+  low=3, high=5, mid=4 -> value 23, found! return index 4
+
+4. INTERPOLATION SEARCH
+----------------------------
+A refinement of binary search for UNIFORMLY DISTRIBUTED sorted numeric
+data: instead of always checking the middle element, it estimates where
+the target is LIKELY to be based on its value relative to the range of
+values in the current search space (similar to how a human might open a
+phone book near "M" when looking for "Miller," rather than starting at the
+exact middle of the book).
+- Time complexity: O(log log n) average case for uniformly distributed
+  data — better than binary search's O(log n).
+- Worst case: O(n), if the data distribution is highly skewed (e.g.,
+  mostly small values with one huge outlier), since the interpolation
+  estimate can become very inaccurate.
+
+5. SEARCHING IN TREES
+--------------------------
+- Binary Search Tree (BST) search: starting at the root, compare the
+  target to the current node; go left if smaller, right if larger, repeat
+  until found or a leaf is reached. Time complexity O(h) where h is the
+  tree's height — O(log n) for a balanced tree, but O(n) for a completely
+  unbalanced (degenerate/linked-list-like) tree.
+- Self-balancing trees (AVL trees, Red-Black trees) guarantee O(log n)
+  height regardless of insertion order, ensuring O(log n) search even in
+  the worst case — covered in more detail in the Trees lecture.
+
+6. HASH-BASED SEARCHING
+----------------------------
+Hash tables (covered in a dedicated lecture) allow searching by computing
+a hash of the target key and jumping directly to the corresponding
+"bucket," rather than comparing against other elements sequentially.
+- Time complexity: O(1) average case; O(n) worst case (if many keys hash
+  to the same bucket, e.g., due to a poor hash function or adversarial
+  input).
+- Doesn't preserve any ordering of elements and doesn't support efficient
+  range queries (e.g., "find all values between 10 and 20") the way sorted
+  structures do — a key trade-off compared to trees.
+
+7. SEARCHING IN GRAPHS: BFS AND DFS (BRIEF PREVIEW)
+-----------------------------------------------------------
+When "searching" means finding a path or reachable node in a graph
+(rather than looking up a value in a flat collection), Breadth-First
+Search (BFS) and Depth-First Search (DFS) are the fundamental algorithms,
+covered in detail in the Graphs lecture. Briefly:
+- BFS explores all neighbors at the current depth before moving deeper,
+  and finds the shortest path (by number of edges) in unweighted graphs.
+- DFS explores as far as possible along each branch before backtracking,
+  useful for tasks like cycle detection and topological sorting.
+
+8. CHOOSING THE RIGHT SEARCH STRATEGY
+--------------------------------------------
+- Unsorted, small, or rarely-searched data: linear search is simple and
+  adequate.
+- Sorted array data with frequent searches: binary search (O(log n)) is a
+  strong default.
+- Frequent searches with frequent insertions/deletions, no ordering
+  needed: hash table (average O(1)).
+- Frequent searches AND need for ordered operations (range queries,
+  finding min/max, in-order traversal): a balanced binary search tree.
+- Data too large for memory or requiring persistence: database indexes
+  (often B-trees or B+ trees, a generalization of binary search trees
+  optimized for disk access) are used instead of in-memory structures.
+
+9. COMMON PITFALLS
+----------------------
+- Applying binary search to unsorted data — silently produces incorrect
+  results rather than an obvious error, making this a dangerous bug.
+- Off-by-one errors in binary search's boundary updates (using "<=" vs
+  "<" for the loop condition, or incorrectly updating low/high pointers),
+  a very common source of subtle bugs even among experienced programmers.
+- Using linear search on large sorted datasets when binary search would be
+  dramatically faster, unnecessarily.
+- Assuming hash table lookups are always O(1) without considering
+  worst-case collision behavior or the cost of computing an expensive hash
+  function on large keys.
+
+10. KEY TAKEAWAYS
+---------------------
+- Linear search works on any data (O(n)); binary search requires sorted
+  data but achieves O(log n).
+- Binary search needs efficient random access, making it well-suited to
+  arrays but poorly suited to linked lists.
+- Hash tables offer average O(1) search but sacrifice ordering and
+  range-query support.
+- Choice of search strategy should be driven by data structure, whether
+  data is sorted, and the balance of search vs. insertion/deletion
+  frequency.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Why does binary search require sorted data?
+2. Why is binary search inefficient on a linked list, even though the
+   linked list could theoretically be sorted?
+3. What is the average and worst-case time complexity of a hash table
+   lookup, and what causes the worst case?
+4. Explain interpolation search's key idea, and when it outperforms binary
+   search.
+5. If you need both fast lookups AND fast range queries, would you choose
+   a hash table or a balanced BST? Why?

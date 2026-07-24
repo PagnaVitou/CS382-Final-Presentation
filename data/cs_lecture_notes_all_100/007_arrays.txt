@@ -1,0 +1,126 @@
+LECTURE NOTES: ARRAYS
+=======================
+
+1. WHAT IS AN ARRAY?
+-----------------------
+An array is a data structure that stores a collection of elements, typically
+of the same type, in contiguous memory locations. Each element can be
+accessed directly using an index, usually starting at 0 (zero-based
+indexing) in most modern languages (C, Java, Python, JavaScript), though
+some languages (like older versions of MATLAB or Lua) use 1-based indexing.
+
+2. WHY CONTIGUOUS MEMORY MATTERS
+------------------------------------
+Because array elements are stored contiguously, the memory address of any
+element can be computed directly using arithmetic:
+    address(i) = base_address + i * element_size
+
+This is why array access by index is an O(1) operation — the computer
+doesn't need to search or traverse anything; it can jump directly to the
+correct memory address. This is one of the array's biggest advantages over
+linked structures, which require traversal to reach a given position.
+
+3. FIXED-SIZE VS. DYNAMIC ARRAYS
+--------------------------------------
+- Static/fixed-size arrays (as in C): the size is determined at creation
+  time and cannot change. This is memory-efficient and fast, but inflexible
+  — if you need more space, you must create an entirely new, larger array
+  and copy the data over.
+- Dynamic arrays (Python lists, Java ArrayList, C++ std::vector): can grow
+  or shrink at runtime. Internally, a dynamic array is usually implemented
+  as a fixed-size array with extra capacity; when it fills up, the
+  underlying array is reallocated (often doubled in size) and existing
+  elements are copied to the new array. This resizing operation is O(n), but
+  because it happens infrequently (doubling means resizing becomes rarer as
+  the array grows), the AMORTIZED cost of appending an element is O(1).
+
+4. COMMON ARRAY OPERATIONS AND THEIR COMPLEXITY
+-----------------------------------------------------
+- Access by index: O(1) — direct address computation.
+- Search (unsorted array): O(n) — must check elements one by one in the
+  worst case.
+- Search (sorted array, using binary search): O(log n).
+- Insertion at the end: O(1) amortized for dynamic arrays (assuming
+  capacity available); O(n) if resizing is needed.
+- Insertion at the beginning or middle: O(n) — all subsequent elements must
+  shift to make room.
+- Deletion from the end: O(1).
+- Deletion from the beginning or middle: O(n) — subsequent elements must
+  shift to fill the gap.
+
+5. MULTI-DIMENSIONAL ARRAYS
+---------------------------------
+Arrays can have more than one dimension, commonly used to represent grids,
+matrices, or tables:
+- 2D array: rows and columns, accessed as array[row][col].
+- Implementation approaches:
+  a) Array of arrays (jagged arrays): each row is its own separately
+     allocated array, allowing rows of different lengths.
+  b) Contiguous flat array with manual index calculation: a single 1D
+     array where element (row, col) is accessed at index
+     row * num_columns + col. This is more memory-efficient and cache-
+     friendly since all data sits in one contiguous block.
+
+6. ARRAYS VS. LINKED LISTS (PREVIEW)
+------------------------------------------
+Arrays offer fast, O(1) random access but costly insertion/deletion in the
+middle. Linked lists (covered in a later lecture) offer the opposite
+trade-off: O(1) insertion/deletion once you have a reference to the right
+location, but O(n) access time since you must traverse from the head. The
+choice between them depends heavily on the expected access pattern of your
+application: frequent random access favors arrays; frequent insertion/
+deletion in the middle favors linked lists.
+
+7. CACHE LOCALITY AND PERFORMANCE
+--------------------------------------
+Because array elements sit in contiguous memory, iterating over an array
+tends to be very fast in practice due to CPU cache behavior: when the CPU
+loads one element from memory, it typically loads a whole "cache line"
+(a chunk of nearby memory, e.g. 64 bytes) into a fast cache. Since array
+elements are adjacent, the next few elements are often already in the
+cache by the time you need them, dramatically speeding up sequential access
+compared to data structures where elements are scattered across memory
+(like linked lists), even though both may have the same theoretical Big-O
+complexity for traversal.
+
+8. COMMON ARRAY ALGORITHMS AND PATTERNS
+----------------------------------------------
+- Traversal: visiting each element once, typically via a for loop.
+- Two-pointer technique: using two indices (often starting from opposite
+  ends) to solve problems efficiently, e.g., checking if an array is a
+  palindrome, or finding a pair summing to a target value in a sorted array.
+- Sliding window: maintaining a subrange (window) of the array and
+  incrementally adjusting its boundaries, useful for problems like "find the
+  maximum sum subarray of size k."
+- Prefix sums: precomputing cumulative sums so that the sum of any subarray
+  can be queried in O(1) after an O(n) preprocessing step.
+
+9. COMMON PITFALLS
+----------------------
+- Off-by-one errors, especially around array bounds (accessing index n when
+  valid indices are 0 to n-1).
+- "Index out of bounds" errors when accessing an index beyond the array's
+  allocated size.
+- Confusing shallow copies (copying references) with deep copies (copying
+  actual data) when working with arrays of objects.
+- Assuming O(1) insertion anywhere in an array — only true at the end (and
+  only amortized, for dynamic arrays).
+
+10. KEY TAKEAWAYS
+---------------------
+- Arrays store elements contiguously in memory, enabling O(1) indexed
+  access.
+- Dynamic arrays resize by reallocating and copying, giving amortized O(1)
+  append but O(n) insertion in the middle.
+- Cache locality makes array traversal fast in practice, beyond what raw
+  Big-O analysis alone would suggest.
+- Arrays trade fast access for costly insertion/deletion compared to linked
+  lists.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Why is array element access O(1)?
+2. Explain amortized O(1) append for a dynamic array.
+3. Why is inserting at the beginning of an array O(n)?
+4. What is cache locality, and why does it make arrays fast in practice?
+5. Describe a problem that the two-pointer technique solves efficiently.

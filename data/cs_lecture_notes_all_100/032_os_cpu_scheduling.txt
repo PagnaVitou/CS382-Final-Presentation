@@ -1,0 +1,6 @@
+LECTURE NOTES: OS - CPU SCHEDULING
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers os - cpu scheduling, a fundamental concept in computer science.

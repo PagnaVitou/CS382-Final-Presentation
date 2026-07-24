@@ -1,0 +1,6 @@
+LECTURE NOTES: DATABASE SYSTEMS - RELATIONAL MODEL
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers database systems - relational model, a fundamental concept in computer science.

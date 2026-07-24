@@ -1,0 +1,122 @@
+LECTURE NOTES: BOOLEAN ALGEBRA AND LOGIC GATES
+================================================
+
+1. INTRODUCTION
+-----------------
+Boolean algebra is the mathematical foundation of digital logic. Developed by
+George Boole in the 1800s and later applied to switching circuits by Claude
+Shannon, it deals with variables that take only two values: TRUE (1) and
+FALSE (0). Every digital circuit — from a simple light-switch circuit to a
+modern CPU with billions of transistors — can be described using Boolean
+algebra.
+
+2. BASIC BOOLEAN OPERATIONS
+-------------------------------
+The three fundamental operations are:
+- AND (∧): result is 1 only if both operands are 1.
+    A AND B: 0∧0=0, 0∧1=0, 1∧0=0, 1∧1=1
+- OR (∨): result is 1 if at least one operand is 1.
+    A OR B: 0∨0=0, 0∨1=1, 1∨0=1, 1∨1=1
+- NOT (¬): inverts the value.
+    NOT A: ¬0=1, ¬1=0
+
+Derived operations built from these three include:
+- NAND: NOT(A AND B) — functionally complete (any Boolean function can be
+  built using only NAND gates).
+- NOR: NOT(A OR B) — also functionally complete.
+- XOR (exclusive or): 1 if exactly one operand is 1 (A⊕B).
+- XNOR: NOT(XOR) — 1 if both operands are equal.
+
+3. TRUTH TABLES
+------------------
+A truth table enumerates every possible combination of input values and the
+corresponding output. For two variables A and B, there are 2^2 = 4 rows; for
+n variables, there are 2^n rows. Truth tables are the definitive way to
+specify or verify the behavior of a Boolean expression or a digital circuit.
+
+Example truth table for A XOR B:
+  A | B | A XOR B
+  0 | 0 |    0
+  0 | 1 |    1
+  1 | 0 |    1
+  1 | 1 |    0
+
+4. BOOLEAN ALGEBRA LAWS
+---------------------------
+Boolean algebra follows algebraic laws that let us simplify expressions,
+which is important for minimizing circuit complexity (fewer gates = cheaper,
+faster, lower-power circuits):
+- Identity: A AND 1 = A; A OR 0 = A
+- Null/Domination: A AND 0 = 0; A OR 1 = 1
+- Idempotent: A AND A = A; A OR A = A
+- Complement: A AND (NOT A) = 0; A OR (NOT A) = 1
+- Commutative: A AND B = B AND A; A OR B = B OR A
+- Associative: (A AND B) AND C = A AND (B AND C)
+- Distributive: A AND (B OR C) = (A AND B) OR (A AND C)
+- De Morgan's Laws: NOT(A AND B) = (NOT A) OR (NOT B)
+                    NOT(A OR B) = (NOT A) AND (NOT B)
+
+De Morgan's Laws are especially important in programming: they explain why
+"not (x and y)" is equivalent to "(not x) or (not y)", a transformation
+frequently used to simplify conditional logic.
+
+5. LOGIC GATES
+------------------
+A logic gate is a physical (or simulated) device implementing a Boolean
+function, usually built from transistors. Standard gate symbols correspond
+directly to the operations above: AND, OR, NOT, NAND, NOR, XOR, XNOR gates.
+Gates can be combined into circuits that implement arbitrary Boolean
+functions — this is how adders, multiplexers, memory cells, and ultimately
+entire CPUs are constructed from a handful of basic building blocks.
+
+6. COMBINATIONAL VS. SEQUENTIAL LOGIC
+------------------------------------------
+- Combinational logic: outputs depend only on the current inputs (no
+  memory). Examples: adders, multiplexers, decoders.
+- Sequential logic: outputs depend on current inputs AND on stored state
+  from previous inputs (has memory). Examples: flip-flops, registers,
+  counters, and by extension, RAM.
+
+A flip-flop is the basic memory element in digital circuits — it can store a
+single bit and holds its value until explicitly changed, forming the basis
+for registers and all forms of digital memory.
+
+7. KARNAUGH MAPS (K-MAPS)
+------------------------------
+A Karnaugh map is a graphical tool for simplifying Boolean expressions by
+grouping adjacent 1s in a specially arranged grid, exploiting the fact that
+adjacent cells differ by only one variable. K-maps are typically used for up
+to 4-6 variables; beyond that, algorithmic methods (like the Quine–McCluskey
+algorithm) are used instead.
+
+8. WHY THIS MATTERS FOR SOFTWARE, NOT JUST HARDWARE
+--------------------------------------------------------
+Even if you never design a circuit, Boolean logic underlies:
+- Conditional expressions in every programming language (if, while, &&, ||,
+  !).
+- Database query filtering (WHERE clauses combining conditions).
+- Search engine query logic (AND/OR/NOT operators).
+- Digital circuit design, which determines what your CPU can do at all.
+
+Simplifying Boolean expressions in code (e.g., recognizing that
+"!(a && b)" is the same as "!a || !b") can make conditionals easier to read
+and can sometimes improve performance by short-circuiting earlier.
+
+9. KEY TAKEAWAYS
+-------------------
+- Boolean algebra models binary logic mathematically; all digital circuits
+  can be described this way.
+- AND, OR, and NOT are fundamental; NAND and NOR are functionally complete.
+- De Morgan's Laws allow rewriting negated compound conditions.
+- Combinational logic has no memory; sequential logic does.
+- These same rules directly apply to writing and simplifying code
+  conditionals.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Write the truth table for A NAND B.
+2. Apply De Morgan's Law to simplify: NOT (A OR (NOT B)).
+3. What's the difference between combinational and sequential logic?
+4. Why are NAND gates called "functionally complete"?
+5. Give a programming example where De Morgan's Law helps simplify a
+   conditional statement.

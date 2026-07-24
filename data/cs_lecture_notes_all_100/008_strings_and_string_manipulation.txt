@@ -1,0 +1,145 @@
+LECTURE NOTES: STRINGS AND STRING MANIPULATION
+=================================================
+
+1. WHAT IS A STRING?
+-----------------------
+A string is a sequence of characters, typically used to represent text.
+Internally, most languages implement strings as arrays of characters (or
+bytes, given some encoding), plus metadata like length. Strings are one of
+the most commonly used data types in any real-world program, from
+processing user input to parsing files to generating output.
+
+2. MUTABILITY OF STRINGS
+-----------------------------
+A crucial design decision across languages is whether strings are mutable
+(can be changed in place) or immutable (any "modification" actually creates
+a new string):
+- Immutable strings (Python, Java, JavaScript, C#): once created, a
+  string's contents cannot change. Operations like concatenation or
+  replacement return a brand-new string object rather than modifying the
+  original.
+- Mutable strings (C's char arrays, C++'s std::string to an extent, Java's
+  StringBuilder/StringBuffer as a mutable alternative): contents can be
+  changed in place.
+
+Immutability has trade-offs: it makes strings safe to share across
+different parts of a program (no risk of one part unexpectedly modifying
+data another part relies on) and enables optimizations like string
+interning (reusing the same memory for identical string literals), but it
+means repeated concatenation in a loop can be inefficient, since each
+concatenation creates an entirely new string (potentially O(n) per
+operation, leading to O(n^2) total for n concatenations) — this is why many
+languages provide a mutable "string builder" type for efficient repeated
+concatenation.
+
+3. STRING ENCODING
+-----------------------
+As covered in earlier lectures on data representation, strings are stored
+as sequences of encoded bytes. UTF-8 (variable-length, 1-4 bytes per
+character, backward-compatible with ASCII) is the dominant encoding on the
+modern web and in most programming languages' default string handling.
+Understanding encoding matters because:
+- The "length" of a string in characters may not equal its length in bytes,
+  especially for non-ASCII text (emoji, accented characters, non-Latin
+  scripts).
+- Reading/writing files or network data with the wrong encoding assumption
+  can produce garbled ("mojibake") text.
+
+4. COMMON STRING OPERATIONS
+--------------------------------
+- Concatenation: joining two or more strings into one.
+- Substring extraction (slicing): retrieving a portion of a string by
+  start/end indices.
+- Searching: finding whether/where a substring occurs within a larger
+  string (e.g., "contains", "indexOf", "find").
+- Splitting: dividing a string into a list of substrings based on a
+  delimiter (e.g., splitting a CSV line by commas).
+- Trimming: removing leading/trailing whitespace.
+- Case conversion: upper-casing, lower-casing, or title-casing text.
+- Replacement: substituting occurrences of one substring with another.
+- Formatting/interpolation: embedding variable values into a string
+  template (e.g., Python f-strings, JavaScript template literals).
+
+5. STRING COMPARISON
+-------------------------
+Comparing strings can mean different things:
+- Reference/identity equality: are these the exact same object in memory?
+- Value equality: do they contain the same sequence of characters? (Most
+  languages' "==" for strings checks value equality, though notably Java's
+  "==" checks reference equality for objects, requiring ".equals()" for
+  value comparison — a classic gotcha.)
+- Lexicographic (dictionary) ordering: comparing strings character by
+  character based on their underlying character codes, used for sorting.
+  Note that this can produce non-intuitive results for mixed-case text
+  (e.g., "Zebra" may sort before "apple" if uppercase letters have lower
+  character codes than lowercase ones, depending on the comparison method).
+
+6. STRING ALGORITHMS
+-------------------------
+Several classic algorithmic problems revolve around strings:
+- Pattern matching: finding all occurrences of a pattern string within a
+  text string. Naive approaches are O(n*m) (n = text length, m = pattern
+  length); more advanced algorithms like KMP (Knuth-Morris-Pratt) or
+  Boyer-Moore achieve better average or worst-case performance by avoiding
+  redundant comparisons.
+- Palindrome checking: verifying whether a string reads the same forwards
+  and backwards, often solved with a two-pointer approach.
+- Anagram detection: checking whether two strings contain the same
+  characters with the same frequencies, often solved by sorting both
+  strings or using frequency counts (hash maps).
+- Longest common subsequence/substring: finding the longest sequence of
+  characters common to two strings, a classic dynamic programming problem.
+- Edit distance (Levenshtein distance): the minimum number of insertions,
+  deletions, or substitutions needed to transform one string into another,
+  used in spell checkers, DNA sequence comparison, and diff tools.
+
+7. REGULAR EXPRESSIONS
+---------------------------
+A regular expression (regex) is a pattern-matching language for describing
+sets of strings, widely used for validation (e.g., checking email format),
+searching, and text extraction/replacement. Regex supports:
+- Literal characters
+- Character classes (e.g., [a-z], \d for digits, \w for word characters)
+- Quantifiers (*, +, ?, {n,m}) specifying how many times something repeats
+- Anchors (^, $) for start/end of string or line
+- Groups and alternation ((abc|def)) for capturing and matching options
+
+Regex is powerful but can become unreadable if overused for complex parsing
+tasks — for structured formats like JSON or full programming language
+syntax, dedicated parsers are generally more appropriate than regex.
+
+8. PERFORMANCE CONSIDERATIONS
+-----------------------------------
+- Repeated string concatenation in a loop, especially with immutable
+  strings, can be O(n^2); using a mutable buffer (StringBuilder, list +
+  join, etc.) is typically O(n).
+- String comparison is O(n) in the worst case (must potentially check every
+  character), not O(1), which matters for large strings compared
+  frequently (e.g., in a hash table's collision resolution).
+- Hashing strings (used in hash-based data structures) requires processing
+  every character, so hashing a very long string has a cost proportional to
+  its length.
+
+9. KEY TAKEAWAYS
+-------------------
+- Strings are sequences of characters, often implemented as arrays with
+  additional metadata; mutability varies by language.
+- Encoding (e.g., UTF-8) determines how characters map to bytes and affects
+  what "length" means.
+- Concatenating strings repeatedly with immutable strings can be inefficient
+  — prefer builder patterns for heavy concatenation.
+- Regex is a powerful tool for pattern matching but isn't a substitute for a
+  real parser on complex, structured formats.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Why can repeated string concatenation in a loop be inefficient with
+   immutable strings?
+2. What's the difference between reference equality and value equality for
+   strings?
+3. What does UTF-8 encoding mean for the relationship between "character
+   count" and "byte count" of a string?
+4. Describe how a two-pointer approach can check whether a string is a
+   palindrome.
+5. Give an example of when regex might NOT be the right tool for a parsing
+   task.

@@ -1,0 +1,123 @@
+LECTURE NOTES: STACKS
+========================
+
+1. WHAT IS A STACK?
+----------------------
+A stack is a linear data structure that follows the Last-In-First-Out
+(LIFO) principle: the most recently added element is the first one removed.
+A helpful mental model is a physical stack of plates — you add new plates
+to the top, and you remove plates from the top as well; you can't easily
+remove a plate from the middle or bottom without disturbing everything
+above it.
+
+2. CORE STACK OPERATIONS
+-----------------------------
+- push(item): adds an item to the top of the stack.
+- pop(): removes and returns the item at the top of the stack.
+- peek()/top(): returns the item at the top WITHOUT removing it.
+- isEmpty(): checks whether the stack has any elements.
+- size(): returns the number of elements currently in the stack.
+
+All of these operations are O(1) when the stack is implemented properly
+(using either a dynamic array or a linked list with a reference to the
+head), since they only ever touch the "top" element — no traversal or
+shifting is required.
+
+3. IMPLEMENTING A STACK
+----------------------------
+- Array-based implementation: maintain an array and an index tracking the
+  current "top" position. Push adds an element at that index and
+  increments it; pop decrements the index and returns the element there.
+  Simple and cache-friendly, but a fixed-size array implementation may need
+  resizing (or may have a capacity limit) as the stack grows.
+- Linked-list-based implementation: maintain a reference to the "head"
+  node, which represents the top of the stack. Push creates a new node
+  pointing to the current head and updates head to the new node; pop
+  removes the head node and updates head to point to the next node. This
+  approach naturally grows and shrinks without needing to resize/copy an
+  underlying array.
+
+4. THE CALL STACK: STACKS IN ACTION
+------------------------------------------
+As covered in the Recursion lecture, every program has an implicit "call
+stack" that tracks active function calls. Each function call pushes a new
+stack frame (containing local variables, parameters, and a return
+address); when a function returns, its frame is popped. This is a direct
+real-world application of the stack data structure, and it's why deep
+recursion can cause a "stack overflow" — the call stack itself has a
+finite maximum size.
+
+5. UNDO/REDO FUNCTIONALITY
+--------------------------------
+Many applications (text editors, image editors, browsers) implement
+undo/redo functionality using stacks: each action taken is pushed onto an
+"undo stack." When the user requests undo, the most recent action is
+popped from the undo stack, reversed, and pushed onto a "redo stack" (so
+that a subsequent redo can reapply it). This naturally mirrors how users
+expect undo/redo to work — the LAST thing done is the FIRST thing undone.
+
+6. EXPRESSION EVALUATION AND PARSING
+-------------------------------------------
+Stacks are essential for parsing and evaluating expressions:
+- Balanced parentheses/brackets checking: push an opening bracket onto the
+  stack; when a closing bracket is encountered, check that it matches the
+  most recently pushed (i.e., top-of-stack) opening bracket, then pop it.
+  If at any point there's a mismatch, or the stack isn't empty at the end,
+  the expression is unbalanced.
+- Converting infix expressions (like "3 + 4 * 2") to postfix (Reverse
+  Polish Notation, like "3 4 2 * +") using the Shunting-Yard algorithm,
+  which relies on a stack to hold operators awaiting output.
+- Evaluating postfix expressions directly using a stack: scan
+  left-to-right, pushing numbers; when an operator is encountered, pop the
+  required number of operands, apply the operator, and push the result
+  back.
+
+7. DEPTH-FIRST SEARCH (DFS)
+--------------------------------
+Depth-first traversal of a tree or graph (covered in more detail in the
+Graphs lecture) can be implemented either using explicit recursion (which
+implicitly uses the call stack) or using an explicit stack data structure
+iteratively: push the starting node, then repeatedly pop a node, process
+it, and push its unvisited neighbors. This ordering naturally produces the
+"go as deep as possible before backtracking" behavior characteristic of
+DFS.
+
+8. BROWSER HISTORY (BACK BUTTON) — A REAL-WORLD ANALOGY
+--------------------------------------------------------------
+Browser navigation history is a classic conceptual example of stack
+behavior: visiting a new page pushes it onto a "back stack"; clicking
+"back" pops the current page and returns to the previous one. (In practice,
+browsers implement a more nuanced history model supporting both back AND
+forward navigation, effectively using two stacks, similar to the undo/redo
+pattern described above.)
+
+9. STACK OVERFLOW AND UNDERFLOW
+--------------------------------------
+- Stack overflow: attempting to push onto a stack that has reached its
+  maximum allocated capacity (relevant for fixed-size array-based
+  implementations, or the finite call stack used for function calls).
+- Stack underflow: attempting to pop (or peek) from an empty stack — a
+  common bug if code doesn't check isEmpty() before popping. Robust stack
+  implementations should raise a clear error in this situation rather than
+  returning some undefined or misleading value.
+
+10. KEY TAKEAWAYS
+---------------------
+- A stack follows LIFO ordering: last in, first out.
+- Core operations (push, pop, peek) are all O(1) when implemented
+  correctly.
+- The call stack, undo/redo systems, expression parsing/evaluation, and
+  DFS all rely on stack behavior, either explicitly or implicitly.
+- Always guard against popping from an empty stack (underflow) in real
+  implementations.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What does LIFO mean, and how does it differ from a queue's FIFO
+   ordering?
+2. Why are push and pop O(1) operations?
+3. Explain how a stack can be used to check whether parentheses in an
+   expression are balanced.
+4. How does the call stack relate to recursion and stack overflow errors?
+5. Describe how an undo/redo system in a text editor could be implemented
+   using two stacks.

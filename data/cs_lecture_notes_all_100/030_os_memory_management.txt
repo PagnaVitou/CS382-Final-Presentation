@@ -1,0 +1,6 @@
+LECTURE NOTES: OS - MEMORY MANAGEMENT
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers os - memory management, a fundamental concept in computer science.

@@ -1,0 +1,6 @@
+LECTURE NOTES: NETWORKS - OSI MODEL
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers networks - osi model, a fundamental concept in computer science.

@@ -1,0 +1,148 @@
+LECTURE NOTES: RECURSION
+==========================
+
+1. WHAT IS RECURSION?
+------------------------
+Recursion is a technique where a function solves a problem by calling
+itself on smaller subproblems, until it reaches a case simple enough to
+solve directly. Every correct recursive function needs two essential parts:
+- Base case(s): the simplest version of the problem, solved directly
+  without further recursive calls. This is what stops the recursion.
+- Recursive case: the function reduces the problem to a smaller instance
+  of the same problem, and calls itself on that smaller instance, combining
+  the result with some additional work if needed.
+
+Example (factorial):
+    def factorial(n):
+        if n == 0:          # base case
+            return 1
+        return n * factorial(n - 1)   # recursive case
+
+2. HOW RECURSION WORKS UNDER THE HOOD: THE CALL STACK
+-----------------------------------------------------------
+Each function call (recursive or not) creates a new "stack frame" on the
+call stack, storing that call's local variables, parameters, and the
+address to return to once the call completes. In recursion, each recursive
+call adds a new frame on top of the previous one. These frames accumulate
+until a base case is reached, at which point calls start returning and
+frames are popped off the stack in reverse (last-in-first-out) order.
+
+For factorial(3):
+    factorial(3) calls factorial(2) calls factorial(1) calls factorial(0)
+    factorial(0) returns 1
+    factorial(1) returns 1 * 1 = 1
+    factorial(2) returns 2 * 1 = 2
+    factorial(3) returns 3 * 2 = 6
+
+3. STACK OVERFLOW
+---------------------
+Because each recursive call consumes stack memory, recursion that goes too
+deep (or never reaches a base case due to a bug) can exhaust the available
+stack space, causing a "stack overflow" error/crash. This is a key
+practical limitation of recursion compared to iteration, which uses a
+constant amount of stack space regardless of how many times a loop
+iterates.
+
+4. TAIL RECURSION
+---------------------
+A recursive call is in "tail position" if it's the very last operation
+performed before the function returns (i.e., nothing is done with its
+result except returning it directly). Some languages/compilers can perform
+"tail call optimization" (TCO), reusing the current stack frame for the
+recursive call instead of adding a new one, effectively turning tail
+recursion into a loop internally and eliminating the stack-overflow risk.
+Notably, Python does NOT perform TCO (by design, for stack-trace clarity),
+so even tail-recursive Python functions can still overflow the stack for
+large inputs; languages like Scheme and some functional languages
+guarantee TCO.
+
+5. RECURSION VS. ITERATION
+--------------------------------
+Any recursive algorithm can be rewritten iteratively (using an explicit
+loop and, if needed, an explicit stack data structure to mimic the call
+stack), and vice versa. Trade-offs:
+- Recursion often expresses naturally recursive problems (tree traversal,
+  divide-and-conquer algorithms) more clearly and concisely.
+- Iteration avoids the overhead of function calls and the risk of stack
+  overflow, generally being more memory-efficient for problems with deep
+  recursion depth.
+- Some problems (like traversing a tree of unknown depth) are much more
+  naturally expressed recursively, even if an iterative version with an
+  explicit stack is possible.
+
+6. CLASSIC RECURSIVE PROBLEMS
+-----------------------------------
+- Factorial: n! = n * (n-1)!, base case 0! = 1.
+- Fibonacci sequence: fib(n) = fib(n-1) + fib(n-2), base cases fib(0)=0,
+  fib(1)=1. Naive recursive Fibonacci is highly inefficient (exponential
+  time, O(2^n)) due to massive redundant recomputation — a canonical
+  motivating example for memoization/dynamic programming.
+- Tree traversal: visiting all nodes of a tree (preorder, inorder,
+  postorder) is naturally recursive, since each subtree is itself a tree.
+- Divide-and-conquer algorithms: merge sort and quicksort recursively split
+  the problem into smaller subproblems, solve each, then combine results.
+- Towers of Hanoi: a classic puzzle solved elegantly with recursion,
+  illustrating how a seemingly complex problem decomposes into simpler
+  recursive subproblems.
+
+7. MEMOIZATION: FIXING RECURSIVE INEFFICIENCY
+-----------------------------------------------------
+When a recursive function repeatedly solves the same subproblems (as in
+naive Fibonacci), memoization caches previously computed results so
+subsequent calls with the same input return instantly instead of
+recomputing. This transforms Fibonacci from O(2^n) to O(n) time (at the
+cost of O(n) extra memory for the cache), and is a key concept bridging
+recursion and dynamic programming.
+
+    cache = {}
+    def fib(n):
+        if n in cache:
+            return cache[n]
+        if n <= 1:
+            return n
+        result = fib(n-1) + fib(n-2)
+        cache[n] = result
+        return result
+
+8. MUTUAL RECURSION
+------------------------
+Sometimes two or more functions call each other recursively (function A
+calls function B, which calls function A, and so on), rather than a single
+function calling itself directly. This is called mutual recursion and is
+used, for example, in recursive-descent parsers where different grammar
+rules correspond to different mutually recursive functions.
+
+9. WHEN TO USE RECURSION
+------------------------------
+Recursion tends to shine when:
+- The problem has a naturally recursive/self-similar structure (trees,
+  fractals, nested data).
+- Divide-and-conquer decomposition leads to a clean, efficient algorithm.
+- Code clarity is more valuable than squeezing out maximum performance.
+
+Iteration tends to be preferred when:
+- The recursion depth could be very large (risking stack overflow).
+- Performance is critical and function-call overhead matters.
+- The problem is naturally sequential/repetitive rather than recursive.
+
+10. KEY TAKEAWAYS
+---------------------
+- Every recursive function needs a base case and a recursive case that
+  makes progress toward it.
+- Recursive calls consume stack memory; excessive depth causes stack
+  overflow.
+- Recursion and iteration are computationally equivalent, but differ in
+  clarity and performance trade-offs.
+- Memoization can dramatically improve the efficiency of recursive
+  functions with overlapping subproblems.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What are the two essential components of any correct recursive
+   function?
+2. Why can deep recursion cause a stack overflow?
+3. What is tail call optimization, and why doesn't Python perform it?
+4. Explain why naive recursive Fibonacci is O(2^n), and how memoization
+   fixes this.
+5. Give an example of a problem that's naturally easier to express
+   recursively than iteratively.

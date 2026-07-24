@@ -1,0 +1,146 @@
+LECTURE NOTES: OBJECT-ORIENTED PROGRAMMING - INHERITANCE
+===========================================================
+
+1. WHAT IS INHERITANCE?
+------------------------
+Inheritance allows a CLASS to INHERIT (acquire) attributes and methods from
+another class (its PARENT or SUPERCLASS), forming a hierarchical
+relationship. The inheriting class is called the CHILD or SUBCLASS. This
+enables code reuse and expresses "is-a" relationships: a Dog IS-A Animal,
+so a Dog class can inherit attributes like "age" and methods like "eat()"
+from an Animal class, while also adding its own Dog-specific attributes
+like "breed" and methods like "bark()".
+
+2. SINGLE INHERITANCE
+------------------------
+In single inheritance, each class has at most one parent. Example:
+    class Animal {
+        int age;
+        void eat() { ... }
+    }
+    
+    class Dog extends Animal {
+        string breed;
+        void bark() { ... }
+    }
+
+A Dog object now has access to both its own attributes (breed) and
+inherited attributes from Animal (age), plus all methods from both classes.
+
+3. METHOD OVERRIDING (POLYMORPHISM PREVIEW)
+-----------------------------------------------
+A subclass can OVERRIDE a method from its parent, providing its own
+implementation while keeping the same name and parameter list:
+    class Animal {
+        void makeSound() {
+            print("Generic animal sound");
+        }
+    }
+    
+    class Dog extends Animal {
+        void makeSound() {  // override
+            print("Woof!");
+        }
+    }
+
+The specific implementation called depends on the actual object's type
+(a Dog object calls Dog's makeSound, an Animal calls Animal's, even if
+both are referred to generically as "Animal" type — this is runtime
+polymorphism, covered more in the next lecture).
+
+4. ACCESS MODIFIERS AND INHERITANCE
+------------------------------------------
+- public methods/attributes: accessible in subclasses.
+- private methods/attributes: NOT accessible in subclasses (hidden from
+  them; they must go through public/protected interface).
+- protected: accessible in subclasses AND other classes in the same
+  package/module (depending on language).
+
+This is the primary purpose of "protected": to expose an interface to
+subclasses without exposing it to all external code.
+
+5. THE SUPER KEYWORD
+------------------------
+A subclass can call methods from its parent using "super" (in Java, C++) or
+"super()" (in Python), useful when overriding a method but wanting to
+incorporate the parent's behavior:
+    class Dog extends Animal {
+        void makeSound() {
+            super.makeSound();  // call parent's implementation
+            print("Woof!");     // then add Dog-specific behavior
+        }
+    }
+
+6. CONSTRUCTORS IN INHERITANCE
+-----------------------------------
+When a subclass object is created, the parent's constructor is typically
+called first (automatically, or explicitly via super()), initializing the
+inherited parts of the object before the subclass's constructor initializes
+its own added attributes. This ensures the object is in a consistent state.
+
+7. MULTIPLE INHERITANCE AND THE DIAMOND PROBLEM
+-------------------------------------------------
+Some languages (C++) allow MULTIPLE INHERITANCE: a class can inherit from
+multiple parents simultaneously. This enables maximum code reuse but
+introduces ambiguity: if class D inherits from B and C, which both inherit
+from A, and both B and C override a method from A, which implementation
+should D use? This is the "diamond problem."
+
+Solutions include:
+- Require explicit disambiguation in the subclass (C++'s approach).
+- Allow only single inheritance but use interfaces/mixins for multiple
+  type relationships (Java approach).
+- Use a method resolution order (MRO) that follows a specific traversal
+  order (Python approach, using C3 linearization).
+
+Java and Python avoid the problem by disallowing true multiple inheritance,
+though Java allows multiple interface implementation (covered next lecture).
+
+8. IS-A VS. HAS-A RELATIONSHIPS
+-----------------------------------
+- IS-A (inheritance): "Dog IS-A Animal" — use inheritance.
+- HAS-A (composition): "Dog HAS-A Collar" — use composition (Dog class
+  contains a Collar object as an attribute, rather than inheriting from
+  Collar).
+
+A common mistake is using inheritance for HAS-A relationships, leading to
+awkward hierarchies. Composition is often more flexible and clearer.
+
+9. ABSTRACT CLASSES
+------------------------
+An ABSTRACT CLASS is a class that cannot be instantiated directly; it
+serves as a base class for other classes to inherit from. It often contains
+abstract methods — method declarations without implementations, that
+subclasses MUST override. Abstract classes are useful for defining common
+interfaces and enforcing that subclasses provide certain behavior:
+    abstract class Animal {
+        abstract void makeSound();  // no implementation
+        void eat() { ... }           // concrete method
+    }
+    
+    class Dog extends Animal {
+        void makeSound() {
+            print("Woof!");  // must provide implementation
+        }
+    }
+
+10. KEY TAKEAWAYS
+---------------------
+- Inheritance establishes an IS-A relationship, enabling code reuse through
+  a class hierarchy.
+- Subclasses inherit and can override parent methods, enabling
+  polymorphism (next lecture).
+- "super" allows a subclass to call overridden parent methods.
+- Abstract classes define common interfaces without full implementation,
+  enforcing that subclasses provide required methods.
+- Prefer composition (HAS-A) over inheritance when the relationship isn't
+  truly IS-A.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What is method overriding, and how does it enable polymorphism?
+2. Explain the difference between "public," "private," and "protected"
+   visibility in the context of inheritance.
+3. What is the diamond problem, and what languages have it?
+4. Why might using inheritance for a HAS-A relationship be problematic?
+5. What is an abstract class, and why would you use one?

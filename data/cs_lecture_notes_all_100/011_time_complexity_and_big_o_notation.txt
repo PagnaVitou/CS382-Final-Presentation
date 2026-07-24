@@ -1,0 +1,140 @@
+LECTURE NOTES: TIME COMPLEXITY AND BIG-O NOTATION
+====================================================
+
+1. WHY WE ANALYZE ALGORITHM EFFICIENCY
+-------------------------------------------
+Two algorithms can solve the same problem correctly but take vastly
+different amounts of time or memory to do so, especially as input size
+grows. Time complexity analysis lets us predict and compare how an
+algorithm's running time scales with input size WITHOUT needing to run it
+on actual hardware — this matters because hardware speed varies, but the
+underlying growth rate of an algorithm does not.
+
+2. BIG-O NOTATION: DEFINITION AND INTUITION
+--------------------------------------------------
+Big-O notation, O(f(n)), describes an UPPER BOUND on an algorithm's growth
+rate as the input size n approaches infinity, ignoring constant factors and
+lower-order terms. Formally, T(n) = O(f(n)) if there exist positive
+constants c and n0 such that T(n) <= c * f(n) for all n >= n0.
+
+Informally: Big-O describes how the running time scales as input grows
+large, focusing on the dominant term and discarding constants — because
+what matters most for large inputs is the shape of growth (linear vs.
+quadratic vs. exponential), not the exact constant multiplier.
+
+3. COMMON COMPLEXITY CLASSES (FROM FASTEST TO SLOWEST GROWTH)
+--------------------------------------------------------------------
+- O(1) — Constant time: running time doesn't depend on input size. Example:
+  accessing an array element by index.
+- O(log n) — Logarithmic time: running time grows very slowly as input
+  grows; typically results from repeatedly halving the problem. Example:
+  binary search.
+- O(n) — Linear time: running time grows proportionally with input size.
+  Example: a single loop over all elements.
+- O(n log n) — Linearithmic time: common in efficient sorting algorithms
+  (merge sort, heapsort, and average-case quicksort).
+- O(n^2) — Quadratic time: often results from nested loops over the same
+  input. Example: naive bubble sort, or checking all pairs of elements.
+- O(2^n) — Exponential time: running time doubles with each additional
+  input element. Example: naive recursive Fibonacci, brute-force subset
+  enumeration.
+- O(n!) — Factorial time: extremely slow growth, seen in brute-force
+  solutions that try every permutation (e.g., naive traveling salesman).
+
+As n grows, these complexity classes diverge dramatically: an O(n^2)
+algorithm might be fine for n=100 but completely impractical for
+n=1,000,000, whereas an O(n log n) algorithm handles both comfortably.
+
+4. WHY WE DROP CONSTANTS AND LOWER-ORDER TERMS
+-----------------------------------------------------
+Consider an algorithm with exact running time T(n) = 5n^2 + 3n + 100. As n
+grows very large, the n^2 term dominates the growth — the 3n and 100 terms
+become negligible in comparison, and even the constant 5 becomes
+irrelevant to the overall GROWTH RATE (though it does matter for actual
+running time at small/moderate n). We say T(n) = O(n^2), capturing the
+essential scaling behavior.
+
+5. BEST CASE, WORST CASE, AND AVERAGE CASE
+-------------------------------------------------
+An algorithm's running time can vary depending on the specific input, not
+just its size:
+- Best case: the most favorable input (e.g., searching for the first
+  element in a linear search: O(1)).
+- Worst case: the least favorable input (e.g., searching for an element
+  not present at all: O(n)). This is what Big-O typically describes, since
+  it gives a guarantee that performance will never be worse than this
+  bound.
+- Average case: expected performance over a distribution of typical inputs
+  — often harder to analyze rigorously but more representative of
+  real-world usage (e.g., quicksort's average case is O(n log n) even
+  though its worst case is O(n^2)).
+
+6. OTHER NOTATIONS: BIG-OMEGA AND BIG-THETA
+--------------------------------------------------
+- Big-Omega (Ω): describes a LOWER bound on growth rate — the algorithm
+  will take AT LEAST this long.
+- Big-Theta (Θ): describes a TIGHT bound — the algorithm's growth rate is
+  both O(f(n)) and Ω(f(n)), meaning f(n) accurately characterizes the
+  running time from both above and below.
+In casual usage, "Big-O" is often used loosely to mean "the tight bound,"
+but formally it's specifically an upper bound.
+
+7. SPACE COMPLEXITY (BRIEF PREVIEW)
+------------------------------------------
+Alongside time complexity, we also analyze SPACE complexity — how much
+additional memory an algorithm uses relative to input size, using the same
+Big-O notation. There's often a time-space trade-off: using more memory
+(e.g., a hash table for lookups, or memoization for recursion) can reduce
+time complexity, and vice versa. (This topic is covered in more depth in a
+dedicated lecture.)
+
+8. ANALYZING CODE FOR COMPLEXITY
+-------------------------------------
+General rules of thumb:
+- A single loop over n elements: O(n).
+- A loop inside a loop, both over n elements: O(n^2).
+- A loop that halves the problem each iteration (like binary search):
+  O(log n).
+- Sequential (non-nested) blocks of code: their complexities ADD (but
+  since Big-O drops lower-order terms, O(n) + O(n^2) simplifies to O(n^2)).
+- Nested/dependent loops: their complexities MULTIPLY (a loop of n
+  iterations, each containing a loop of m iterations, gives O(n*m)).
+- Recursive calls: complexity depends on the number of recursive calls and
+  how the problem size shrinks each time — often analyzed using recurrence
+  relations (e.g., the Master Theorem) or by drawing out the recursion
+  tree.
+
+9. WHY THIS MATTERS PRACTICALLY
+-------------------------------------
+Understanding time complexity helps you:
+- Predict whether an algorithm will scale to real-world data sizes before
+  writing or running the code.
+- Compare different possible approaches to a problem objectively.
+- Recognize and avoid accidentally quadratic (or worse) code, a common
+  source of performance bugs in production software (e.g., an O(n^2)
+  operation hidden inside what looks like a simple loop, because it calls a
+  function that itself iterates over the data).
+- Communicate about algorithm efficiency precisely with other engineers,
+  which is also a standard topic in technical interviews.
+
+10. KEY TAKEAWAYS
+---------------------
+- Big-O describes the upper-bound growth rate of an algorithm's running
+  time (or space usage) as input size approaches infinity, ignoring
+  constants and lower-order terms.
+- Common classes, from fastest to slowest growth: O(1), O(log n), O(n),
+  O(n log n), O(n^2), O(2^n), O(n!).
+- Nested loops typically multiply complexity; sequential blocks add (but
+  the dominant term wins).
+- Worst-case analysis is standard, but average-case and best-case analysis
+  are also useful and sometimes more representative.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Why does Big-O notation ignore constant factors?
+2. What is the time complexity of a loop nested inside another loop, each
+   running n times?
+3. What's the difference between worst-case and average-case complexity?
+Give an example algorithm where they differ.
+4. What is the time complexity of binary search, and why?
+5. Explain the difference between Big-O, Big-Omega, and Big-Theta.

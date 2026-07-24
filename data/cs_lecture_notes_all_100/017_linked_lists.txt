@@ -1,0 +1,158 @@
+LECTURE NOTES: LINKED LISTS
+==============================
+
+1. WHAT IS A LINKED LIST?
+------------------------------
+A linked list is a linear data structure made up of a sequence of "nodes,"
+where each node stores a piece of data AND a reference (pointer) to the
+next node in the sequence. Unlike arrays, linked list nodes are NOT
+required to be stored in contiguous memory — each node can live anywhere
+in memory, connected only via these references. This gives linked lists a
+very different set of performance trade-offs compared to arrays.
+
+2. NODE STRUCTURE
+----------------------
+A basic singly linked list node typically looks like:
+    struct Node {
+        int data;
+        Node* next;   // pointer/reference to the next node, or null if
+                       // this is the last node
+    }
+
+The list itself is usually represented by a reference to its "head" node
+(the first node); an empty list is represented by a null head reference.
+
+3. TYPES OF LINKED LISTS
+-----------------------------
+- Singly linked list: each node points only to the NEXT node. Traversal is
+  only possible in one direction (forward).
+- Doubly linked list: each node has pointers to both the NEXT and PREVIOUS
+  nodes, allowing traversal in both directions, at the cost of extra memory
+  per node (an additional pointer) and slightly more complex insertion/
+  deletion logic (both neighboring pointers must be updated).
+- Circular linked list: the last node's "next" pointer points back to the
+  head (rather than to null), forming a loop. Useful for applications that
+  need to cycle through elements repeatedly (e.g., round-robin scheduling).
+
+4. LINKED LIST OPERATIONS AND COMPLEXITY
+-----------------------------------------------
+- Access by index: O(n) — there's no direct address computation like an
+  array; you must traverse node by node from the head to reach the desired
+  position.
+- Search: O(n) — must traverse potentially the entire list.
+- Insertion at the head: O(1) — just create a new node and point it at the
+  old head, then update the head reference.
+- Insertion at the tail: O(n) for a singly linked list without a tail
+  pointer (must traverse to find the last node); O(1) if the list
+  maintains a direct reference to the tail node.
+- Insertion in the middle: O(1) for the actual insertion, ONCE you already
+  have a reference to the correct position — but O(n) to traverse to that
+  position in the first place if you don't already have a reference.
+- Deletion: same complexity characteristics as insertion — O(1) if you
+  have a direct reference to the node (or its predecessor, for singly
+  linked lists), O(n) if you must search for it first.
+
+5. LINKED LISTS VS. ARRAYS
+--------------------------------
+  Property                | Array                | Linked List
+  Random access (by index)| O(1)                  | O(n)
+  Insert/delete at start  | O(n) (must shift)     | O(1)
+  Insert/delete at end    | O(1) amortized        | O(1) with tail pointer
+  Insert/delete in middle | O(n) (must shift)     | O(1) once positioned
+  Memory overhead         | Low (just elements)   | Higher (extra pointers
+                          |                        | per node)
+  Cache locality          | Excellent (contiguous)| Poor (scattered memory)
+  Memory allocation       | Often one big block   | Many small allocations
+
+The key insight: arrays excel when you need fast random access and mostly
+append/read data; linked lists excel when you frequently insert/delete at
+arbitrary positions and don't need fast random access.
+
+6. IMPLEMENTING KEY OPERATIONS (SINGLY LINKED LIST)
+-------------------------------------------------------------
+Inserting at the head:
+    newNode.next = head
+    head = newNode
+
+Traversing and printing:
+    current = head
+    while current is not null:
+        print(current.data)
+        current = current.next
+
+Reversing a linked list (a classic interview problem) — done iteratively
+by tracking three pointers (previous, current, next) and reversing each
+"next" pointer as you traverse:
+    prev = null
+    current = head
+    while current is not null:
+        nextTemp = current.next
+        current.next = prev
+        prev = current
+        current = nextTemp
+    head = prev
+
+7. DETECTING CYCLES: FLOYD'S ALGORITHM (TORTOISE AND HARE)
+--------------------------------------------------------------------
+A common problem is detecting whether a linked list contains a cycle
+(a node's "next" pointer eventually loops back to an earlier node instead
+of terminating at null). Floyd's cycle detection algorithm uses two
+pointers moving at different speeds: a "slow" pointer advancing one node
+at a time, and a "fast" pointer advancing two nodes at a time. If there's a
+cycle, the fast pointer will eventually "lap" the slow pointer and they
+will meet at the same node; if there's no cycle, the fast pointer will
+reach the end (null) first. This runs in O(n) time and O(1) space, more
+efficient than using a hash set to track visited nodes (which would also
+work, but requires O(n) extra space).
+
+8. DOUBLY LINKED LISTS IN PRACTICE
+-----------------------------------------
+Doubly linked lists are commonly used in scenarios requiring efficient
+bidirectional traversal or efficient removal of a node given only a
+reference to that node (without needing to traverse to find its
+predecessor, since the previous pointer is directly available). Real-world
+examples include the implementation of many "LRU cache" (Least Recently
+Used cache) data structures, which combine a doubly linked list (for
+tracking usage recency) with a hash map (for O(1) lookup of a given key's
+node) to achieve O(1) get and put operations.
+
+9. WHEN TO PREFER LINKED LISTS OVER ARRAYS
+-------------------------------------------------
+- Frequent insertions/deletions at arbitrary positions, especially when
+  you already have a reference to the relevant node.
+- Implementing other data structures that need efficient insertion at both
+  ends (e.g., certain queue and deque implementations).
+- Situations where the total size is highly unpredictable/volatile, and
+  you want to avoid the overhead of frequent array resizing.
+- When you don't need fast random access by index, in which case a
+  linked list's downsides mostly disappear.
+
+In practice, modern hardware's strong preference for cache-friendly,
+contiguous memory access means that dynamic arrays (like Python lists,
+Java's ArrayList) often outperform linked lists in real-world benchmarks
+even for many insertion/deletion-heavy workloads, unless the linked list's
+O(1) guarantees are specifically needed at a known position.
+
+10. KEY TAKEAWAYS
+---------------------
+- Linked lists store data in nodes connected by pointers, not in
+  contiguous memory, trading away O(1) random access for O(1) insertion/
+  deletion at known positions.
+- Singly linked lists traverse one direction; doubly linked lists traverse
+  both directions at the cost of extra memory per node.
+- Cycle detection (Floyd's algorithm) is a classic O(n) time, O(1) space
+  technique using two pointers at different speeds.
+- Real-world data structures like LRU caches often combine linked lists
+  with hash maps to get the best properties of both.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Why is random access O(n) for a linked list but O(1) for an array?
+2. Compare insertion at the head of an array versus a linked list in terms
+   of time complexity.
+3. Explain how Floyd's tortoise-and-hare algorithm detects a cycle in a
+   linked list.
+4. What is the main benefit of a doubly linked list over a singly linked
+   list, and what's the cost?
+5. Why might an LRU cache implementation combine a doubly linked list with
+   a hash map?

@@ -1,0 +1,126 @@
+LECTURE NOTES: DATA TYPES AND VARIABLES
+=========================================
+
+1. WHAT IS A VARIABLE?
+-------------------------
+A variable is a named storage location in memory that holds a value which
+can change during program execution. Conceptually, a variable has three
+properties: a name (identifier), a type (what kind of data it can hold), and
+a value (the current data stored). Internally, the variable name is a
+human-readable label that the compiler/interpreter maps to a specific memory
+address.
+
+2. WHY TYPES EXIST
+---------------------
+A data type defines the set of values a variable can hold and the operations
+that are valid on it. Types matter because:
+- They determine how many bits are allocated in memory (an int and a double
+  take different amounts of space).
+- They determine which operations are legal (you can't meaningfully divide
+  two strings, but you can concatenate them).
+- They help catch bugs early: statically typed languages (Java, C++, Rust)
+  check type correctness at compile time, whereas dynamically typed
+  languages (Python, JavaScript) check at runtime.
+
+3. PRIMITIVE (BUILT-IN) DATA TYPES
+--------------------------------------
+Most languages provide a set of fundamental types:
+- Integer types: whole numbers, often available in different sizes (8-bit,
+  16-bit, 32-bit, 64-bit), and signed or unsigned.
+- Floating-point types: numbers with fractional parts (float, double),
+  represented per IEEE 754.
+- Boolean: true/false values, used for logic and control flow.
+- Character: a single symbol, often represented internally as an integer
+  code point (e.g., via ASCII/Unicode).
+- Void/None/null: represents the absence of a value.
+
+4. COMPOSITE / DERIVED DATA TYPES
+-------------------------------------
+Built from primitives, these include:
+- Strings: sequences of characters, often implemented as arrays of
+  characters with additional metadata (length, encoding).
+- Arrays: fixed- or dynamic-size ordered collections of same-typed elements.
+- Structs/Records: grouping of multiple different-typed fields under one
+  name (e.g., a "Point" struct with x and y floats).
+- Enums: a type restricted to a defined set of named constant values.
+- Classes/Objects: composite types that bundle data (fields) and behavior
+  (methods) — foundational to object-oriented programming.
+
+5. STATIC VS. DYNAMIC TYPING
+--------------------------------
+- Static typing: variable types are known and checked at compile time (e.g.,
+  Java, C, C++, TypeScript, Rust). Errors like adding a string to an integer
+  are caught before the program ever runs. Benefits: earlier bug detection,
+  often better performance (compiler can optimize with known types), better
+  IDE tooling.
+- Dynamic typing: variable types are determined and checked at runtime
+  (e.g., Python, JavaScript, Ruby). A variable can even be reassigned to hold
+  a different type of value over its lifetime. Benefits: faster to write and
+  prototype, more flexible; drawback: type errors surface only when the
+  problematic code path actually runs.
+
+6. STRONG VS. WEAK TYPING
+-----------------------------
+This is a separate axis from static/dynamic. Strongly typed languages
+(Python, Java) do not silently coerce between incompatible types (e.g.,
+Python raises an error for "2" + 2). Weakly typed languages (JavaScript, C)
+perform implicit conversions more liberally (e.g., JavaScript's "2" + 2
+evaluates to "22" due to implicit string coercion). Weak typing can lead to
+subtle, hard-to-debug behavior.
+
+7. VARIABLE SCOPE AND LIFETIME
+-----------------------------------
+Scope defines where in a program a variable's name is visible/accessible:
+- Local scope: variables declared inside a function are only visible within
+  that function.
+- Global scope: variables declared outside any function are visible
+  throughout the file/module (and often discouraged for large programs due
+  to risk of unintended side effects).
+- Block scope: variables declared inside a block (e.g., inside an if or for
+  statement) may be limited to that block, depending on the language (e.g.,
+  JavaScript's "let"/"const" are block-scoped, while "var" is function-
+  scoped).
+
+Lifetime refers to how long a variable's memory persists:
+- Local variables typically live only as long as the function call is
+  active (stored on the call stack).
+- Global variables persist for the program's entire execution.
+- Dynamically allocated variables (via new/malloc) persist until explicitly
+  freed or garbage collected.
+
+8. TYPE CONVERSION AND CASTING
+-----------------------------------
+- Implicit conversion (coercion): the language automatically converts one
+  type to another (e.g., int to float in an arithmetic expression).
+- Explicit conversion (casting): the programmer manually requests a
+  conversion (e.g., (int) 3.7 in C, or int("42") in Python).
+Casting can lose information (converting a float to an int truncates the
+decimal part) or fail entirely (converting the string "hello" to an int).
+
+9. CONSTANTS AND IMMUTABILITY
+----------------------------------
+Many languages allow declaring a variable as constant (final in Java, const
+in JavaScript/C++), meaning its value cannot be reassigned after
+initialization. This improves code safety and clarity by signaling intent —
+if a value should never change, marking it constant prevents accidental
+modification and communicates that intent to future readers of the code.
+
+10. KEY TAKEAWAYS
+---------------------
+- A variable is a named, typed storage location; its type governs valid
+  operations and memory representation.
+- Static vs. dynamic typing is about *when* types are checked; strong vs.
+  weak typing is about *how strictly* types are enforced.
+- Scope determines visibility; lifetime determines how long memory persists.
+- Type conversions can be implicit or explicit, and explicit casts can lose
+  information.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Explain the difference between static and dynamic typing with an example
+   language for each.
+2. What's the difference between strong and weak typing?
+3. What happens to a local variable's memory when its enclosing function
+   returns?
+4. Give an example of implicit type coercion causing unexpected behavior.
+5. Why might a programmer prefer declaring a variable as a constant?

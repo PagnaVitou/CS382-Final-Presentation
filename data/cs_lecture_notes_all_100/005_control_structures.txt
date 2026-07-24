@@ -1,0 +1,132 @@
+LECTURE NOTES: CONTROL STRUCTURES (CONDITIONALS AND LOOPS)
+=============================================================
+
+1. WHAT ARE CONTROL STRUCTURES?
+-----------------------------------
+By default, a program executes statements sequentially, one after another.
+Control structures alter this default flow, allowing a program to make
+decisions (conditionals) or repeat actions (loops). Together with sequence,
+these three constructs — sequence, selection, and iteration — are
+theoretically sufficient to express any computable algorithm (this is the
+core idea behind structured programming, as proven by the
+Böhm-Jacopini theorem).
+
+2. CONDITIONAL STATEMENTS
+------------------------------
+- if statement: executes a block only if a condition evaluates to true.
+- if-else: executes one block if the condition is true, another if false.
+- else if / elif chains: test a sequence of conditions in order, executing
+  the first block whose condition is true.
+- switch/case (or match in some modern languages): compares a single value
+  against multiple possible cases, often clearer than long if-elif chains
+  when checking one variable against many discrete values.
+
+Example (pseudocode):
+    if score >= 90:
+        grade = "A"
+    elif score >= 80:
+        grade = "B"
+    else:
+        grade = "C"
+
+Important nuance: conditions are evaluated top-to-bottom, and only the first
+matching branch executes — later conditions are not even checked once an
+earlier one is satisfied (in if-elif chains).
+
+3. SHORT-CIRCUIT EVALUATION
+---------------------------------
+Logical AND (&&) and OR (||) typically short-circuit: in "A && B", if A is
+false, B is never evaluated because the overall result is already
+guaranteed false. Similarly for "A || B", if A is true, B is never
+evaluated. This isn't just an optimization — it's often used deliberately,
+e.g., "if (obj != null && obj.value > 0)" relies on short-circuiting to
+avoid a null-reference error.
+
+4. LOOPS: FOR, WHILE, DO-WHILE
+------------------------------------
+- while loop: repeats a block as long as a condition remains true, checked
+  BEFORE each iteration. If the condition is false initially, the loop body
+  never executes.
+    while condition:
+        do_something()
+
+- do-while loop (not present in all languages, e.g., Python lacks it):
+  repeats a block, checking the condition AFTER each iteration, guaranteeing
+  the body executes at least once.
+    do:
+        do_something()
+    while condition
+
+- for loop: typically used when the number of iterations is known or
+  follows a clear pattern (e.g., iterating over a range or collection).
+    for i in range(10):
+        print(i)
+
+5. LOOP CONTROL STATEMENTS
+--------------------------------
+- break: immediately exits the nearest enclosing loop.
+- continue: skips the rest of the current iteration and proceeds to the next
+  one.
+- return (inside a function): exits the function entirely, which also exits
+  any loop the return statement is inside.
+
+These statements are useful but should be used judiciously — overusing
+break/continue can make control flow harder to follow; sometimes restructuring
+the loop condition is clearer.
+
+6. NESTED CONTROL STRUCTURES
+----------------------------------
+Control structures can be nested inside one another (a loop inside a
+conditional, a conditional inside a loop, a loop inside a loop). Nested loops
+are common when working with 2D data (e.g., iterating rows and columns of a
+grid or matrix), but deep nesting can hurt both readability and performance
+(nested loops often multiply time complexity — a loop inside a loop, each
+running n times, gives O(n^2) operations).
+
+7. INFINITE LOOPS AND TERMINATION
+--------------------------------------
+A loop is "infinite" if its condition never becomes false (or if it's
+explicitly written as while True with no break). Infinite loops are
+sometimes intentional (e.g., a server's main event loop, which should run
+until the process is stopped), but unintentional infinite loops are a common
+bug — always verify that loop conditions will eventually be satisfied, and
+that loop variables are actually being updated inside the loop body.
+
+8. RECURSION AS AN ALTERNATIVE TO ITERATION
+-------------------------------------------------
+Any loop can, in principle, be rewritten as a recursive function (a function
+that calls itself), and vice versa (loops can often replace recursion,
+sometimes with better performance since recursion adds function-call
+overhead and risks stack overflow for deep recursion). Recursion is covered
+in detail in a separate lecture, but it's worth noting here as an alternative
+control-flow mechanism for repetition.
+
+9. COMMON PITFALLS
+----------------------
+- Off-by-one errors: loops that run one iteration too many or too few,
+  commonly from confusing "<" vs "<=" in loop conditions.
+- Forgetting to update the loop variable, causing an infinite loop.
+- Modifying a collection while iterating over it, which can cause skipped
+  elements or runtime errors in many languages.
+- Deeply nested conditionals ("arrow code") that hurt readability — often
+  improved with early returns/guard clauses.
+
+10. KEY TAKEAWAYS
+---------------------
+- Sequence, selection (conditionals), and iteration (loops) are the three
+  fundamental building blocks of structured programs.
+- while checks its condition before each iteration; do-while checks after.
+- Short-circuit evaluation affects both performance and correctness (e.g.,
+  guarding against null references).
+- break/continue alter loop flow but should be used carefully to preserve
+  readability.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What's the difference between a while loop and a do-while loop?
+2. Why does short-circuit evaluation matter for code correctness, not just
+   performance?
+3. Give an example of an off-by-one error in a for loop.
+4. What does the "continue" statement do, and how does it differ from
+   "break"?
+5. Explain how a nested loop can lead to O(n^2) time complexity.

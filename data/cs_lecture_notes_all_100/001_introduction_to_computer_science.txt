@@ -1,0 +1,134 @@
+LECTURE NOTES: INTRODUCTION TO COMPUTER SCIENCE
+=================================================
+
+1. WHAT IS COMPUTER SCIENCE?
+-----------------------------
+Computer Science (CS) is the study of computation, information, automation, and
+the design of systems that can process data to solve problems. It is not simply
+"learning to code" — programming is a tool CS uses, but the discipline itself
+spans theory (what can be computed, and how efficiently), systems (how hardware
+and software are organized to make computation practical), and application
+(using computation to solve real-world problems in science, business, and
+society).
+
+CS can be broadly divided into:
+- Theory of Computation: formal models of computers, what problems are
+  solvable, and complexity classes (P, NP, etc.)
+- Algorithms and Data Structures: systematic methods for solving problems
+  efficiently, and the ways of organizing data to support those methods.
+- Systems: operating systems, computer architecture, networks, databases,
+  distributed systems.
+- Software Engineering: the practice of designing, building, testing, and
+  maintaining large software systems.
+- Applied CS: AI/ML, graphics, security, human-computer interaction,
+  bioinformatics, and other domains where computation is applied.
+
+2. WHY STUDY COMPUTER SCIENCE?
+-------------------------------
+Nearly every modern industry — from finance to agriculture to entertainment —
+relies on software. Understanding CS gives you the ability to automate
+repetitive tasks, analyze large amounts of data, build products that scale to
+millions of users, and reason precisely about problems. Even outside pure
+software roles, CS thinking (breaking problems into steps, reasoning about
+edge cases, thinking about scale) is valuable.
+
+3. HOW COMPUTERS REPRESENT AND PROCESS INFORMATION
+----------------------------------------------------
+At the lowest level, computers store and manipulate information as sequences
+of binary digits (bits): 0s and 1s. This is because digital circuits are most
+reliably built using two distinguishable electrical states (e.g., high and low
+voltage). Groups of bits are combined to represent:
+- Numbers (integers, floating point)
+- Characters and text (via encodings like ASCII or UTF-8)
+- Instructions (machine code that the CPU executes)
+- Multimedia (images, audio, video — all eventually reduced to numeric data)
+
+A byte is a group of 8 bits, and it is the fundamental unit of memory
+addressing in most systems. Larger units include kilobytes (KB), megabytes
+(MB), gigabytes (GB), and so on, each typically 1024x the previous unit in
+computing contexts (though "decimal" units of 1000x are also used
+commercially, which can cause confusion).
+
+4. THE VON NEUMANN ARCHITECTURE
+---------------------------------
+Most modern computers follow the von Neumann architecture, which describes a
+system with:
+- A Central Processing Unit (CPU) that fetches, decodes, and executes
+  instructions.
+- Memory (RAM) that stores both the program instructions and the data the
+  program operates on — this is the key insight: instructions and data share
+  the same memory space and are treated as data until they're fetched for
+  execution.
+- Input/Output (I/O) devices that allow the computer to interact with the
+  external world (keyboards, displays, disks, network cards).
+- A bus system that allows these components to communicate.
+
+The CPU operates on a fetch-decode-execute cycle: it fetches an instruction
+from memory, decodes what operation it represents, executes that operation
+(which may involve reading/writing memory or performing arithmetic), and then
+moves to the next instruction.
+
+5. LEVELS OF ABSTRACTION
+--------------------------
+A defining feature of CS is abstraction — hiding low-level detail behind
+simpler interfaces. Consider the layers between "writing a Python program" and
+"electrons moving through a transistor":
+- High-level language code (Python, Java, C++)
+- Compiled/interpreted intermediate representations (bytecode, assembly)
+- Machine code (binary instructions specific to a CPU architecture)
+- Microarchitecture (how the CPU internally executes those instructions)
+- Digital logic (gates built from transistors)
+- Physics (transistors as switches controlling electron flow)
+
+Each layer only needs to understand the interface of the layer below it, not
+its full implementation. This is what allows a programmer to write portable,
+readable code without thinking about voltage levels.
+
+6. ALGORITHMS: THE HEART OF CS
+---------------------------------
+An algorithm is a finite, well-defined sequence of steps that solves a
+problem or performs a computation. Good algorithms are:
+- Correct: they produce the right answer for all valid inputs.
+- Efficient: they use a reasonable amount of time and memory, ideally scaling
+  well as input size grows.
+- Clear: they can be understood, verified, and maintained by others.
+
+Much of a CS education is spent learning canonical algorithms (sorting,
+searching, graph traversal) and, more importantly, the underlying techniques
+(divide-and-conquer, dynamic programming, greedy strategies) that let you
+design new algorithms for novel problems.
+
+7. PROGRAMMING LANGUAGES AND PARADIGMS
+------------------------------------------
+Programming languages are the tools we use to express algorithms in a form a
+computer can execute. Broad paradigms include:
+- Imperative/procedural (C): explicit sequences of statements that change
+  program state.
+- Object-oriented (Java, C++, Python): organizing code around objects that
+  bundle data and behavior.
+- Functional (Haskell, parts of JavaScript/Python): computation expressed as
+  evaluation of mathematical functions, favoring immutability.
+- Declarative (SQL, Prolog): specifying *what* result is wanted rather than
+  *how* to compute it step by step.
+
+Most real-world languages blend paradigms (e.g., Python supports procedural,
+object-oriented, and functional styles).
+
+8. KEY TAKEAWAYS
+------------------
+- CS is broader than programming: it includes theory, systems, and
+  application.
+- Computers represent all information as binary data.
+- The von Neumann architecture underlies most general-purpose computers.
+- Abstraction layers let us reason about computation at the right level of
+  detail for the task at hand.
+- Algorithms — not just code — are the central object of study; correctness
+  and efficiency both matter.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What are the main subfields of computer science?
+2. Why do computers use binary representation instead of decimal?
+3. Describe the fetch-decode-execute cycle.
+4. What is abstraction, and why is it important in CS?
+5. Name three programming paradigms and give an example language for each.

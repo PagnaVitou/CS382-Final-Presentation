@@ -1,0 +1,168 @@
+LECTURE NOTES: GRAPHS
+========================
+
+1. WHAT IS A GRAPH?
+----------------------
+A graph is a data structure consisting of a set of VERTICES (also called
+nodes) and a set of EDGES connecting pairs of vertices. Unlike trees,
+graphs impose no restriction on hierarchy or acyclicity — any vertex can
+connect to any other vertex, and cycles are allowed. Graphs are extremely
+general and model an enormous range of real-world relationships: social
+networks (people as vertices, friendships as edges), road networks
+(intersections as vertices, roads as edges), the web (pages as vertices,
+hyperlinks as edges), and dependency structures (tasks as vertices,
+"must come before" relationships as edges).
+
+2. TYPES OF GRAPHS
+-----------------------
+- Directed graph (digraph): edges have a direction — an edge from A to B
+  does not imply an edge from B to A (e.g., Twitter "follows," one-way
+  streets).
+- Undirected graph: edges have no direction — a connection between A and B
+  is symmetric (e.g., Facebook "friendship," a two-way road).
+- Weighted graph: each edge has an associated numeric weight/cost (e.g.,
+  distance, time, or price), used in shortest-path and minimum-spanning-
+  tree problems.
+- Unweighted graph: edges have no associated cost; all edges are treated
+  as equally "expensive" to traverse.
+- Cyclic graph: contains at least one cycle (a path that starts and ends
+  at the same vertex).
+- Acyclic graph: contains no cycles. A Directed Acyclic Graph (DAG) is
+  particularly important, modeling dependency structures like build
+  systems, task scheduling, and version control history.
+- Connected graph (undirected): there is a path between every pair of
+  vertices. A directed graph's analogous property is "strongly connected"
+  (a path exists between every ordered pair of vertices in both
+  directions).
+
+3. GRAPH REPRESENTATIONS
+-----------------------------
+- Adjacency matrix: a 2D array/matrix of size V x V (V = number of
+  vertices), where matrix[i][j] indicates whether an edge exists between
+  vertex i and vertex j (and, for weighted graphs, stores the weight
+  instead of just a boolean).
+  - Space complexity: O(V^2), regardless of how many edges actually exist
+    — wasteful for SPARSE graphs (relatively few edges), but simple and
+    offers O(1) edge-existence checks.
+- Adjacency list: for each vertex, maintain a list of its neighboring
+  vertices (and edge weights, if applicable).
+  - Space complexity: O(V + E), where E is the number of edges — much more
+    efficient for sparse graphs, which is the common case in most
+    real-world graphs (e.g., a social network where each person has a
+    limited number of friends relative to the total number of users).
+  - Edge-existence checks are O(degree of vertex) rather than O(1), a
+    reasonable trade-off for the space savings.
+
+In practice, adjacency lists are the default choice for most graph
+algorithms unless the graph is known to be dense or O(1) edge lookups are
+specifically required.
+
+4. BREADTH-FIRST SEARCH (BFS)
+------------------------------------
+BFS explores a graph level by level, visiting all neighbors of the current
+node before moving to the next "layer" outward. Implemented using a QUEUE:
+start by enqueuing the source vertex and marking it visited; repeatedly
+dequeue a vertex, process it, and enqueue any of its unvisited neighbors
+(marking them visited immediately upon enqueueing, to avoid enqueueing the
+same vertex multiple times).
+- Time complexity: O(V + E) — each vertex and edge is processed once.
+- Key property: in an UNWEIGHTED graph, BFS finds the SHORTEST PATH (fewest
+  edges) from the source to every reachable vertex, because it explores
+  vertices in strict order of increasing distance.
+
+5. DEPTH-FIRST SEARCH (DFS)
+--------------------------------
+DFS explores as far as possible along one branch before backtracking,
+implemented either with explicit RECURSION (relying on the call stack) or
+an explicit STACK data structure iteratively.
+- Time complexity: O(V + E).
+- Applications: detecting cycles, topological sorting (for DAGs), finding
+  connected components, solving maze/puzzle-like problems (backtracking),
+  and computing certain graph properties like articulation points and
+  bridges.
+
+6. SHORTEST PATH ALGORITHMS
+--------------------------------
+- BFS (unweighted graphs): finds shortest path by edge count, as described
+  above.
+- Dijkstra's algorithm (weighted graphs, non-negative weights): repeatedly
+  selects the unvisited vertex with the smallest known tentative distance
+  from the source (using a priority queue for efficiency), and "relaxes"
+  (updates) the distances to its neighbors. Time complexity O((V + E)
+  log V) with a binary heap-based priority queue.
+- Bellman-Ford algorithm: handles graphs with NEGATIVE edge weights
+  (unlike Dijkstra, which can give incorrect results with negative
+  weights), and can also detect negative-weight cycles (which make
+  "shortest path" undefined, since you could loop forever to decrease the
+  total cost). Time complexity O(V * E), slower than Dijkstra but more
+  general.
+- Floyd-Warshall algorithm: computes shortest paths between ALL PAIRS of
+  vertices simultaneously, using dynamic programming. Time complexity
+  O(V^3), practical for smaller/denser graphs where all-pairs shortest
+  paths are needed.
+
+7. MINIMUM SPANNING TREE (MST)
+------------------------------------
+A spanning tree of a connected, undirected graph is a subset of edges that
+connects all vertices with no cycles (i.e., forming a tree). A MINIMUM
+spanning tree is the spanning tree with the smallest possible total edge
+weight — useful for problems like designing a minimum-cost network that
+still connects all locations (e.g., laying cable to connect all houses in
+a neighborhood at minimum total cost).
+- Kruskal's algorithm: sorts all edges by weight and greedily adds the
+  smallest edges one at a time, skipping any edge that would create a
+  cycle (checked efficiently using a "Union-Find"/"Disjoint Set" data
+  structure). Time complexity O(E log E).
+- Prim's algorithm: grows the MST one vertex at a time, always adding the
+  cheapest edge connecting the current tree to a new vertex, similar in
+  spirit to Dijkstra's algorithm. Time complexity O(E log V) with a
+  priority queue.
+
+8. TOPOLOGICAL SORTING
+---------------------------
+For a Directed Acyclic Graph (DAG), a topological sort produces a linear
+ordering of vertices such that for every directed edge (u, v), u appears
+BEFORE v in the ordering. This is used for scheduling tasks with
+dependencies (e.g., course prerequisites, build systems compiling files in
+the correct dependency order). Topological sorting can be computed via DFS
+(recording vertices in the order they FINISH being explored, then
+reversing that order) or via Kahn's algorithm (repeatedly removing
+vertices with no incoming edges, using a queue of "ready" vertices).
+Note: a topological sort only exists if the graph is acyclic — cycles make
+a valid ordering impossible, since two vertices in the cycle would each
+need to come "before" the other.
+
+9. GRAPH COLORING AND OTHER PROBLEMS (BRIEF MENTION)
+--------------------------------------------------------------
+Other classic graph problems include graph coloring (assigning colors to
+vertices such that no two adjacent vertices share a color, relevant to
+scheduling and register allocation in compilers), maximum flow/minimum cut
+problems (relevant to network capacity planning), and the traveling
+salesman problem (finding the shortest route visiting all vertices exactly
+once — NP-hard in general, requiring approximation or heuristic algorithms
+for large instances).
+
+10. KEY TAKEAWAYS
+---------------------
+- Graphs generalize trees by removing the "no cycles, single parent"
+  restrictions, enabling far more general relationship modeling.
+- Adjacency lists are generally preferred over adjacency matrices for
+  sparse, real-world graphs due to better space efficiency.
+- BFS finds shortest paths in unweighted graphs; Dijkstra's algorithm
+  extends this to weighted graphs with non-negative weights.
+- Minimum spanning tree algorithms (Kruskal's, Prim's) find the
+  cheapest way to connect all vertices.
+- Topological sorting only applies to DAGs and is essential for
+  dependency-ordering problems.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What's the difference between an adjacency matrix and an adjacency
+   list, and when would you prefer each?
+2. Why does BFS find the shortest path in an unweighted graph, but not
+   necessarily in a weighted one?
+3. Why can't Dijkstra's algorithm correctly handle negative edge weights,
+   while Bellman-Ford can?
+4. What is a topological sort, and under what condition does one exist?
+5. Describe the key difference between Kruskal's and Prim's algorithms for
+   finding a minimum spanning tree.

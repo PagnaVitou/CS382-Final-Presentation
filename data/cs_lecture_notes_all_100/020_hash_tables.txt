@@ -1,0 +1,163 @@
+LECTURE NOTES: HASH TABLES
+=============================
+
+1. WHAT IS A HASH TABLE?
+-----------------------------
+A hash table (also called a hash map) is a data structure that stores
+key-value pairs and provides average O(1) time complexity for insertion,
+lookup, and deletion by a given key. This remarkable speed comes from
+using a HASH FUNCTION to convert a key directly into an array index,
+allowing near-instant access without searching or comparing against other
+elements — a huge improvement over the O(n) search required for an
+unsorted array, or even O(log n) for a balanced search tree.
+
+2. HASH FUNCTIONS
+----------------------
+A hash function takes a key (which could be a string, number, or complex
+object) and produces a fixed-size integer (the "hash code"), which is then
+typically reduced modulo the table's size to produce a valid array index:
+    index = hash(key) % table_size
+
+A good hash function should:
+- Be deterministic: the same key always produces the same hash.
+- Distribute keys uniformly across the available index range, minimizing
+  the chance that different keys map to the same index.
+- Be fast to compute, since it's invoked on every insertion, lookup, and
+  deletion.
+
+Poor hash functions that cluster many keys into the same few indices
+degrade a hash table's performance from O(1) toward O(n), defeating its
+main purpose.
+
+3. COLLISIONS: WHY THEY'RE INEVITABLE
+--------------------------------------------
+A "collision" occurs when two different keys hash to the same index. By
+the pigeonhole principle, if there are more possible keys than table slots
+(which is essentially always the case — imagine hashing arbitrary strings
+into a table of, say, 1000 slots), collisions are mathematically
+unavoidable in general. A well-designed hash table isn't one that avoids
+collisions entirely, but one that HANDLES them efficiently.
+
+4. COLLISION RESOLUTION: CHAINING
+----------------------------------------
+Separate chaining resolves collisions by storing a small secondary
+structure (commonly a linked list, or a small dynamic array) at each table
+index; when a collision occurs, the new key-value pair is simply appended
+to that index's list.
+- Average case: with a good hash function and reasonable load factor
+  (see below), each list stays very short, keeping lookups close to O(1).
+- Worst case: if many keys collide into the same index (e.g., an
+  adversarially chosen or poorly hashed set of keys), that index's list
+  could grow to O(n), making lookups in that bucket O(n). Some modern
+  implementations (e.g., Java's HashMap since Java 8) convert a bucket's
+  linked list into a balanced tree once it grows past a threshold, bounding
+  the worst case to O(log n) for that bucket instead of O(n).
+
+5. COLLISION RESOLUTION: OPEN ADDRESSING
+------------------------------------------------
+Open addressing resolves collisions by finding a DIFFERENT slot within the
+same underlying array, rather than chaining a list at one slot:
+- Linear probing: if the computed index is occupied, check the next index
+  (wrapping around at the end), and the next, until an empty slot is
+  found. Simple, but prone to "clustering" (consecutive occupied slots
+  build up, making probing sequences longer over time).
+- Quadratic probing: checks indices at increasing quadratic offsets
+  (index+1, index+4, index+9, ...) to reduce clustering compared to linear
+  probing.
+- Double hashing: uses a SECOND hash function to determine the probing
+  step size, further reducing clustering by making the probe sequence
+  depend on the key itself rather than a fixed pattern.
+
+Open addressing implementations must handle deletion carefully — simply
+removing an entry can break the probing chain for keys that come after it
+(since a later search for a key relies on continuing to probe until an
+EMPTY slot is found), so deleted slots are often marked with a special
+"deleted"/"tombstone" marker rather than being made truly empty.
+
+6. LOAD FACTOR AND RESIZING
+----------------------------------
+The load factor of a hash table is the ratio of the number of stored
+entries to the total number of slots (buckets) in the table:
+    load factor = number of entries / table size
+
+As the load factor increases, collisions become more frequent and
+performance degrades. Most hash table implementations automatically
+"resize" (typically doubling the table size) once the load factor exceeds
+a threshold (commonly around 0.7-0.75), rehashing all existing entries
+into the larger table. This resizing operation is O(n), but — similar to
+dynamic array resizing — it happens infrequently enough that the AMORTIZED
+cost per insertion remains O(1).
+
+7. HASHABILITY AND IMMUTABLE KEYS
+----------------------------------------
+For a hash table to work correctly, a key's hash value must NOT change
+while it's stored in the table (otherwise, the key would end up "stuck" at
+the wrong index, unfindable by future lookups using its current hash).
+This is why many languages restrict hash table keys to immutable types:
+Python dictionaries require keys to be "hashable" (immutable types like
+strings, numbers, and tuples of hashable types — NOT lists, which are
+mutable), and similar constraints exist in other languages. Additionally,
+if a language allows custom objects as keys, that object's equality
+comparison (equals) and hash function (hashCode) MUST be consistent:
+objects considered equal must produce the same hash code, or lookups will
+silently fail to find matching entries.
+
+8. HASH TABLES VS. OTHER DATA STRUCTURES
+------------------------------------------------
+  Structure           | Search      | Insert      | Ordered? | Notes
+  Hash table           | O(1) avg    | O(1) avg    | No       | Fast, no
+                       | O(n) worst  | O(n) worst  |          | order
+  Balanced BST         | O(log n)    | O(log n)    | Yes      | Supports
+                       |             |             |          | range
+                       |             |             |          | queries
+  Sorted array         | O(log n)    | O(n)        | Yes      | Fast
+                       |             | (must shift)|          | search,
+                       |             |             |          | slow
+                       |             |             |          | insert
+  Unsorted array       | O(n)        | O(1)        | No       | Simple
+
+Hash tables trade away any notion of ORDER (you cannot efficiently ask "what
+are all keys between X and Y?" or "what is the smallest key?") in exchange
+for extremely fast average-case lookup/insert/delete — a trade-off that's
+ideal for many use cases (caches, symbol tables, deduplication) but wrong
+for others (anything requiring sorted iteration or range queries, where a
+balanced BST or sorted structure is preferable).
+
+9. REAL-WORLD APPLICATIONS
+-------------------------------
+- Caches: mapping a cache key (e.g., a URL or query) to a cached result,
+  requiring fast lookups to check if data is already cached.
+- Symbol tables in compilers/interpreters: mapping variable/function names
+  to their definitions or memory locations.
+- Sets: many "Set" data structures (unordered collections of unique
+  elements) are implemented internally as hash tables where only the keys
+  matter (values are ignored or just a placeholder).
+- Counting/frequency analysis: counting occurrences of items (e.g., word
+  frequency in a document) using each item as a key and its count as the
+  value.
+- Deduplication: quickly checking whether an item has already been seen.
+
+10. KEY TAKEAWAYS
+---------------------
+- Hash tables achieve average O(1) operations by converting keys directly
+  into array indices via a hash function.
+- Collisions are mathematically inevitable and must be handled, typically
+  via chaining or open addressing.
+- Load factor and resizing keep the average case fast as the table grows,
+  with amortized O(1) insertion despite occasional O(n) resize operations.
+- Keys must be immutable (or at least have a hash value that doesn't
+  change while stored) for correctness.
+- Hash tables sacrifice ordering for speed — use a balanced BST or sorted
+  structure instead when ordering or range queries are required.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Why are collisions in a hash table mathematically unavoidable in
+   general?
+2. Compare separate chaining and open addressing as collision resolution
+   strategies.
+3. What is load factor, and why does a hash table resize once it exceeds a
+   threshold?
+4. Why must hash table keys generally be immutable?
+5. Give an example of a problem better suited to a balanced BST than a
+   hash table, and explain why.

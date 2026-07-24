@@ -1,0 +1,6 @@
+LECTURE NOTES: DATABASE SYSTEMS - INDEXING
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers database systems - indexing, a fundamental concept in computer science.

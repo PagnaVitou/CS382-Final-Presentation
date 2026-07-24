@@ -1,0 +1,152 @@
+LECTURE NOTES: SORTING ALGORITHMS
+====================================
+
+1. WHY SORTING MATTERS
+-------------------------
+Sorting — arranging elements of a collection into a defined order (e.g.,
+ascending numerical order, or alphabetical order) — is one of the most
+fundamental problems in computer science. Many other algorithms (binary
+search, certain graph algorithms, duplicate detection) either require
+sorted input or become dramatically more efficient when working with
+sorted data. Studying sorting algorithms also introduces foundational
+algorithmic techniques (divide-and-conquer, in-place manipulation) that
+apply far beyond sorting itself.
+
+2. BUBBLE SORT
+------------------
+Bubble sort repeatedly steps through the list, compares adjacent elements,
+and swaps them if they're in the wrong order. Each full pass "bubbles" the
+largest unsorted element to its correct position at the end.
+- Time complexity: O(n^2) in the average and worst case (nested loops);
+  O(n) best case if an optimized version detects an already-sorted array
+  and stops early.
+- Space complexity: O(1) — sorts in place.
+- Rarely used in practice due to poor performance on large inputs, but
+  valuable pedagogically for introducing the concept of comparison-based
+  sorting.
+
+3. SELECTION SORT
+----------------------
+Selection sort repeatedly finds the minimum element from the unsorted
+portion of the list and swaps it into its correct position at the front.
+- Time complexity: O(n^2) in all cases (it always scans the remaining
+  unsorted portion fully, regardless of existing order).
+- Space complexity: O(1) — in place.
+- Notable property: it performs at most n swaps (fewer writes than bubble
+  sort), which can matter when writes are expensive (e.g., writing to
+  flash memory).
+
+4. INSERTION SORT
+----------------------
+Insertion sort builds the sorted list one element at a time, taking each
+new element and inserting it into its correct position among the
+already-sorted elements to its left (similar to how many people sort
+playing cards in hand).
+- Time complexity: O(n^2) worst/average case, but O(n) best case for
+  nearly-sorted input — it's efficient on data that's already mostly
+  sorted.
+- Space complexity: O(1) — in place.
+- Practical note: insertion sort is often used as the base case for
+  hybrid sorting algorithms (like Timsort or introsort), since it
+  outperforms more complex algorithms on very small subarrays due to lower
+  constant-factor overhead.
+
+5. MERGE SORT
+-----------------
+Merge sort is a divide-and-conquer algorithm: it recursively splits the
+list in half until each sublist has one element (trivially sorted), then
+repeatedly merges sorted sublists back together in order.
+- Time complexity: O(n log n) in ALL cases (best, average, worst) — this
+  consistency is a major advantage.
+- Space complexity: O(n) auxiliary space, since merging requires temporary
+  arrays to hold elements during the merge step (not in-place, in typical
+  implementations).
+- Stable: preserves the relative order of equal elements — important when
+  sorting by one key while wanting to preserve prior ordering by another.
+- Well-suited to sorting linked lists (no random access needed) and to
+  external sorting (data too large to fit in memory).
+
+6. QUICKSORT
+----------------
+Quicksort is also divide-and-conquer: it selects a "pivot" element,
+partitions the list so elements smaller than the pivot come before it and
+larger elements come after, then recursively sorts each partition.
+- Time complexity: O(n log n) average case; O(n^2) worst case (occurs
+  when the pivot choice consistently produces very unbalanced partitions,
+  e.g., choosing the first element as pivot on an already-sorted array).
+  Randomized pivot selection or "median-of-three" pivot selection helps
+  avoid worst-case behavior in practice.
+- Space complexity: O(log n) auxiliary space on average (for the recursive
+  call stack), since partitioning is typically done in place.
+- Not stable by default (standard implementations may reorder equal
+  elements).
+- Often faster in practice than merge sort due to better cache locality
+  and lower constant factors, despite having a worse theoretical worst
+  case.
+
+7. HEAPSORT
+----------------
+Heapsort builds a max-heap (or min-heap) from the input data, then
+repeatedly extracts the maximum (root) element and rebuilds the heap,
+placing extracted elements at the end of the array in sorted order.
+- Time complexity: O(n log n) in all cases.
+- Space complexity: O(1) — sorts in place (heap is built within the
+  original array).
+- Not stable.
+- Slightly slower in practice than quicksort due to worse cache locality
+  (heap operations jump around the array more than quicksort's sequential
+  partitioning), but its guaranteed O(n log n) worst case makes it
+  valuable when predictable performance matters more than average-case
+  speed.
+
+8. COUNTING SORT, RADIX SORT (NON-COMPARISON SORTS)
+-----------------------------------------------------------
+Most sorts above are "comparison-based" — they determine order strictly by
+comparing pairs of elements, and it can be proven that any comparison-based
+sort requires at least O(n log n) comparisons in the worst case. Some
+specialized algorithms avoid comparisons entirely and can achieve better
+than O(n log n) under specific conditions:
+- Counting sort: works when input consists of integers within a known,
+  limited range; counts occurrences of each value directly. Time
+  complexity O(n + k), where k is the range of possible values — very fast
+  when k is not much larger than n, but impractical for large ranges or
+  non-integer data.
+- Radix sort: sorts integers digit by digit (starting from least or most
+  significant digit), using a stable sort like counting sort as a
+  subroutine at each digit position. Time complexity O(d * (n + k)) where d
+  is the number of digits and k is the base (e.g., 10 for decimal digits).
+
+9. COMPARISON TABLE (SUMMARY)
+------------------------------------
+  Algorithm       | Best      | Average   | Worst     | Space    | Stable
+  Bubble Sort      | O(n)      | O(n^2)    | O(n^2)    | O(1)     | Yes
+  Selection Sort   | O(n^2)    | O(n^2)    | O(n^2)    | O(1)     | No
+  Insertion Sort   | O(n)      | O(n^2)    | O(n^2)    | O(1)     | Yes
+  Merge Sort       | O(n log n)| O(n log n)| O(n log n)| O(n)     | Yes
+  Quicksort        | O(n log n)| O(n log n)| O(n^2)    | O(log n) | No
+  Heapsort         | O(n log n)| O(n log n)| O(n log n)| O(1)     | No
+
+10. KEY TAKEAWAYS
+---------------------
+- Simple sorts (bubble, selection, insertion) are O(n^2) but useful for
+  small or nearly-sorted data, and pedagogically important.
+- Merge sort guarantees O(n log n) but uses O(n) extra space; quicksort is
+  often faster in practice but risks O(n^2) worst case without careful
+  pivot selection.
+- Heapsort guarantees O(n log n) time with O(1) space, a useful
+  combination when memory is tight and worst-case guarantees matter.
+- Non-comparison sorts (counting, radix) can beat the O(n log n) lower
+  bound for comparison sorts, but only under specific input constraints.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. Why is merge sort's worst-case time complexity O(n log n), while
+   quicksort's worst case is O(n^2)?
+2. What does it mean for a sorting algorithm to be "stable," and why might
+   that matter?
+3. Under what conditions can counting sort outperform comparison-based
+   sorts, and why doesn't it violate the O(n log n) lower bound?
+4. Why might insertion sort be used as a subroutine inside more complex
+   hybrid sorting algorithms?
+5. Explain why heapsort is O(1) space while merge sort typically requires
+   O(n) auxiliary space.

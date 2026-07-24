@@ -1,0 +1,6 @@
+LECTURE NOTES: DYNAMIC PROGRAMMING
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers dynamic programming, a fundamental concept in computer science.

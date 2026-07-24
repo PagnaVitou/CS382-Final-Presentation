@@ -1,0 +1,143 @@
+LECTURE NOTES: FUNCTIONS AND SCOPE
+=====================================
+
+1. WHAT IS A FUNCTION?
+-------------------------
+A function is a named, reusable block of code that performs a specific task.
+Functions take zero or more inputs (parameters), perform some computation,
+and typically return a value (though "void" functions may perform side
+effects without returning anything). Functions are the primary mechanism for
+decomposing a large problem into smaller, manageable, and reusable pieces —
+a practice central to good software design.
+
+2. WHY USE FUNCTIONS?
+------------------------
+- Reusability: write logic once, call it many times, instead of duplicating
+  code.
+- Abstraction: a function hides its internal implementation behind a simple
+  interface (its name and parameters) — callers don't need to know how it
+  works internally, only what it does.
+- Testability: smaller units of logic are easier to test in isolation.
+- Readability: well-named functions make code read almost like natural
+  language ("calculate_tax(income)" is clearer than inline arithmetic).
+- Maintainability: fixing a bug in one function fixes it everywhere that
+  function is called, rather than requiring the fix to be duplicated.
+
+3. PARAMETERS AND ARGUMENTS
+--------------------------------
+- Parameters are the named placeholders defined in the function's
+  declaration.
+- Arguments are the actual values passed in when the function is called.
+Some languages support:
+- Default parameter values (used if the caller doesn't supply that
+  argument).
+- Variable-length argument lists (e.g., Python's *args, **kwargs).
+- Named/keyword arguments (allowing arguments to be passed by parameter
+  name rather than position).
+
+4. PASS BY VALUE VS. PASS BY REFERENCE
+-------------------------------------------
+This distinction determines whether a function can modify the caller's
+original data:
+- Pass by value: a copy of the argument is passed; changes inside the
+  function do not affect the caller's original variable. Primitive types
+  (int, float, bool) are typically passed by value in most languages.
+- Pass by reference: a reference (essentially, the memory address) is
+  passed; changes inside the function DO affect the caller's original data.
+  Objects, arrays, and other composite/mutable types are often passed "by
+  reference" (or more precisely, "by object reference" in languages like
+  Python and Java, where the reference itself is copied, but it still
+  points to the same underlying object).
+
+This is a frequent source of confusion and bugs: in Python, passing a list
+to a function and appending to it inside that function WILL affect the
+original list (since lists are mutable and passed by object reference), but
+reassigning the parameter to an entirely new list inside the function will
+NOT affect the caller's variable (since that only rebinds the local name).
+
+5. RETURN VALUES
+--------------------
+A function can return a value using a return statement, immediately exiting
+the function at that point. Some languages support returning multiple
+values (Python via tuples, Go natively), while others require packaging
+multiple return values into an object or struct. A function with no
+explicit return statement typically returns a default "empty" value (None in
+Python, void in C/Java/C++).
+
+6. VARIABLE SCOPE REVISITED
+--------------------------------
+- Local scope: variables declared inside a function exist only during that
+  function's execution and are not visible outside it.
+- Enclosing/nonlocal scope: in nested functions, an inner function can
+  access variables from its enclosing function (a "closure").
+- Global scope: variables declared at the top level of a module/file,
+  accessible (though modification often requires an explicit keyword like
+  "global" in Python) from any function in that file.
+- Built-in scope: names provided by the language itself (e.g., "len",
+  "print" in Python).
+
+This ordering (local -> enclosing -> global -> built-in) is often called the
+LEGB rule (in Python specifically), describing the order in which a name is
+searched for resolution.
+
+7. CLOSURES
+---------------
+A closure is a function that "remembers" variables from its enclosing scope
+even after that enclosing function has finished executing. This is possible
+because the inner function retains a reference to those variables rather
+than just their value at creation time.
+
+Example (Python):
+    def make_counter():
+        count = 0
+        def increment():
+            nonlocal count
+            count += 1
+            return count
+        return increment
+
+    counter = make_counter()
+    counter()  # returns 1
+    counter()  # returns 2
+
+Closures are widely used in callback-heavy code (e.g., JavaScript event
+handlers) and in implementing decorators, memoization, and other functional
+programming patterns.
+
+8. RECURSION VS. HELPER FUNCTIONS
+----------------------------------------
+Functions can call other functions, including themselves (recursion,
+covered separately). Breaking a complex function into smaller helper
+functions ("decomposition") is a standard technique for managing complexity
+and improving testability — each helper can be verified independently.
+
+9. PURE FUNCTIONS AND SIDE EFFECTS
+----------------------------------------
+A pure function's output depends ONLY on its inputs, and it has no side
+effects (it doesn't modify any external state, print to the console, write
+to a file, etc.). Pure functions are easier to test, reason about, and
+parallelize, since calling them repeatedly with the same inputs always
+produces the same output with no hidden dependencies. Functional programming
+emphasizes writing as much logic as possible using pure functions.
+
+10. KEY TAKEAWAYS
+---------------------
+- Functions enable reuse, abstraction, and modular design.
+- Understanding pass-by-value vs. pass-by-reference semantics (and how
+  mutability interacts with them) prevents a large class of bugs.
+- Scope rules (local, enclosing, global, built-in) determine where a
+  variable name can be accessed.
+- Closures let inner functions retain access to enclosing variables even
+  after the outer function returns.
+- Pure functions (no side effects, deterministic output) are easier to
+  test and reason about.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What is the difference between a parameter and an argument?
+2. Explain the difference between pass-by-value and pass-by-reference with
+   an example.
+3. What is a closure, and why is it useful?
+4. What is a pure function, and why are pure functions easier to test?
+5. Describe the LEGB scope resolution order (or its equivalent in another
+   language of your choice).

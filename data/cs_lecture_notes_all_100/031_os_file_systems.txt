@@ -1,0 +1,6 @@
+LECTURE NOTES: OS - FILE SYSTEMS
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers os - file systems, a fundamental concept in computer science.

@@ -1,0 +1,6 @@
+LECTURE NOTES: BACKTRACKING AND BRANCH-AND-BOUND
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers backtracking and branch-and-bound, a fundamental concept in computer science.

@@ -1,0 +1,148 @@
+LECTURE NOTES: OBJECT-ORIENTED PROGRAMMING - CLASSES AND OBJECTS
+===================================================================
+
+1. PROCEDURAL VS. OBJECT-ORIENTED PROGRAMMING
+---------------------------------------------------
+Procedural programming (C, Pascal, earlier BASIC) organizes code around
+FUNCTIONS that manipulate data passed to them. Object-oriented programming
+(OOP: C++, Java, Python, C#) organizes code around OBJECTS that bundle both
+DATA (state) and FUNCTIONS (behavior) that operate on that data. This
+bundling, called encapsulation, is the core principle of OOP and offers
+advantages for maintaining large codebases: related data and behavior live
+together, are reasoned about together, and are less likely to be misused.
+
+2. WHAT IS AN OBJECT?
+------------------------
+An object is an instance of a CLASS — a blueprint or template defining what
+data (attributes/fields) and behavior (methods) objects of that class will
+have. Just as a cookie cutter defines the shape and a cookie is an instance
+of that cutter, a class defines structure and an object is a specific
+instance with concrete values.
+
+Example (pseudocode):
+    class Dog {
+        string name
+        int age
+        void bark() {
+            print(name + " barks!")
+        }
+    }
+    
+    dog1 = Dog()  // object (instance) of the Dog class
+    dog1.name = "Buddy"
+    dog1.age = 3
+    dog1.bark()
+
+3. ATTRIBUTES (DATA MEMBERS) AND METHODS (MEMBER FUNCTIONS)
+--------------------------------------------------------------
+- Attributes: variables declared within the class, holding state specific
+  to each object. Each object has its own copy of attributes with its own
+  values.
+- Methods: functions declared within the class, operating on that class's
+  attributes. Methods have implicit access to the object's own attributes
+  (via "this" in C++/Java, or self in Python).
+
+4. CONSTRUCTORS AND DESTRUCTORS
+-----------------------------------
+- Constructor: a special method called automatically when a new object is
+  created, typically used to initialize the object's attributes to valid
+  starting values. In many languages, you can define multiple constructors
+  with different parameter lists (constructor overloading), allowing
+  objects to be initialized in different ways.
+- Destructor: a special method called automatically when an object is
+  destroyed (explicitly deleted in C++, or by garbage collection in Java/
+  Python), typically used to free resources (close files, release memory,
+  etc.). Not all languages have destructors (Python uses __del__ but garbage
+  collection timing is not guaranteed; Java relies purely on garbage
+  collection).
+
+5. VISIBILITY/ACCESS MODIFIERS
+-----------------------------------
+- public: accessible from anywhere (inside the class, inside other
+  functions, from other classes).
+- private: accessible ONLY from within the class's own methods. Other code
+  cannot directly read/modify private attributes, enforcing encapsulation.
+- protected: accessible from within the class AND from subclasses
+  (inheritance, covered in the next lecture).
+- (In some languages like Python, there's no true enforcement of privacy,
+  only conventions; privacy is enforced more strictly in languages like
+  Java and C++.)
+
+A common pattern: declare attributes as PRIVATE and provide PUBLIC
+"getter" and "setter" methods to access them, allowing future changes to
+the internal representation without breaking external code that depends on
+the public interface.
+
+6. THE "THIS" POINTER (SELF IN PYTHON)
+------------------------------------------
+Inside a method, "this" (or "self" in Python) is an implicit reference to
+the object on which the method is being called, allowing the method to
+access that specific object's attributes:
+    class BankAccount {
+        int balance;
+        void deposit(int amount) {
+            this.balance += amount;  // "this" refers to the specific
+                                     // account instance
+        }
+    }
+
+7. STATIC MEMBERS (CLASS VARIABLES AND METHODS)
+---------------------------------------------------
+- Static attributes: variables declared with "static," shared by ALL
+  instances of the class (only one copy exists, not one per object).
+- Static methods: methods that operate on static data or provide utility
+  functions related to the class, callable via the class name itself
+  without needing an object instance (e.g., Math.sqrt() in Java).
+
+Static members are useful for shared data (e.g., counting how many objects
+of a class have been created) or utility functions related to the class.
+Overuse can defeat the purpose of OOP (bundling behavior with relevant
+state), so they're typically used sparingly.
+
+8. OBJECT LIFETIME AND MEMORY
+-----------------------------
+In memory-managed languages (C++), an object's lifetime is tied to when it's
+allocated and deallocated:
+    Dog* d = new Dog();  // allocate on heap, lifetime begins
+    d->bark();           // use the object
+    delete d;            // deallocate, lifetime ends
+
+In garbage-collected languages (Java, Python), objects live until no
+references to them remain, at which point the garbage collector frees the
+memory automatically (details of when/how the collector runs vary by
+language and implementation).
+
+9. COMPOSITION VS. AGGREGATION
+-----------------------------------
+- Composition: an object "owns" component objects, which are created and
+  destroyed with the owner (strong relationship). Example: a Car object
+  owns an Engine object; if the car is destroyed, the engine goes too.
+- Aggregation: an object "has reference to" other objects, which can
+  exist independently (weaker relationship). Example: a Department object
+  references Employee objects; if the department is deleted, employees
+  continue to exist.
+
+Both are alternatives to inheritance (next lecture) for building complex
+objects from simpler parts, and composition is often preferred (composition
+over inheritance) because it's more flexible and avoids deep inheritance
+hierarchies.
+
+10. KEY TAKEAWAYS
+---------------------
+- OOP bundles data (attributes) and behavior (methods) into objects,
+  organized by classes as blueprints.
+- Encapsulation uses visibility modifiers (public/private) to control
+  access and hide internal implementation details.
+- Constructors initialize new objects; destructors clean up resources
+  when objects are destroyed (or as part of garbage collection).
+- Static members are class-level (shared), not instance-level.
+- Composition and aggregation combine objects; inheritance (next lecture)
+  establishes hierarchical relationships.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What is the difference between a class and an object?
+2. What is the purpose of access modifiers like "private" and "public"?
+3. What is a constructor, and what is it typically used for?
+4. Explain the difference between an attribute and a method.
+5. What is the "this" pointer, and why is it necessary in methods?

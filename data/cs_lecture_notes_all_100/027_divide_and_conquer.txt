@@ -1,0 +1,6 @@
+LECTURE NOTES: DIVIDE AND CONQUER
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers divide and conquer, a fundamental concept in computer science.

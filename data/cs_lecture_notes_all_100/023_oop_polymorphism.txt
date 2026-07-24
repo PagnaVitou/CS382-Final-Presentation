@@ -1,0 +1,141 @@
+LECTURE NOTES: OBJECT-ORIENTED PROGRAMMING - POLYMORPHISM
+==============================================================
+
+1. WHAT IS POLYMORPHISM?
+--------------------------
+Polymorphism (Greek for "many forms") is the ability of objects to take on
+multiple forms or for the same interface to be used with objects of
+different types. It's one of the four pillars of OOP (along with
+encapsulation, inheritance, and abstraction) and enables flexible,
+extensible code.
+
+2. COMPILE-TIME POLYMORPHISM: OVERLOADING
+---------------------------------------------
+Method/function OVERLOADING allows multiple methods with the same name but
+DIFFERENT PARAMETER LISTS (different number, type, or order of parameters)
+in the same class. The compiler determines which version to call based on
+the arguments provided at compile time:
+    class Calculator {
+        int add(int a, int b) { return a + b; }
+        double add(double a, double b) { return a + b; }
+        int add(int a, int b, int c) { return a + b + c; }
+    }
+
+This is resolved at compile time ("static" dispatch) and is supported in
+languages like Java, C++, and C# but NOT in Python (Python allows only one
+definition per name, and later definitions overwrite earlier ones).
+
+Operator overloading (redefining what +, -, etc., do for custom types) is
+also a form of compile-time polymorphism and is supported in languages like
+C++ and Python but not Java.
+
+3. RUNTIME POLYMORPHISM: METHOD OVERRIDING
+----------------------------------------------
+Method OVERRIDING (mentioned in the Inheritance lecture) is true runtime
+polymorphism: the method to call is determined by the ACTUAL TYPE of the
+object at runtime, not the type of the variable holding it:
+    Animal a = new Dog();  // variable is Animal type, but actual object is Dog
+    a.makeSound();         // calls Dog's makeSound(), not Animal's
+
+This is resolved at runtime ("dynamic" dispatch) and enables writing generic
+code that works with multiple types:
+    void animalConcert(Animal a) {
+        a.makeSound();  // works with Dog, Cat, Bird, etc.
+    }
+
+4. VIRTUAL METHODS AND THE V-TABLE
+---------------------------------------
+Under the hood, languages implement runtime polymorphism using a V-TABLE
+(virtual method table) or similar mechanism: each class has a table of
+function pointers for its virtual (overridable) methods. At runtime, a call
+to a virtual method looks up the actual object's class in this table and
+jumps to the appropriate implementation. This adds a small runtime overhead
+compared to direct function calls but is negligible in practice.
+
+5. INTERFACE-BASED POLYMORPHISM
+----------------------------------
+An INTERFACE (or protocol) defines a contract: a set of methods that any
+class implementing the interface must provide. A class can implement
+multiple interfaces, enabling a form of polymorphism without inheritance:
+    interface Shape {
+        double area();
+        double perimeter();
+    }
+    
+    class Circle implements Shape {
+        double area() { ... }
+        double perimeter() { ... }
+    }
+    
+    class Rectangle implements Shape {
+        double area() { ... }
+        double perimeter() { ... }
+    }
+
+Code can accept a "Shape" parameter and call area()/perimeter() on any
+object that implements the interface, without needing inheritance. This
+offers more flexibility than class-based inheritance.
+
+6. DUCK TYPING (STRUCTURAL POLYMORPHISM)
+---------------------------------------------
+Some dynamically typed languages like Python use "duck typing": if an object
+has the methods and attributes needed, it's treated as the right type,
+regardless of its actual class name. "If it walks like a duck and quacks
+like a duck, it's a duck." This offers maximum flexibility but offers less
+compile-time checking:
+    def make_sound(animal):
+        animal.makeSound()  # works with anything having a makeSound method
+
+No inheritance or interface implementation needed — just the method.
+
+7. GENERIC PROGRAMMING (TEMPLATES)
+--------------------------------------
+In languages like C++, GENERICS (or TEMPLATES) allow writing code that works
+with multiple types by parameterizing the type itself:
+    template<typename T>
+    T max(T a, T b) {
+        return a > b ? a : b;
+    }
+
+The compiler generates separate versions for each type the function is
+called with (int, double, etc.). This is compile-time polymorphism without
+inheritance or interfaces. Java's generics are similar, though Java does
+some compile-time type erasure, resulting in all generic types sharing a
+single runtime representation.
+
+8. LISKOV SUBSTITUTION PRINCIPLE
+----------------------------------
+The Liskov Substitution Principle (LSP) states that a subclass should be
+usable anywhere its parent class is expected without breaking the program's
+correctness. This is more specific than just "method overriding works" —
+it requires that the subclass maintains the semantic contract of the parent
+(not making the contract stricter, not weaker, not adding unexpected
+side effects). Violating LSP creates fragile, surprising code.
+
+9. COVARIANCE AND CONTRAVARIANCE (ADVANCED)
+----------------------------------------------
+When overriding a method, some languages allow changing the return type
+(covariance) or parameter types (contravariance) in specific, type-safe ways.
+For example, if a parent's method returns an Animal, an override can return
+a Dog (a subclass). Most of this is handled automatically by type systems
+and is an advanced topic, but it's worth knowing exists.
+
+10. KEY TAKEAWAYS
+---------------------
+- Overloading (compile-time polymorphism) uses different parameter lists;
+  overriding (runtime polymorphism) uses the actual object's type.
+- Interfaces enable polymorphism without class inheritance.
+- Duck typing (in dynamic languages) offers maximum flexibility by focusing
+  on available methods rather than types.
+- Generics/templates allow writing type-agnostic code that works with
+  multiple types.
+- The Liskov Substitution Principle ensures subclasses are genuinely
+  substitutable for their parents.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What's the difference between method overloading and method overriding?
+2. How does runtime polymorphism enable writing generic code?
+3. Give an example where duck typing is an advantage in a dynamic language.
+4. What is an interface, and how does it differ from an abstract class?
+5. Explain the Liskov Substitution Principle with an example.

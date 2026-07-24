@@ -1,0 +1,6 @@
+LECTURE NOTES: OS - PROCESSES AND THREADS
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers os - processes and threads, a fundamental concept in computer science.

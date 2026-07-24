@@ -1,0 +1,6 @@
+LECTURE NOTES: DATABASE SYSTEMS - SQL BASICS
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers database systems - sql basics, a fundamental concept in computer science.

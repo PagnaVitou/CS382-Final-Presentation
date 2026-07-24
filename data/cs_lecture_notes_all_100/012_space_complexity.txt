@@ -1,0 +1,139 @@
+LECTURE NOTES: SPACE COMPLEXITY
+==================================
+
+1. WHAT IS SPACE COMPLEXITY?
+--------------------------------
+Space complexity measures how much memory an algorithm requires as a
+function of its input size, expressed using the same Big-O notation used
+for time complexity. It captures both the space needed to store the input
+itself and any ADDITIONAL (auxiliary) space the algorithm uses while
+running — variables, temporary data structures, recursive call stack
+frames, and so on.
+
+2. AUXILIARY SPACE VS. TOTAL SPACE
+----------------------------------------
+- Total space complexity includes the space taken by the input itself plus
+  any extra space used.
+- Auxiliary space complexity considers ONLY the extra space used beyond
+  the input — this is usually the more meaningful measure, since the input
+  size is often a given/fixed cost regardless of algorithm choice, and
+  we're really interested in how much MORE memory our particular algorithm
+  needs on top of that.
+
+When people say an algorithm is "in-place," they typically mean its
+auxiliary space complexity is O(1) — it only uses a small, constant amount
+of extra memory regardless of input size, modifying the input directly
+rather than creating new large data structures.
+
+3. COMMON SPACE COMPLEXITY EXAMPLES
+------------------------------------------
+- O(1): an algorithm using a fixed number of variables regardless of input
+  size (e.g., finding the maximum of an array by tracking a single running
+  maximum variable).
+- O(n): an algorithm that creates a new data structure proportional to
+  input size (e.g., creating a copy of an array, or a hash map with one
+  entry per input element).
+- O(n^2): an algorithm that builds, say, a full pairwise distance matrix
+  for n elements.
+- O(log n): typical of divide-and-conquer recursive algorithms where the
+  recursion depth is logarithmic (e.g., balanced binary search on a tree,
+  where the call stack depth is proportional to the tree's height).
+
+4. RECURSION AND SPACE COMPLEXITY
+----------------------------------------
+Recursive algorithms consume stack space proportional to the maximum depth
+of recursion, since each call adds a stack frame that isn't popped until
+that call returns. This is an often-overlooked source of space complexity:
+even if a recursive algorithm doesn't explicitly allocate new arrays or
+objects, its use of the call stack itself counts toward its space
+complexity.
+
+Example: naive recursive factorial(n) has O(n) space complexity due to the
+n stacked function calls, even though each individual call only uses O(1)
+extra local variables — it's the DEPTH of recursion that matters here, not
+the work done per call.
+
+An iterative version of the same algorithm (using a loop instead of
+recursion) would typically achieve O(1) space complexity, since it doesn't
+build up a call stack — this is a classic example of the time/space (or
+more precisely here, code-complexity/space) trade-offs between recursive
+and iterative approaches.
+
+5. TIME-SPACE TRADE-OFFS
+-------------------------------
+Many optimizations trade increased memory usage for reduced running time,
+or vice versa:
+- Memoization/caching: storing previously computed results uses extra
+  memory (often O(n) or more) to avoid redundant computation, reducing
+  time complexity (e.g., turning O(2^n) naive Fibonacci into O(n) time,
+  at the cost of O(n) additional space for the cache).
+- Precomputed lookup tables: storing precomputed answers for common
+  queries trades memory for near-instant (O(1)) lookup time.
+- Hash tables: use more memory than a simple array (due to load factor
+  requirements and hashing overhead) in exchange for average O(1) lookup
+  time versus O(n) for unsorted arrays or O(log n) for sorted structures.
+- In-place sorting algorithms (quicksort, heapsort) achieve O(1) or
+  O(log n) auxiliary space at the cost of algorithmic complexity, compared
+  to simpler but more memory-hungry approaches like merge sort's O(n)
+  auxiliary space requirement for the merge step.
+
+6. WHY SPACE COMPLEXITY MATTERS IN PRACTICE
+--------------------------------------------------
+- Memory-constrained environments (embedded systems, mobile devices) may
+  make an otherwise-optimal time-complexity algorithm impractical if its
+  space requirements are too high.
+- Extremely large datasets (e.g., processing data that doesn't fit in RAM)
+  may require algorithms specifically designed for low memory usage, even
+  at the cost of additional running time (e.g., external sorting
+  algorithms that work on data too large to fit in memory at once).
+- Garbage collection overhead in managed languages (Java, Python, etc.)
+  means that algorithms allocating many temporary objects can incur
+  performance costs beyond the raw space complexity analysis would suggest
+  (garbage collector pauses, memory fragmentation).
+
+7. ANALYZING SPACE COMPLEXITY OF CODE
+-------------------------------------------
+General guidelines:
+- Count each variable/data structure created, and how its size scales
+  with input n.
+- For recursive functions, consider the maximum simultaneous call-stack
+  depth, not just the number of total calls made over the algorithm's
+  execution.
+- Be careful with data structures that appear "free" but aren't — e.g.,
+  string concatenation in some languages implicitly creates new string
+  objects, string slicing may or may not copy data depending on the
+  language, and list/array slicing syntax can silently create O(n) copies.
+
+8. EXAMPLE: COMPARING TWO FIBONACCI IMPLEMENTATIONS
+-----------------------------------------------------------
+- Naive recursive Fibonacci: O(2^n) time, O(n) space (due to maximum
+  recursion depth being n).
+- Memoized recursive Fibonacci: O(n) time, O(n) space (for the cache, plus
+  O(n) for the recursion stack depth — these add, but O(n)+O(n) is still
+  O(n)).
+- Iterative Fibonacci (tracking only the last two values): O(n) time,
+  O(1) space — this is typically the most memory-efficient approach when
+  only the final value is needed, though it sacrifices the elegance of the
+  recursive formulation.
+
+9. KEY TAKEAWAYS
+-------------------
+- Space complexity measures additional memory usage as a function of input
+  size, using the same Big-O notation as time complexity.
+- "In-place" algorithms have O(1) auxiliary space.
+- Recursive algorithms have space complexity proportional to their maximum
+  recursion DEPTH, due to call stack usage.
+- Many optimizations (memoization, hashing, lookup tables) trade space for
+  time, and vice versa; choosing between them depends on the constraints
+  of your specific application.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What is the difference between total space complexity and auxiliary
+   space complexity?
+2. Why does naive recursive factorial have O(n) space complexity even
+   though each call only uses O(1) local variables?
+3. Give an example of a time-space trade-off in algorithm design.
+4. Why might an iterative algorithm be preferred over an equivalent
+   recursive one in a memory-constrained environment?
+5. What does it mean for a sorting algorithm to be "in-place"?

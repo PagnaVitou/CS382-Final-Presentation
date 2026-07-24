@@ -1,0 +1,136 @@
+LECTURE NOTES: QUEUES
+========================
+
+1. WHAT IS A QUEUE?
+----------------------
+A queue is a linear data structure that follows the First-In-First-Out
+(FIFO) principle: the first element added is the first one removed. The
+canonical mental model is a line of people waiting for service — the
+person who joined the line first is served first, and new arrivals join at
+the back.
+
+2. CORE QUEUE OPERATIONS
+-----------------------------
+- enqueue(item): adds an item to the back (rear) of the queue.
+- dequeue(): removes and returns the item at the front of the queue.
+- front()/peek(): returns the item at the front WITHOUT removing it.
+- isEmpty(): checks whether the queue has any elements.
+- size(): returns the number of elements currently in the queue.
+
+Like stacks, all of these operations should be O(1) in a well-designed
+queue implementation.
+
+3. IMPLEMENTING A QUEUE
+----------------------------
+- Naive array-based implementation: a straightforward approach might
+  dequeue by removing the first element and shifting all remaining
+  elements left, but this makes dequeue O(n) — undesirable.
+- Circular buffer (ring buffer): a fixed-size array with two pointers
+  (front and rear) that wrap around to the beginning of the array once
+  they reach the end, avoiding the need to shift elements. This achieves
+  O(1) enqueue and dequeue, at the cost of a fixed maximum capacity (unless
+  combined with dynamic resizing logic).
+- Linked-list-based implementation: maintain both a "head" (front) and
+  "tail" (rear) pointer. Enqueue adds a new node at the tail; dequeue
+  removes the node at the head. Both operations are O(1), and the
+  structure grows dynamically without a fixed capacity limit.
+- Two-stack implementation: a queue can also be implemented using two
+  stacks (one for enqueuing, one for dequeuing, transferring elements
+  between them as needed) — a common technique used to illustrate how
+  different data structures can simulate one another, and a classic
+  interview question.
+
+4. BREADTH-FIRST SEARCH (BFS)
+------------------------------------
+Queues are essential to breadth-first traversal of trees and graphs
+(covered in detail in the Graphs lecture): starting from a source node,
+BFS enqueues all of its neighbors, then dequeues and processes each one in
+turn, enqueuing THEIR unvisited neighbors, and so on. This guarantees that
+nodes are visited in order of increasing distance (number of edges) from
+the source — the queue's FIFO ordering is precisely what ensures nodes
+closer to the source are processed before nodes farther away.
+
+5. TASK SCHEDULING AND BUFFERING
+--------------------------------------
+Queues are the natural data structure for any scenario requiring
+fair, ordered processing of tasks or requests:
+- Print queues: documents sent to a printer are processed in the order
+  they were submitted.
+- CPU task scheduling: many scheduling algorithms use queues (sometimes
+  multiple, prioritized queues) to determine which process runs next.
+- Request handling in web servers: incoming requests may be placed in a
+  queue to be processed by available worker threads/processes, smoothing
+  out bursts of traffic.
+- Message queues in distributed systems (e.g., RabbitMQ, Kafka, AWS SQS):
+  decouple producers (systems generating messages/events) from consumers
+  (systems processing them), allowing each to operate independently and
+  at its own pace, with the queue absorbing temporary mismatches in rate.
+
+6. PRIORITY QUEUES
+-----------------------
+A priority queue is a variant where each element has an associated
+priority, and dequeue always removes the element with the HIGHEST (or
+lowest, depending on convention) priority, rather than strictly the oldest
+element. Priority queues are typically implemented using a heap data
+structure (covered in the Trees/Heaps lecture), giving O(log n) insertion
+and O(log n) removal of the highest-priority element, and O(1) access to
+peek at it.
+
+Applications of priority queues include:
+- Dijkstra's shortest-path algorithm (always processing the
+  currently-closest unvisited node next).
+- Task schedulers where some tasks are more urgent than others.
+- Huffman coding (a data compression algorithm) construction.
+- Simulation systems that need to process events in chronological order
+  (an "event queue" ordered by event time).
+
+7. DEQUE (DOUBLE-ENDED QUEUE)
+------------------------------------
+A deque generalizes both stacks and queues by allowing insertion and
+removal from BOTH ends efficiently (push/pop from both the front and the
+back, all in O(1)). This flexibility makes deques useful for algorithms
+like the sliding window maximum problem, and many languages provide a
+built-in deque type (e.g., Python's collections.deque) specifically
+because it's more efficient than a plain list for operations at the front
+(a plain Python list has O(n) complexity for inserting/removing at index
+0, since all subsequent elements must shift).
+
+8. CIRCULAR QUEUE CONSIDERATIONS
+---------------------------------------
+When implementing a queue with a circular buffer, care must be taken to
+correctly distinguish between an "empty" state and a "full" state, since
+both can otherwise appear as "front pointer equals rear pointer" under a
+naive implementation. Common solutions include maintaining a separate
+size/count variable, or deliberately leaving one slot in the buffer always
+unused as a sentinel.
+
+9. COMPARISON: QUEUE VS. STACK
+-------------------------------------
+  Property          | Stack (LIFO)        | Queue (FIFO)
+  Removal order     | Most recent first    | Oldest first
+  Real-world analog | Stack of plates      | Line of people
+  Key traversal use | Depth-First Search   | Breadth-First Search
+  Typical ops       | push, pop, peek      | enqueue, dequeue, front
+
+10. KEY TAKEAWAYS
+---------------------
+- A queue follows FIFO ordering: first in, first out.
+- Efficient implementations (circular buffer or linked list) achieve O(1)
+  enqueue and dequeue; naive array-shifting implementations do not.
+- BFS, task scheduling, and message-queue systems in distributed computing
+  all rely fundamentally on queue behavior.
+- Priority queues (usually heap-based) generalize plain queues by
+  processing elements according to priority rather than arrival order.
+
+SUMMARY QUESTIONS FOR REVIEW
+-------------------------------
+1. What does FIFO mean, and how does it differ from a stack's LIFO
+   ordering?
+2. Why is a naive array-based dequeue operation O(n), and how does a
+   circular buffer fix this?
+3. Explain why BFS uses a queue while DFS typically uses a stack (or the
+   call stack via recursion).
+4. What is a priority queue, and what data structure is it typically built
+   on?
+5. Give a real-world software example where a message queue decouples two
+   systems, and explain why that's beneficial.

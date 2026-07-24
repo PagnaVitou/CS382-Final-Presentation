@@ -1,0 +1,6 @@
+LECTURE NOTES: OOP - ENCAPSULATION AND ABSTRACTION
+===========================================================================
+
+1. INTRODUCTION
+-----------------
+This lecture covers oop - encapsulation and abstraction, a fundamental concept in computer science.
