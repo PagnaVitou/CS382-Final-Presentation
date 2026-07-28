@@ -61,13 +61,22 @@ def llm_answer(query: str, retrieved: List[Tuple[Chunk, float]]) -> str:
 
     try:
         import anthropic
+
         client = anthropic.Anthropic(api_key=api_key)
         response = client.messages.create(
             model="claude-3-5-sonnet-20241022",
             max_tokens=1024,
             messages=[{"role": "user", "content": prompt}],
         )
-        return response.content[0].text
+
+        text_parts = []
+        for block in response.content:
+            if getattr(block, "type", None) == "text":
+                text = getattr(block, "text", None)
+                if isinstance(text, str):
+                    text_parts.append(text)
+
+        return "".join(text_parts) if text_parts else ""
     except ImportError:
         return (
             "[Anthropic SDK not installed]\n\n"
