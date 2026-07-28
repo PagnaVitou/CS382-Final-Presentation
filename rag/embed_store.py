@@ -10,7 +10,7 @@ Upgrade path (if corpus grows past ~10k chunks):
 - Keep the VectorStore interface (`build`, `query`) the same so app.py doesn't change.
 """
 
-from typing import List, Tuple
+from typing import Any, List, Optional, Tuple
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -22,6 +22,7 @@ try:
     HAS_SENTENCE_TRANSFORMERS = True
 except ImportError:
     HAS_SENTENCE_TRANSFORMERS = False
+    SentenceTransformer = None  # type: ignore[assignment]
 
 
 class VectorStore:
@@ -34,11 +35,12 @@ class VectorStore:
                            If False, fall back to TF-IDF.
         """
         self.use_embeddings = use_embeddings and HAS_SENTENCE_TRANSFORMERS
-        self.model = None
-        self.matrix = None
+        self.model: Optional[Any] = None
+        self.vectorizer: Optional[Any] = None
+        self.matrix: Optional[Any] = None
         self.chunks: List[Chunk] = []
         
-        if self.use_embeddings:
+        if self.use_embeddings and SentenceTransformer is not None:
             self.model = SentenceTransformer("all-MiniLM-L6-v2")
         else:
             from sklearn.feature_extraction.text import TfidfVectorizer
@@ -49,9 +51,9 @@ class VectorStore:
         self.chunks = chunks
         texts = [c.text for c in chunks]
         
-        if self.use_embeddings:
+        if self.use_embeddings and self.model is not None:
             self.matrix = self.model.encode(texts, convert_to_numpy=True)
-        else:
+        elif self.vectorizer is not None:
             self.matrix = self.vectorizer.fit_transform(texts)
 
     def query(self, query_text: str, top_k: int = 3) -> List[Tuple[Chunk, float]]:
@@ -59,10 +61,12 @@ class VectorStore:
         if self.matrix is None:
             raise RuntimeError("VectorStore.build() must be called before query().")
         
-        if self.use_embeddings:
+        if self.use_embeddings and self.model is not None:
             query_vec = self.model.encode([query_text], convert_to_numpy=True)
-        else:
+        elif self.vectorizer is not None:
             query_vec = self.vectorizer.transform([query_text]).toarray()
+        else:
+            raise RuntimeError("No embedding or vectorizer is available.")
         
         scores = cosine_similarity(query_vec, self.matrix).flatten()
         ranked_idx = np.argsort(scores)[::-1][:top_k]
