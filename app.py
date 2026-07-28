@@ -30,7 +30,7 @@ def load_store(chunk_size: int = 100, overlap: int = 20):
     return store, docs, chunks
 
 
-st.title("🔎 RAG-Based AI Search System")
+st.title("Find the your NOTEES! 🔎")
 st.caption("Ask questions about the indexed CS lecture notes. Answers are grounded in the source material.")
 
 with st.sidebar:
@@ -62,11 +62,10 @@ with st.sidebar:
         for d in docs:
             st.caption(f"• {d['title']}")
 
-query = st.text_input(
-    "Your question",
-    placeholder="e.g., What is a hash table? How does content-based filtering work?",
-    key="query_text",
-)
+selected_example = st.session_state.get("selected_example", "")
+query = st.text_input("Enter your question", key="query_text")
+query = query if isinstance(query, str) else ""
+query = query.strip()
 
 # Use lookups from filename and title → document so source downloads can serve the exact file.
 docs_by_filename = {}
@@ -139,4 +138,5 @@ if st.session_state.get("show_examples", False):
     ]
     for ex in examples:
         if st.button(ex, key=f"ex_{ex}", use_container_width=True):
-            st.session_state.query_text = ex
+            st.session_state.selected_example = ex
+            st.session_state.show_examples = False
