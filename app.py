@@ -51,6 +51,11 @@ with st.sidebar:
     st.subheader("Generation")
     mode = st.radio("Answer mode", ["extractive", "llm"], 
                    help="Extractive: no API needed, just returns top chunks. LLM: AI-generated answers (requires ANTHROPIC_API_KEY)")
+    # Relevance threshold to avoid answering on low-confidence retrievals
+    st.subheader("Relevance")
+    relevance_threshold = st.slider("Minimum top similarity to answer (threshold)", min_value=0.00, max_value=0.50, value=0.15, step=0.01,
+                                    help="If the top retrieved chunk's similarity is below this value the app will not generate an answer unless forced.")
+    force_answer = st.checkbox("Force answer even if below threshold", value=False)
     
     st.divider()
     
@@ -87,11 +92,31 @@ if query.strip() and search_clicked:
     start_time = time.time()
     
     retrieved = store.query(query, top_k=top_k)
-    answer = generate_answer(query, retrieved, mode=mode)
     elapsed = time.time() - start_time
-    
+
+    # Check top similarity and apply relevance threshold
     st.subheader("✅ Answer")
-    st.write(answer)
+    if not retrieved:
+        st.warning("No relevant sources found.")
+        answer = "No relevant passages were found for that query."
+        st.write(answer)
+    else:
+        top_score = retrieved[0][1]
+        if top_score < relevance_threshold and not force_answer:
+            st.warning(
+                f"Low confidence: top retrieved similarity {top_score:.3f} is below the threshold {relevance_threshold:.3f}."
+            )
+            st.info("Options: rephrase your question, increase the threshold sensitivity, or check the retrieved sources below.")
+            # Show an extractive preview so the user can inspect the retrieved passages
+            preview = []
+            for chunk, score in retrieved:
+                preview.append(f"[{chunk.doc_title}, score={score:.3f}]\n{chunk.text}\n")
+            st.code("\n---\n".join(preview))
+            answer = "[Not answered due to low confidence — see retrieved passages above.]"
+            st.write(answer)
+        else:
+            answer = generate_answer(query, retrieved, mode=mode)
+            st.write(answer)
     
     st.subheader("📚 Retrieved Sources")
     if not retrieved:
