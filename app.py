@@ -56,6 +56,8 @@ with st.sidebar:
     relevance_threshold = st.slider("Minimum top similarity to answer (threshold)", min_value=0.00, max_value=0.50, value=0.15, step=0.01,
                                     help="If the top retrieved chunk's similarity is below this value the app will not generate an answer unless forced.")
     force_answer = st.checkbox("Force answer even if below threshold", value=False)
+    stricter_relevance = st.checkbox("Use stricter relevance check (avg score)", value=True,
+                                     help="Also require the average similarity of retrieved chunks to be reasonably high to avoid weak, scattered matches.")
     
     st.divider()
     
@@ -101,10 +103,15 @@ if query.strip() and search_clicked:
         answer = "No relevant passages were found for that query."
         st.write(answer)
     else:
-        top_score = retrieved[0][1]
-        if top_score < relevance_threshold and not force_answer:
+        scores = [s for (_, s) in retrieved]
+        top_score = scores[0]
+        avg_score = sum(scores) / len(scores)
+        # Decide refusal if top score is below threshold or average score is too low
+        avg_threshold = relevance_threshold * 0.6
+        low_confidence = (top_score < relevance_threshold) or (stricter_relevance and avg_score < avg_threshold)
+        if low_confidence and not force_answer:
             st.warning(
-                f"Low confidence: top retrieved similarity {top_score:.3f} is below the threshold {relevance_threshold:.3f}."
+                f"Low confidence: top retrieved similarity {top_score:.3f} (avg {avg_score:.3f}) is below the threshold {relevance_threshold:.3f}."
             )
             st.info("Options: rephrase your question, increase the threshold sensitivity, or check the retrieved sources below.")
             # Show an extractive preview so the user can inspect the retrieved passages
