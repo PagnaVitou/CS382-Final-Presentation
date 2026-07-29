@@ -121,19 +121,12 @@ if query.strip() and search_clicked:
         overlap = sum(1 for t in distinct_q if t in corpus_words) / len(distinct_q)
 
     if enforce_domain_filter and (distinct_q and overlap < domain_overlap_threshold) and not force_answer:
-        st.warning(f"Out-of-domain query detected (token overlap {overlap:.2f} < {domain_overlap_threshold:.2f}).")
-        st.info("This query appears outside the indexed CS lecture notes. Try rephrasing or uncheck 'Enforce domain filter' to force an answer.")
-        # Show short preview of nearest passages so user can inspect
-        retrieved = store.query(query, top_k=top_k)
-        if retrieved:
-            preview = []
-            for chunk, score in retrieved:
-                preview.append(f"[{chunk.doc_title}, score={score:.3f}]\n{chunk.text}\n")
-            st.code("\n---\n".join(preview))
-        elapsed = time.time() - start_time
-        answer = "[Query refused: detected as out-of-domain relative to the indexed corpus.]"
-        st.subheader("✅ Answer")
-        st.write(answer)
+        st.warning(
+            f"Sorry — I can’t answer that. The query appears outside the indexed CS lecture notes (token overlap {overlap:.2f} < {domain_overlap_threshold:.2f})."
+        )
+        st.info("Please rephrase your question to match the indexed content, or uncheck 'Enforce domain filter' to force an answer.")
+        # Stop further processing so no answer or retrieved sources are shown
+        st.stop()
     else:
         retrieved = store.query(query, top_k=top_k)
         elapsed = time.time() - start_time
