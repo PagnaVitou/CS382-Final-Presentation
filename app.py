@@ -31,7 +31,7 @@ def load_store(chunk_size: int = 100, overlap: int = 20):
     return store, docs, chunks
 
 
-st.title("Find your NOTEES! 🔎")
+st.title("Find your NOTES!!! 🔎")
 st.caption("Ask questions about the indexed CS lecture notes. Answers are grounded in the source material.")
 
 with st.sidebar:
