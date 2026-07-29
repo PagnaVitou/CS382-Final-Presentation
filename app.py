@@ -10,6 +10,7 @@ retrieval with real embeddings, and LLM-powered answers grounded in your documen
 
 import time
 import streamlit as st
+import re
 
 from rag.ingest import load_documents, build_chunk_records
 from rag.embed_store import VectorStore
@@ -58,6 +59,10 @@ with st.sidebar:
     force_answer = st.checkbox("Force answer even if below threshold", value=False)
     stricter_relevance = st.checkbox("Use stricter relevance check (avg score)", value=True,
                                      help="Also require the average similarity of retrieved chunks to be reasonably high to avoid weak, scattered matches.")
+    st.subheader("Domain Filtering")
+    enforce_domain_filter = st.checkbox("Enforce domain filter (block out-of-topic queries)", value=True)
+    domain_overlap_threshold = st.slider("Minimum query↔corpus token overlap", min_value=0.0, max_value=1.0, value=0.20, step=0.01,
+                                         help="Fraction of distinct query tokens that must appear in the indexed corpus to be considered in-domain.")
     
     st.divider()
     
@@ -83,6 +88,21 @@ for d in docs:
             docs_by_filename[d["filename"]] = d
         docs_by_title[d.get("title", "")] = d
 
+# Build a simple corpus vocabulary for lightweight domain checking
+stopwords = {
+    "the", "is", "in", "and", "to", "of", "a", "an", "for", "on", "with", "by", "as", "that",
+    "this", "are", "be", "or", "it", "from", "at", "which",
+}
+def tokenize(text: str):
+    return re.findall(r"\w+", text.lower())
+
+corpus_words = set()
+for d in docs:
+    text = d.get("text", "") if isinstance(d, dict) else ""
+    for t in tokenize(text):
+        if t not in stopwords:
+            corpus_words.add(t)
+
 col1, col2, col3 = st.columns(3)
 with col1:
     search_clicked = st.button("🔍 Search", type="primary", use_container_width=True)
@@ -93,8 +113,30 @@ with col2:
 if query.strip() and search_clicked:
     start_time = time.time()
     
-    retrieved = store.query(query, top_k=top_k)
-    elapsed = time.time() - start_time
+    # Domain check: refuse out-of-domain queries if enabled
+    query_tokens = [t for t in tokenize(query) if t not in stopwords]
+    distinct_q = set(query_tokens)
+    overlap = 0.0
+    if distinct_q:
+        overlap = sum(1 for t in distinct_q if t in corpus_words) / len(distinct_q)
+
+    if enforce_domain_filter and (distinct_q and overlap < domain_overlap_threshold) and not force_answer:
+        st.warning(f"Out-of-domain query detected (token overlap {overlap:.2f} < {domain_overlap_threshold:.2f}).")
+        st.info("This query appears outside the indexed CS lecture notes. Try rephrasing or uncheck 'Enforce domain filter' to force an answer.")
+        # Show short preview of nearest passages so user can inspect
+        retrieved = store.query(query, top_k=top_k)
+        if retrieved:
+            preview = []
+            for chunk, score in retrieved:
+                preview.append(f"[{chunk.doc_title}, score={score:.3f}]\n{chunk.text}\n")
+            st.code("\n---\n".join(preview))
+        elapsed = time.time() - start_time
+        answer = "[Query refused: detected as out-of-domain relative to the indexed corpus.]"
+        st.subheader("✅ Answer")
+        st.write(answer)
+    else:
+        retrieved = store.query(query, top_k=top_k)
+        elapsed = time.time() - start_time
 
     # Check top similarity and apply relevance threshold
     st.subheader("✅ Answer")
